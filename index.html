@@ -7,13 +7,18 @@
   <title>Anh Thien Nguyen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1 class="hero-name" data-text="Anh-Thien Nguyen">Anh-Thien Nguyen</h1>
-    <p class="tagline">Seattle, WA | 253-227-2005 | anhthientbd@gmail.com </p>
+    <div class="header-inner">
+      <img src="profile_picture.jpg" alt="Anh-Thien Nguyen" class="profile-pic" />
+      <div>
+        <h1>Anh-Thien Nguyen</h1>
+        <p class="tagline">Seattle, WA | anhthientbd@gmail.com</p>
+      </div>
+    </div>
   </header>
 
   <!-- SKILLS MARQUEE -->
@@ -59,25 +64,20 @@
         </iframe>
       </div>
 
-      <div class="card">
-        <h3>All Remixes!</h3>
-        <iframe
-          src="https://drive.google.com/embeddedfolderview?id=1mKe8_BnTTrKHOydrkTtzBRIfQ6eo7oMt#list"
-          width="100%" height="200" frameborder="0" style="border-radius:8px">
+        <div class="card">
+        <h3>My Music!</h3>
+        <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/legendarythien&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
         </iframe>
-        <a class="btn btn-secondary" href="https://drive.google.com/drive/folders/1mKe8_BnTTrKHOydrkTtzBRIfQ6eo7oMt?usp=sharing" target="_blank" rel="noopener" style="margin-top:0.75rem">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M6.28 3l-6 10.39L3.72 18l6-10.39zm11.44 0H8.72L2.72 13.38l3.44 5.95 6-10.38 5.56 9.62H24zm.56 10.38L14.84 21h6.88l2.44-4.23z"/></svg>
-          Open in Drive
-        </a>
       </div>
 
       <div class="card">
-        <h3>All DJ Sets!</h3>
+        <h3>DJ Sets — KXSU 102.1 FM</h3>
         <iframe
-          src="https://drive.google.com/embeddedfolderview?id=17RE1pQRJc0fAzt60-qJJnSJJPEFEoY3Q#list"
-          width="100%" height="200" frameborder="0" style="border-radius:8px">
+          src="https://drive.google.com/embeddedfolderview?id=1NAo7N100okGQ6h4jJSktcC95TGcQi6yJ#list"
+          width="100%" height="220" frameborder="0" style="border-radius:8px">
         </iframe>
-        <a class="btn btn-secondary" href="https://drive.google.com/drive/folders/17RE1pQRJc0fAzt60-qJJnSJJPEFEoY3Q?usp=sharing" target="_blank" rel="noopener" style="margin-top:0.75rem">
+        <a class="btn btn-secondary" href="https://drive.google.com/drive/folders/1NAo7N100okGQ6h4jJSktcC95TGcQi6yJ?usp=sharing" target="_blank" rel="noopener" style="margin-top:0.75rem">
           <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M6.28 3l-6 10.39L3.72 18l6-10.39zm11.44 0H8.72L2.72 13.38l3.44 5.95 6-10.38 5.56 9.62H24zm.56 10.38L14.84 21h6.88l2.44-4.23z"/></svg>
           Open in Drive
         </a>
@@ -93,8 +93,6 @@
         <span class="col-icon">💻</span>
         <h2>Computer Science</h2>
       </div>
-
-      <p class="col-desc">Full-stack developer studying CS at Seattle University</p>
 
       <!-- Links -->
       <div class="card link-row">
@@ -112,9 +110,9 @@
         </a>
       </div>
 
-      <!-- Experience -->
+      <!-- Dev Experience -->
       <div class="card">
-        <h3>Experience</h3>
+        <h3>Dev Experience</h3>
         <div class="resume-item">
           <div class="resume-title">
             Full-Stack Developer — Washington Business Week
@@ -131,16 +129,6 @@
           <div class="resume-meta">Apr – Sept 2025 &middot; React, Express.js, Tailwind, Firebase</div>
           <p>Cut SAT prep query times by 45% and teacher grading time from 30+ min to under 5 min for 500+ students.</p>
         </div>
-        <div class="resume-item">
-          <div class="resume-title">IT Technician — Seattle University</div>
-          <div class="resume-meta">Sept 2025 – Present &middot; Jira, Confluence</div>
-          <p>Resolved 1,000+ weekly IT requests with 95%+ satisfaction across faculty and students.</p>
-        </div>
-        <div class="resume-item">
-          <div class="resume-title">Instructor (Lua / Roblox) — Amazon iD Tech Camps</div>
-          <div class="resume-meta">May – Aug 2025 &middot; Lua, Roblox</div>
-          <p>Taught game dev to 100+ kids (ages 7–12), achieving 95% parent satisfaction.</p>
-        </div>
       </div>
 
       <!-- Projects -->
@@ -152,6 +140,21 @@
           </div>
           <div class="resume-meta">React, Supabase, PostgreSQL</div>
           <p>Real-time queue system for 50+ concurrent DJ session users with dynamic vote-based ranking.</p>
+        </div>
+      </div>
+
+      <!-- Other Experience -->
+      <div class="card">
+        <h3>Other Experience</h3>
+        <div class="resume-item">
+          <div class="resume-title">IT Technician — Seattle University</div>
+          <div class="resume-meta">Sept 2025 – Present &middot; Jira, Confluence</div>
+          <p>Resolved 1,000+ weekly IT requests with 95%+ satisfaction across faculty and students.</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-title">Instructor (Lua / Roblox) — Amazon iD Tech Camps</div>
+          <div class="resume-meta">May – Aug 2025 &middot; Lua, Roblox</div>
+          <p>Taught game dev to 100+ kids (ages 7–12), achieving 95% parent satisfaction.</p>
         </div>
       </div>
     </section>
