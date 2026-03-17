@@ -38,6 +38,35 @@ body {
   padding-right: env(safe-area-inset-right);
 }
 
+/* ── PAGE DUCK DECOR ── */
+.page-ducks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.duck-sticker {
+  position: absolute;
+  font-size: clamp(1.2rem, 2.1vw, 1.9rem);
+  opacity: 0.22;
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.08));
+  animation: duck-float 6s ease-in-out infinite;
+}
+
+.duck-1 { top: 14%; left: 3%; animation-delay: 0s; }
+.duck-2 { top: 31%; right: 2.8%; animation-delay: 1.2s; }
+.duck-3 { top: 54%; left: 4.5%; animation-delay: 2.2s; }
+.duck-4 { top: 74%; right: 3.5%; animation-delay: 0.7s; }
+.duck-5 { bottom: 4%; left: 46%; animation-delay: 1.7s; }
+.duck-6 { top: 7%; right: 5%; animation-delay: 3.1s; }
+.duck-7 { top: 88%; left: 5%; animation-delay: 2.4s; }
+
+@keyframes duck-float {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-7px) rotate(4deg); }
+}
+
 /* ── LOADING SCREEN ── */
 .loading-screen {
   position: fixed;
@@ -161,6 +190,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-on-scroll { opacity: 1; transform: none; transition: none; }
+  .duck-sticker, .footer-duck, .header-duck { animation: none; }
 }
 
 /* ── HEADER ── */
@@ -361,6 +391,9 @@ header h1 {
 }
 
 .resume-embed {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
   margin-top: 0.55rem;
 }
 
@@ -483,6 +516,27 @@ footer {
 
 footer::before { content: '— '; }
 footer::after  { content: ' —'; }
+
+.footer-duck {
+  display: inline-block;
+  animation: duck-float 5s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+.header-duck {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 2.8rem;
+  font-size: 1.15rem;
+  opacity: 0.35;
+  animation: duck-float 6s ease-in-out infinite;
+  animation-delay: 0.9s;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  .header-duck { display: none; }
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 700px) {
@@ -614,5 +668,9 @@ footer::after  { content: ' —'; }
   .card:hover {
     transform: none;
     box-shadow: none;
+  }
+
+  .duck-sticker {
+    opacity: 0.16;
   }
 }
