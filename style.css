@@ -310,6 +310,14 @@ header h1 {
   margin-bottom: 0;
 }
 
+.resume-embed {
+  margin-top: 0.55rem;
+}
+
+.resume-embed-link {
+  margin-top: 0.5rem;
+}
+
 /* ── BUTTONS ── */
 .btn {
   display: inline-flex;
