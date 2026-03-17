@@ -147,6 +147,22 @@ body {
   50%       { transform: scaleX(1.15); opacity: 0.6; }
 }
 
+/* ── SCROLL ANIMATIONS ── */
+.animate-on-scroll {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll { opacity: 1; transform: none; transition: none; }
+}
+
 /* ── HEADER ── */
 header {
   text-align: center;
