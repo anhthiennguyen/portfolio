@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -7,16 +7,16 @@
 }
 
 :root {
-  --bg:            #fdf6ee;
-  --bg2:           #f7ede0;
-  --surface:       #fffaf4;
-  --surface2:      #f0e6d8;
-  --border:        #e2d0bc;
-  --text:          #2c2118;
-  --muted:         #7a6555;
+  --bg:            #f9f8f6;
+  --bg2:           #f3f2ef;
+  --surface:       #ffffff;
+  --surface2:      #f3f2ef;
+  --border:        #e8e7e3;
+  --text:          #1a1714;
+  --muted:         #6e6860;
   --accent-music:  #c0392b;
   --accent-cs:     #2d6a4f;
-  --accent-soft:   #e8c4a0;
+  --accent-soft:   #d4cfc9;
   --radius:        16px;
 }
 
@@ -25,7 +25,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 15px;
   line-height: 1.65;
   min-height: 100vh;
@@ -63,7 +63,7 @@ body {
 .loading-card {
   width: min(90vw, 360px);
   background: var(--surface);
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: calc(var(--radius) + 2px);
   padding: 1.2rem 1rem;
   text-align: center;
@@ -123,11 +123,35 @@ body {
   50% { opacity: 1; }
 }
 
+/* ── DUCK ── */
+.duck-scene {
+  margin-bottom: 0.6rem;
+}
+
+.duck-body-group {
+  animation: duck-bob 1.4s ease-in-out infinite;
+}
+
+.duck-water {
+  transform-origin: 50px 61px;
+  animation: duck-ripple 1.4s ease-in-out infinite;
+}
+
+@keyframes duck-bob {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-7px); }
+}
+
+@keyframes duck-ripple {
+  0%, 100% { transform: scaleX(1);    opacity: 0.9; }
+  50%       { transform: scaleX(1.15); opacity: 0.6; }
+}
+
 /* ── HEADER ── */
 header {
   text-align: center;
   padding: 3rem 1rem 2rem;
-  border-bottom: 1.5px dashed var(--border);
+  border-bottom: 1px solid var(--border);
   position: relative;
 }
 
@@ -161,13 +185,12 @@ header::before { left: 2rem; }
 header::after  { right: 2rem; }
 
 header h1 {
-  font-family: 'Lora', serif;
-  font-size: clamp(2rem, 5.5vw, 3.4rem);
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: 0.01em;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
   color: var(--text);
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 .tagline {
@@ -184,7 +207,7 @@ header h1 {
   width: 100%;
   overflow: hidden;
   border-top: 1.5px dashed var(--border);
-  border-bottom: 1.5px dashed var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 0.65rem 0;
   background: var(--bg2);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
@@ -200,7 +223,7 @@ header h1 {
 
 .marquee-track span {
   background: var(--surface);
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 99px;
   padding: 0.2rem 0.85rem;
   font-size: 0.78rem;
@@ -219,13 +242,15 @@ header h1 {
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   .loading-stars,
-  .loading-dots span { animation: none; }
+  .loading-dots span,
+  .duck-body-group,
+  .duck-water { animation: none; }
 }
 
 /* ── MAIN COLUMNS ── */
 .columns {
   display: grid;
-  grid-template-columns: 1fr 1px 1fr;
+  grid-template-columns: 1fr 1fr;
   flex: 1;
   max-width: 1140px;
   width: 100%;
@@ -252,6 +277,7 @@ header h1 {
 .col-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   margin-bottom: 0.1rem;
 }
@@ -259,11 +285,11 @@ header h1 {
 .col-icon { font-size: 1.4rem; line-height: 1; }
 
 .col-header h2 {
-  font-family: 'Lora', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
 }
 
 .col-music .col-header h2 { color: var(--accent-music); }
@@ -278,24 +304,32 @@ header h1 {
 /* ── CARDS ── */
 .card {
   background: var(--surface);
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.2rem 1.4rem;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.22s, transform 0.22s, border-color 0.22s;
   position: relative;
 }
 
-.card:hover {
-  transform: translateY(-3px) rotate(-0.3deg);
-  box-shadow: 0 8px 24px rgba(44,33,24,0.08);
+.col-music .card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(192, 57, 43, 0.4);
+  box-shadow: 0 8px 28px rgba(192, 57, 43, 0.18);
+}
+
+.col-cs .card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(45, 106, 79, 0.4);
+  box-shadow: 0 8px 28px rgba(45, 106, 79, 0.18);
 }
 
 .card h3 {
-  font-family: 'Lora', serif;
-  font-size: 1rem;
-  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
   margin-bottom: 0.5rem;
   color: var(--text);
+  letter-spacing: -0.01em;
 }
 
 .card p {
@@ -330,7 +364,7 @@ header h1 {
   font-weight: 500;
   text-decoration: none;
   transition: opacity 0.15s, transform 0.15s;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .btn:hover { opacity: 0.82; transform: translateY(-1px); }
@@ -350,7 +384,7 @@ header h1 {
 /* ── RESUME ITEMS ── */
 .resume-item {
   padding: 0.7rem 0;
-  border-bottom: 1px dashed var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .resume-item:last-child  { border-bottom: none; padding-bottom: 0; }
@@ -414,7 +448,7 @@ header h1 {
 
 .skill-tags span {
   background: var(--surface2);
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--border);
   border-radius: 99px;
   padding: 0.15rem 0.65rem;
   font-size: 0.78rem;

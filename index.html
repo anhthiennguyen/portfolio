@@ -7,13 +7,37 @@
   <title>Anh Thien Nguyen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-label="Loading portfolio">
     <div class="loading-card">
-      <div class="loading-stars" aria-hidden="true">✦ ✧ ✦</div>
+      <div class="duck-scene" aria-hidden="true">
+        <svg viewBox="0 0 100 68" width="96" height="65">
+          <!-- Water -->
+          <ellipse class="duck-water" cx="50" cy="61" rx="36" ry="6" fill="rgba(45,106,79,0.13)"/>
+          <!-- Duck (bobs as a group) -->
+          <g class="duck-body-group">
+            <!-- Tail feathers -->
+            <path d="M25 41 Q13 31 18 44 Q20 51 27 48 Z" fill="#f59e0b"/>
+            <path d="M27 38 Q16 29 20 42 Q22 49 29 45 Z" fill="#fbbf24"/>
+            <!-- Body -->
+            <ellipse cx="46" cy="44" rx="22" ry="14" fill="#fbbf24"/>
+            <!-- Wing -->
+            <ellipse cx="44" cy="46" rx="13" ry="7" fill="#f59e0b" transform="rotate(-10 44 46)"/>
+            <!-- Head -->
+            <circle cx="63" cy="29" r="13" fill="#fbbf24"/>
+            <!-- Beak -->
+            <path d="M73 28 L84 26 L84 31 L73 30 Z" fill="#f97316"/>
+            <!-- Nostril -->
+            <circle cx="80" cy="27.5" r="0.8" fill="#d97706"/>
+            <!-- Eye -->
+            <circle cx="68" cy="26" r="2.8" fill="#1a1714"/>
+            <circle cx="68.9" cy="25.1" r="1" fill="white"/>
+          </g>
+        </svg>
+      </div>
       <p class="loading-title">Loading</p>
       <div class="loading-dots" aria-hidden="true">
         <span></span><span></span><span></span>
@@ -35,8 +59,7 @@
     <!-- LEFT: Music / DJ -->
     <section class="col col-music">
       <div class="col-header">
-        <span class="col-icon">🎧</span>
-        <h2>Music</h2>
+        <h2>Music Producer / DJ</h2>
       </div>
 
       <!-- Music links row -->
@@ -85,14 +108,10 @@
       </div>
     </section>
 
-    <!-- DIVIDER -->
-    <div class="divider"></div>
-
     <!-- RIGHT: Computer Science -->
     <section class="col col-cs">
       <div class="col-header">
-        <span class="col-icon">💻</span>
-        <h2>Computer Science</h2>
+        <h2>Software / Fullstack Developer</h2>
       </div>
 
       <!-- Links -->
@@ -236,66 +255,6 @@
 
     // Hard timeout to prevent infinite loading
     setTimeout(checkIfReady, MAX_WAIT_TIME);
-
-    const wrap  = document.querySelector('.marquee-wrap');
-    const track = document.querySelector('.marquee-track');
-
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;   // translateX when drag started
-
-    // Read the live translateX from the animation
-    function getLiveX() {
-      const style = window.getComputedStyle(track);
-      const matrix = new DOMMatrix(style.transform);
-      return matrix.m41;
-    }
-
-    function startDrag(e) {
-      isDragging = true;
-      startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
-      currentX = getLiveX();
-      track.style.animation = 'none';
-      track.style.transform = `translateX(${currentX}px)`;
-      wrap.classList.add('dragging');
-    }
-
-    function onDrag(e) {
-      if (!isDragging) return;
-      const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
-      const dx = clientX - startX;
-      track.style.transform = `translateX(${currentX + dx}px)`;
-    }
-
-    function endDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      wrap.classList.remove('dragging');
-
-      // Snap position into valid looping range so animation restarts seamlessly
-      const halfWidth = track.scrollWidth / 2;
-      let x = new DOMMatrix(window.getComputedStyle(track).transform).m41;
-      // Keep x within [-halfWidth, 0]
-      x = ((x % halfWidth) - halfWidth) % halfWidth;
-
-      // Restart animation from current position using a CSS custom property
-      track.style.animation = 'none';
-      track.style.transform = `translateX(${x}px)`;
-
-      // Force reflow then resume animation from this offset
-      track.getBoundingClientRect();
-      const pct = (-x / halfWidth) * 100;
-      track.style.animation = '';
-      track.style.animationDelay = `-${(pct / 100) * 28}s`;
-    }
-
-    wrap.addEventListener('mousedown',  startDrag);
-    window.addEventListener('mousemove', onDrag);
-    window.addEventListener('mouseup',   endDrag);
-
-    wrap.addEventListener('touchstart', startDrag, { passive: true });
-    window.addEventListener('touchmove', onDrag,   { passive: true });
-    window.addEventListener('touchend',  endDrag);
   </script>
 </body>
 </html>
