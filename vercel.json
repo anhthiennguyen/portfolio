@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "dj.anhthien.site" }],
+      "destination": "/dj/index.html"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "dev.anhthien.site" }],
+      "destination": "/dev/index.html"
+    }
+  ]
+}
