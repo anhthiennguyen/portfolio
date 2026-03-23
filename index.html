@@ -5,50 +5,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Anh Thien Nguyen</title>
-
-  <!-- ── EMBED / SOCIAL PREVIEW ── -->
-  <!-- Replace https://YOUR-DOMAIN-HERE with your actual site URL (e.g. https://anhthiennguyen.github.io) -->
   <meta name="description" content="Anh-Thien Nguyen — Music Producer / DJ & Software Developer based in Seattle, WA." />
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://anhthiennguyen.github.io/portfolio/" />
+  <meta property="og:url"         content="https://www.anhthien.site/" />
   <meta property="og:title"       content="Anh-Thien Nguyen" />
   <meta property="og:description" content="Music Producer / DJ & Software Developer based in Seattle, WA." />
-  <meta property="og:image"       content="https://anhthiennguyen.github.io/portfolio/Embed.png" />
+  <meta property="og:image"       content="https://www.anhthien.site/Embed.png" />
   <meta property="og:image:width"  content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="Anh-Thien Nguyen" />
   <meta name="twitter:description" content="Music Producer / DJ & Software Developer based in Seattle, WA." />
-  <meta name="twitter:image"       content="https://anhthiennguyen.github.io/Embed.png" />
-
+  <meta name="twitter:image"       content="https://www.anhthien.site/Embed.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-label="Loading portfolio">
+
+  <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-label="Loading">
     <div class="loading-card">
       <div class="duck-scene" aria-hidden="true">
         <svg viewBox="0 0 100 68" width="96" height="65">
-          <!-- Water -->
           <ellipse class="duck-water" cx="50" cy="61" rx="36" ry="6" fill="rgba(45,106,79,0.13)"/>
-          <!-- Duck (bobs as a group) -->
           <g class="duck-body-group">
-            <!-- Tail feathers -->
             <path d="M25 41 Q13 31 18 44 Q20 51 27 48 Z" fill="#f59e0b"/>
             <path d="M27 38 Q16 29 20 42 Q22 49 29 45 Z" fill="#fbbf24"/>
-            <!-- Body -->
             <ellipse cx="46" cy="44" rx="22" ry="14" fill="#fbbf24"/>
-            <!-- Wing -->
             <ellipse cx="44" cy="46" rx="13" ry="7" fill="#f59e0b" transform="rotate(-10 44 46)"/>
-            <!-- Head -->
             <circle cx="63" cy="29" r="13" fill="#fbbf24"/>
-            <!-- Beak -->
             <path d="M73 28 L84 26 L84 31 L73 30 Z" fill="#f97316"/>
-            <!-- Nostril -->
             <circle cx="80" cy="27.5" r="0.8" fill="#d97706"/>
-            <!-- Eye -->
             <circle cx="68" cy="26" r="2.8" fill="#1a1714"/>
             <circle cx="68.9" cy="25.1" r="1" fill="white"/>
           </g>
@@ -71,217 +59,40 @@
     </div>
   </header>
 
-  <main class="columns">
-    <!-- LEFT: Music / DJ -->
-    <section class="col col-music">
-      <div class="col-header animate-on-scroll">
-        <h2>Music Producer / DJ</h2>
-      </div>
+  <main>
+    <p class="bio animate-on-scroll">Music producer, DJ, and full-stack developer based in Seattle.</p>
+    <div class="nav-cards">
+      <a href="https://dj.anhthien.site" class="nav-card nav-card-music animate-on-scroll">
+        <span class="nav-card-eyebrow">music &amp; dj</span>
+        <h2>Music / DJ</h2>
+        <p class="nav-card-desc">DJ sets, live mixes, KXSU 102.1 FM radio, SoundCloud, and original productions.</p>
+        <span class="nav-card-cta">dj.anhthien.site →</span>
+      </a>
+      <a href="https://dev.anhthien.site" class="nav-card nav-card-cs animate-on-scroll">
+        <span class="nav-card-eyebrow">software dev</span>
+        <h2>Software Dev</h2>
+        <p class="nav-card-desc">Full-stack projects and dev experience with React, Rails, Node.js, and more.</p>
+        <span class="nav-card-cta">dev.anhthien.site →</span>
+      </a>
+    </div>
+  </main>
 
-      <!-- Music links row -->
-      <div class="card animate-on-scroll link-row">
-        <a class="btn" href="https://soundcloud.com/legendarythien" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M1.175 12.225c-.015.123-.027.246-.027.372 0 .126.012.249.027.372l-.027-.372zm1.395 3.4c-.207 0-.378-.07-.513-.21a.693.693 0 0 1-.203-.507.693.693 0 0 1 .203-.507.694.694 0 0 1 .513-.21h.01l8.047-1.268V7.837c0-.223.072-.403.215-.541.143-.138.325-.207.547-.207h.01c.223 0 .405.069.548.207.143.138.215.318.215.541v6.146l-9.592 1.642zm9.6-8.525a.694.694 0 0 0-.548.207.69.69 0 0 0-.215.541v5.787l-8.047 1.268h-.01a.694.694 0 0 0-.513.21.693.693 0 0 0-.203.507c0 .198.068.372.203.507a.693.693 0 0 0 .513.21h9.585a.694.694 0 0 0 .548-.207.69.69 0 0 0 .215-.541V7.848a.69.69 0 0 0-.215-.541.694.694 0 0 0-.313-.207zm2.63 1.15c.312-.312.69-.469 1.132-.469.442 0 .82.157 1.132.469.312.312.469.69.469 1.132v4.266c0 .442-.157.82-.469 1.132a1.546 1.546 0 0 1-1.132.469 1.546 1.546 0 0 1-1.132-.469 1.546 1.546 0 0 1-.469-1.132V9.382c0-.442.157-.82.469-1.132zm3.42-.782c.376-.376.83-.564 1.362-.564.533 0 .987.188 1.362.564.376.376.564.83.564 1.362v5.297c0 .533-.188.987-.564 1.362a1.857 1.857 0 0 1-1.362.564 1.857 1.857 0 0 1-1.362-.564 1.857 1.857 0 0 1-.564-1.362V9.432c0-.533.188-.987.564-1.362z"/></svg>
-          SoundCloud
-        </a>
-        <a class="btn btn-secondary" href="https://www.youtube.com/@dj_legendarythien" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-          YouTube
-        </a>
-        <a class="btn btn-secondary" href="https://www.instagram.com/dj_legendarythien/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
-          Instagram
-        </a>
-      </div>
-
-      <div class="card animate-on-scroll">
-        <h3>My Live DJ Mixes!</h3>
-        <iframe width="100%" height="215"
-          src="https://www.youtube.com/embed/videoseries?list=PLG7CF8fmJhSYGP5Ai_F1kSsJdLPws5QKD"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-        <div class="card animate-on-scroll">
-        <h3>My Music!</h3>
-          <iframe width="100%" height="420" scrolling="no" frameborder="no" allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/legendarythien/tracks&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false">
-        </iframe>
-      </div>
-
-      <div class="card animate-on-scroll">
-        <h3>DJ Sets — KXSU 102.1 FM</h3>
-        <iframe
-          src="https://drive.google.com/embeddedfolderview?id=1NAo7N100okGQ6h4jJSktcC95TGcQi6yJ#list"
-          width="100%" height="220" frameborder="0" style="border-radius:8px">
-        </iframe>
-        <a class="btn btn-secondary" href="https://drive.google.com/drive/folders/1NAo7N100okGQ6h4jJSktcC95TGcQi6yJ?usp=sharing" target="_blank" rel="noopener" style="margin-top:0.75rem">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M6.28 3l-6 10.39L3.72 18l6-10.39zm11.44 0H8.72L2.72 13.38l3.44 5.95 6-10.38 5.56 9.62H24zm.56 10.38L14.84 21h6.88l2.44-4.23z"/></svg>
-          Open in Drive
-        </a>
-      </div>
-
-      <div class="card animate-on-scroll">
-        <h3>Unreleased Music</h3>
-        <iframe
-          src="https://drive.google.com/embeddedfolderview?id=1wrhvCMl_BqzvOziM74eCP4mBhHrNoT0n#list"
-          width="100%" height="220" frameborder="0" style="border-radius:8px">
-        </iframe>
-        <a class="btn btn-secondary" href="https://drive.google.com/drive/folders/1wrhvCMl_BqzvOziM74eCP4mBhHrNoT0n?usp=sharing" target="_blank" rel="noopener" style="margin-top:0.75rem">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M6.28 3l-6 10.39L3.72 18l6-10.39zm11.44 0H8.72L2.72 13.38l3.44 5.95 6-10.38 5.56 9.62H24zm.56 10.38L14.84 21h6.88l2.44-4.23z"/></svg>
-          Open in Drive
-        </a>
-      </div>
-    </section>
-
-    <!-- RIGHT: Computer Science -->
-    <section class="col col-cs">
-      <div class="col-header animate-on-scroll">
-        <h2>Software / Fullstack Developer</h2>
-      </div>
-
-      <!-- Links -->
-      <div class="card animate-on-scroll link-row">
-        <a class="btn" href="https://www.linkedin.com/in/anh-thien-nguyen/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a class="btn" href="https://github.com/anhthiennguyen" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          GitHub
-        </a>
-        <a class="btn btn-secondary" href="resume.pdf" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zm4 18H6V4h7v5h5zM8 13h8v1H8zm0 2h8v1H8zm0 2h5v1H8z"/></svg>
-          Resume
-        </a>
-      </div>
-
-      <!-- Dev Experience -->
-      <div class="card animate-on-scroll">
-        <h3>Dev Experience</h3>
-        <div class="resume-item">
-          <div class="resume-title">
-            Full-Stack Developer — Washington Business Week
-            <a href="https://wile.wbw.org/" target="_blank" rel="noopener" class="resume-link resume-url">wile.wbw.org</a>
-          </div>
-          <div class="resume-meta">Sept 2025 – Present &middot; Rails, PostgreSQL</div>
-          <p>A business simulation platform where high school students run virtual companies, manage finances, and compete for the highest valuation.</p>
-          <img
-            src="WILE.png"
-            alt="WILE website preview"
-            loading="lazy"
-            class="resume-embed" />
-          <a class="btn btn-secondary resume-embed-link" href="https://wile.wbw.org/" target="_blank" rel="noopener">Open WILE</a>
-        </div>
-        <div class="resume-item">
-          <div class="resume-title">
-            Full-Stack Developer — AceRocket
-            <a href="https://acerocket-sat-math.netlify.app/login.html" target="_blank" rel="noopener" class="resume-link resume-url">acerocket-sat-math.netlify.app</a>
-          </div>
-          <div class="resume-meta">Apr – Sept 2025 &middot; React, Express.js, Firebase</div>
-          <p>An SAT prep platform with AI-powered problem sets, teacher grading tools, and student progress tracking.</p>
-          <img
-            src="ACEROCKET.png"
-            alt="AceRocket website preview"
-            loading="lazy"
-            class="resume-embed" />
-          <a class="btn btn-secondary resume-embed-link" href="https://acerocket-sat-math.netlify.app/login.html" target="_blank" rel="noopener">Open AceRocket</a>
-        </div>
-      </div>
-
-      <!-- Projects -->
-      <div class="card animate-on-scroll">
-        <h3>Projects</h3>
-        <div class="resume-item">
-          <div class="resume-title">Song Request Platform — Real-Time DJ Queue
-            <a href="https://anhthiennguyen.github.io/songrequest/" target="_blank" rel="noopener" class="resume-link resume-url">anhthiennguyen.github.io/songrequest</a>
-          </div>
-          <div class="resume-meta">React, Node.js, Firebase</div>
-          <p>Real-time queue system for concurrent DJ session users with dynamic vote-based ranking.</p>
-          <img
-            src="SONGREQUEST.png"
-            alt="Song Request website preview"
-            loading="lazy"
-            class="resume-embed" />
-          <a class="btn btn-secondary resume-embed-link" href="https://anhthiennguyen.github.io/songrequest/" target="_blank" rel="noopener">Open Song Request</a>
-        </div>
-      </div>
+  <footer>
+anhthien.site
+  </footer>
 
   <script>
     const loadingScreen = document.getElementById('loadingScreen');
-    const MIN_LOAD_TIME = 600;      // Show for at least this long
-    const MAX_WAIT_TIME = 4200;     // Force hide after this time
-    let loadStartTime = Date.now();
-    let iframesLoaded = 0;
-    let totalIframes = 0;
-    let readyToHide = false;
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        loadingScreen.classList.add('is-hidden');
+        loadingScreen.addEventListener('transitionend', () => loadingScreen.remove(), { once: true });
+      }, 600);
+    }, { once: true });
 
-    function hideLoadingScreen() {
-      if (!loadingScreen || loadingScreen.classList.contains('is-hidden')) return;
-      loadingScreen.classList.add('is-hidden');
-      loadingScreen.addEventListener('transitionend', () => {
-        loadingScreen.remove();
-      }, { once: true });
-    }
-
-    function checkIfReady() {
-      // Only hide if minimum time has passed AND all iframes loaded (or timeout reached)
-      const elapsedTime = Date.now() - loadStartTime;
-      const minTimePassed = elapsedTime >= MIN_LOAD_TIME;
-      const allLoaded = iframesLoaded >= totalIframes;
-      const timedOut = elapsedTime >= MAX_WAIT_TIME;
-
-      if (minTimePassed && (allLoaded || timedOut)) {
-        if (!readyToHide) {
-          readyToHide = true;
-          hideLoadingScreen();
-        }
-      }
-    }
-
-    // Track all iframes
-    const iframes = document.querySelectorAll('iframe');
-    totalIframes = iframes.length;
-
-    if (totalIframes === 0) {
-      // No iframes, just wait for page load + min time
-      window.addEventListener('load', () => {
-        setTimeout(checkIfReady, MIN_LOAD_TIME);
-      }, { once: true });
-    } else {
-      // Set up iframe load tracking
-      iframes.forEach((iframe) => {
-        iframe.addEventListener('load', () => {
-          iframesLoaded++;
-          checkIfReady();
-        }, { once: true });
-        
-        // Fallback: mark as loaded if iframe doesn't fire load event after 3s
-        setTimeout(() => {
-          if (!iframe.dataset.loaded) {
-            iframesLoaded++;
-            iframe.dataset.loaded = 'true';
-            checkIfReady();
-          }
-        }, 3000);
-      });
-
-      // Also wait for window load as backup
-      window.addEventListener('load', checkIfReady, { once: true });
-    }
-
-    // Hard timeout to prevent infinite loading
-    setTimeout(checkIfReady, MAX_WAIT_TIME);
-
-    // Scroll animations
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        entry.target.classList.toggle('is-visible', entry.isIntersecting);
-      });
+      entries.forEach(entry => entry.target.classList.toggle('is-visible', entry.isIntersecting));
     }, { threshold: 0.08 });
-
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
   </script>
 </body>
