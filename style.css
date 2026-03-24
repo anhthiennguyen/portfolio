@@ -113,7 +113,7 @@ body {
 }
 
 .loading-title {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-style: italic;
   color: var(--text);
