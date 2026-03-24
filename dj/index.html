@@ -20,6 +20,43 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://www.anhthien.site/style.css" />
+  <style>
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger-item {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .stagger-item.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .slide-in-text {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .slide-in-text-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .letter.space { display: inline; }
+    .letter.visible { opacity: 1; transform: translateY(0); }
+  </style>
 </head>
 <body>
 
@@ -56,11 +93,12 @@
     </div>
   </div>
 
-  <nav class="page-nav">
+  <nav class="page-nav" style="position:relative;">
     <a href="https://www.anhthien.site">← anhthien.site</a>
+    <span style="position:absolute;left:50%;transform:translateX(-50%);font-size:0.68rem;color:var(--muted);letter-spacing:0.01em;white-space:nowrap;font-family:'Space Mono',monospace;">booking: <a href="mailto:dj.legendarythien@gmail.com" style="color:var(--muted);text-decoration:none;">dj.legendarythien@gmail.com</a></span>
   </nav>
 
-  <header>
+<header>
     <div class="header-inner">
       <img src="https://www.anhthien.site/profile_picture.jpg" alt="Anh-Thien Nguyen" class="profile-pic" />
       <div>
@@ -174,9 +212,64 @@
 
     setTimeout(checkIfReady, MAX_WAIT_TIME);
 
+    function splitLetters(el) {
+      const nodes = Array.from(el.childNodes);
+      el.textContent = '';
+      nodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent.split('').forEach(ch => {
+            const span = document.createElement('span');
+            span.textContent = ch;
+            span.className = ch === ' ' ? 'letter space' : 'letter';
+            el.appendChild(span);
+          });
+        } else if (node.nodeName === 'BR') {
+          el.appendChild(document.createElement('br'));
+        } else {
+          el.appendChild(node.cloneNode(true));
+        }
+      });
+    }
+
+    function animateLetters(el, baseDelay = 0) {
+      el.querySelectorAll('.letter:not(.space)').forEach((span, i) => {
+        setTimeout(() => span.classList.add('visible'), baseDelay + i * 15);
+      });
+    }
+
+    const letterTargets = '.section-label';
+    document.querySelectorAll(letterTargets).forEach(el => splitLetters(el));
+
+    const letterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateLetters(entry.target);
+        } else {
+          entry.target.querySelectorAll('.letter:not(.space)').forEach(span => span.classList.remove('visible'));
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll(letterTargets).forEach(el => letterObserver.observe(el));
+
+    const slideTargets = 'h3, .card p, .card a';
+    document.querySelectorAll(slideTargets).forEach(el => el.classList.add('slide-in-text'));
+
+    const slideObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('slide-in-text-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll(slideTargets).forEach(el => slideObserver.observe(el));
+
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => entry.target.classList.toggle('is-visible', entry.isIntersecting));
-    }, { threshold: 0.08 });
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0.06 });
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
   </script>
 </body>
