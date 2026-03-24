@@ -26,6 +26,14 @@
 
     body { overflow: hidden; height: 100vh; background: #7a6a52; }
 
+    /* ── OS CURSOR ── */
+    * {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpolygon points='2,2 2,20 6,15 10,22 13,21 9,14 16,14' fill='white' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important;
+    }
+    a, button, .desktop-icon, .dock-item, [title] {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpolygon points='2,2 2,20 6,15 10,22 13,21 9,14 16,14' fill='white' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, pointer !important;
+    }
+
     /* ── ANIMATED WALLPAPER ── */
     @keyframes orb-a {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -57,37 +65,37 @@
     .wp-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(90px);
+      filter: blur(80px);
     }
     .wp-orb-1 {
       width: 70vw; height: 70vw;
       top: -25%; left: -15%;
       background: radial-gradient(circle, rgba(180,150,100,0.55) 0%, rgba(140,110,70,0.3) 40%, transparent 70%);
-      animation: orb-a 20s ease-in-out infinite;
+      animation: orb-a 7s ease-in-out infinite;
     }
     .wp-orb-2 {
       width: 60vw; height: 60vw;
       bottom: -20%; right: -10%;
       background: radial-gradient(circle, rgba(100,80,55,0.6) 0%, rgba(70,55,35,0.35) 40%, transparent 70%);
-      animation: orb-b 25s ease-in-out infinite;
+      animation: orb-b 9s ease-in-out infinite;
     }
     .wp-orb-3 {
       width: 50vw; height: 50vw;
       top: 15%; right: 10%;
       background: radial-gradient(circle, rgba(200,170,120,0.35) 0%, rgba(160,130,85,0.2) 40%, transparent 70%);
-      animation: orb-c 30s ease-in-out infinite;
+      animation: orb-c 11s ease-in-out infinite;
     }
     .wp-orb-4 {
       width: 45vw; height: 45vw;
       bottom: 5%; left: 15%;
       background: radial-gradient(circle, rgba(90,70,45,0.5) 0%, rgba(60,45,28,0.3) 40%, transparent 70%);
-      animation: orb-d 22s ease-in-out infinite;
+      animation: orb-d 8s ease-in-out infinite;
     }
     .wp-orb-5 {
       width: 40vw; height: 40vw;
       top: 40%; left: 35%;
       background: radial-gradient(circle, rgba(165,138,95,0.3) 0%, transparent 65%);
-      animation: orb-a 28s ease-in-out infinite reverse;
+      animation: orb-a 5s ease-in-out infinite reverse;
     }
 
 
