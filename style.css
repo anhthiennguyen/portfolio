@@ -728,6 +728,35 @@ footer::after  { content: ' —'; }
   .portfolio-section { padding: 3rem 1rem; }
 }
 
+/* ── HERO SPLIT (photo + text) ── */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hero-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+  }
+  .hero-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    order: -1;
+  }
+}
+
 .resume-bullets {
   margin: 0.5rem 0 0;
   padding-left: 1.1rem;
