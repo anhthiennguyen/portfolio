@@ -113,7 +113,7 @@ body {
 }
 
 .loading-title {
-  font-family: 'Lora', serif;
+  font-family: 'Space Mono', monospace;
   font-size: 1rem;
   font-style: italic;
   color: var(--text);
@@ -158,22 +158,41 @@ body {
 }
 
 .duck-body-group {
-  animation: duck-bob 1.4s ease-in-out infinite;
+  transform-origin: 45px 44px;
+  animation: duck-walk-body 0.5s ease-in-out infinite;
 }
 
 .duck-water {
-  transform-origin: 50px 61px;
-  animation: duck-ripple 1.4s ease-in-out infinite;
+  transform-origin: 50px 65px;
+  animation: duck-ripple 1s ease-in-out infinite;
 }
 
-@keyframes duck-bob {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-7px); }
+.duck-leg-left {
+  animation: duck-leg-l 0.5s ease-in-out infinite;
+}
+
+.duck-leg-right {
+  animation: duck-leg-r 0.5s ease-in-out infinite;
+}
+
+@keyframes duck-walk-body {
+  0%, 100% { transform: rotate(-3deg) translateY(-1px); }
+  50%       { transform: rotate(3deg)  translateY(1px);  }
+}
+
+@keyframes duck-leg-l {
+  0%, 100% { transform: rotate(-20deg); }
+  50%       { transform: rotate(20deg);  }
+}
+
+@keyframes duck-leg-r {
+  0%, 100% { transform: rotate(20deg);  }
+  50%       { transform: rotate(-20deg); }
 }
 
 @keyframes duck-ripple {
   0%, 100% { transform: scaleX(1);    opacity: 0.9; }
-  50%       { transform: scaleX(1.15); opacity: 0.6; }
+  50%       { transform: scaleX(1.1); opacity: 0.5; }
 }
 
 /* ── SCROLL ANIMATIONS ── */
@@ -290,6 +309,8 @@ header h1 {
   .loading-stars,
   .loading-dots span,
   .duck-body-group,
+  .duck-leg-left,
+  .duck-leg-right,
   .duck-water { animation: none; }
 }
 

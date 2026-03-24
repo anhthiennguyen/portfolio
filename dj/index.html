@@ -26,8 +26,16 @@
   <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-label="Loading">
     <div class="loading-card">
       <div class="duck-scene" aria-hidden="true">
-        <svg viewBox="0 0 100 68" width="96" height="65">
-          <ellipse class="duck-water" cx="50" cy="61" rx="36" ry="6" fill="rgba(192,57,43,0.13)"/>
+        <svg viewBox="0 0 100 72" width="96" height="69">
+          <ellipse class="duck-water" cx="50" cy="65" rx="36" ry="5" fill="rgba(192,57,43,0.13)"/>
+          <g class="duck-leg-left" style="transform-origin:40px 56px">
+            <line x1="40" y1="55" x2="38" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M33 63 Q38 61 43 63 L42 66 Q38 64 34 66 Z" fill="#f97316"/>
+          </g>
+          <g class="duck-leg-right" style="transform-origin:50px 56px">
+            <line x1="50" y1="55" x2="52" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M47 63 Q52 61 57 63 L56 66 Q52 64 48 66 Z" fill="#f97316"/>
+          </g>
           <g class="duck-body-group">
             <path d="M25 41 Q13 31 18 44 Q20 51 27 48 Z" fill="#f59e0b"/>
             <path d="M27 38 Q16 29 20 42 Q22 49 29 45 Z" fill="#fbbf24"/>
