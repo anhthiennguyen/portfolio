@@ -165,12 +165,10 @@
     /* ── DESKTOP AREA ── */
     .ubuntu-desktop-area {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      gap: 4px;
-      padding: 16px 12px;
+      position: relative;
+    }
+    .desktop-icon {
+      position: absolute;
     }
 
 
@@ -486,20 +484,70 @@
       }, 900);
     }
 
-    document.getElementById('aboutIcon').addEventListener('click', () => {
+    document.getElementById('aboutIcon').addEventListener('click', (e) => {
+      if (document.getElementById('aboutIcon').dataset.dragged) { delete document.getElementById('aboutIcon').dataset.dragged; return; }
       document.getElementById('aboutIcon').classList.add('launching');
       launch('https://www.anhthien.site/aboutme', 'About Me');
     });
-    document.getElementById('musicIcon').addEventListener('click', () => {
+    document.getElementById('musicIcon').addEventListener('click', (e) => {
+      if (document.getElementById('musicIcon').dataset.dragged) { delete document.getElementById('musicIcon').dataset.dragged; return; }
       document.getElementById('musicIcon').classList.add('launching');
       launch('https://dj.anhthien.site', 'Music Producer');
     });
-    document.getElementById('devIcon').addEventListener('click', () => {
+    document.getElementById('devIcon').addEventListener('click', (e) => {
+      if (document.getElementById('devIcon').dataset.dragged) { delete document.getElementById('devIcon').dataset.dragged; return; }
       document.getElementById('devIcon').classList.add('launching');
       launch('https://dev.anhthien.site', 'Developer');
     });
     document.getElementById('dockMusic').addEventListener('click', () => launch('https://dj.anhthien.site', 'Music Producer'));
     document.getElementById('dockDev').addEventListener('click', () => launch('https://dev.anhthien.site', 'Developer'));
+
+    // Icon drag
+    const iconDefs = [
+      { id: 'aboutIcon',  x: 16, y: 16  },
+      { id: 'musicIcon',  x: 16, y: 136 },
+      { id: 'devIcon',    x: 16, y: 256 },
+    ];
+    iconDefs.forEach(({ id, x, y }) => {
+      const el = document.getElementById(id);
+      el.style.left = x + 'px';
+      el.style.top  = y + 'px';
+    });
+
+    let dragging = null, dragOffX = 0, dragOffY = 0, didDrag = false;
+
+    document.querySelectorAll('.desktop-icon').forEach(icon => {
+      icon.addEventListener('mousedown', (e) => {
+        dragging = icon;
+        didDrag = false;
+        const rect = icon.getBoundingClientRect();
+        dragOffX = e.clientX - rect.left;
+        dragOffY = e.clientY - rect.top;
+        icon.style.zIndex = 100;
+        icon.style.transition = 'none';
+        e.preventDefault();
+      });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      const area = document.querySelector('.ubuntu-desktop-area').getBoundingClientRect();
+      let nx = e.clientX - area.left - dragOffX;
+      let ny = e.clientY - area.top  - dragOffY;
+      nx = Math.max(0, Math.min(nx, area.width  - dragging.offsetWidth));
+      ny = Math.max(0, Math.min(ny, area.height - dragging.offsetHeight));
+      dragging.style.left = nx + 'px';
+      dragging.style.top  = ny + 'px';
+      didDrag = true;
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (!dragging) return;
+      dragging.style.zIndex = '';
+      dragging.style.transition = '';
+      if (didDrag) dragging.dataset.dragged = '1';
+      dragging = null;
+    });
 
     // Selection box
     const selBox = document.getElementById('selectionBox');
