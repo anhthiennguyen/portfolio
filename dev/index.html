@@ -364,7 +364,7 @@
       });
     }
 
-    const letterTargets = 'h1, .section-label, .resume-title, .hero-eyebrow, .hero-desc';
+    const letterTargets = 'h1, .section-label, .hero-eyebrow, .hero-desc';
     document.querySelectorAll(letterTargets).forEach(el => splitLetters(el));
 
     const letterObserver = new IntersectionObserver((entries) => {
@@ -378,7 +378,7 @@
     }, { threshold: 0.3 });
     document.querySelectorAll(letterTargets).forEach(el => letterObserver.observe(el));
 
-    const slideTargets = '.resume-meta, .resume-bullets li, .resume-item p, .skill-label';
+    const slideTargets = '.resume-meta, .resume-bullets li, .resume-item p, .skill-label, .resume-title';
     document.querySelectorAll(slideTargets).forEach(el => el.classList.add('slide-in-text'));
 
     const slideObserver = new IntersectionObserver((entries) => {
