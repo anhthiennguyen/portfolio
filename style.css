@@ -711,7 +711,7 @@ footer::after  { content: ' —'; }
 .portfolio-section {
   max-width: 860px;
   margin: 0 auto;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
   border-top: 1px solid var(--border);
 }
 
@@ -721,11 +721,11 @@ footer::after  { content: ' —'; }
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--muted);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 @media (max-width: 700px) {
-  .portfolio-section { padding: 3rem 1rem; }
+  .portfolio-section { padding: 1.5rem 1rem; }
 }
 
 /* ── HERO SPLIT (photo + text) ── */
