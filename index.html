@@ -393,6 +393,13 @@
     <!-- Desktop icons -->
     <div class="ubuntu-desktop-area">
 
+      <div class="desktop-icon" id="aboutIcon" title="About Me">
+        <div class="desktop-icon-img">
+          <img src="aboutme.jpg" alt="About Me" draggable="false" />
+        </div>
+        <span class="desktop-icon-label">About Me</span>
+      </div>
+
       <div class="desktop-icon" id="musicIcon" title="Music Producer">
         <div class="desktop-icon-img">
           <img src="DJICON.jpg" alt="Music Producer" draggable="false" />
@@ -463,6 +470,10 @@
       }, 900);
     }
 
+    document.getElementById('aboutIcon').addEventListener('click', () => {
+      document.getElementById('aboutIcon').classList.add('launching');
+      launch('https://www.anhthien.site/aboutme', 'About Me');
+    });
     document.getElementById('musicIcon').addEventListener('click', () => {
       document.getElementById('musicIcon').classList.add('launching');
       launch('https://dj.anhthien.site', 'Music Producer');
