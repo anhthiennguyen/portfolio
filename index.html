@@ -292,6 +292,17 @@
       justify-content: center;
     }
 
+    /* ── ICON SELECTED STATE ── */
+    .desktop-icon.selected .desktop-icon-img {
+      outline: 2px solid rgba(220,220,220,0.7);
+      box-shadow: 0 0 0 4px rgba(200,200,200,0.2), 0 4px 16px rgba(0,0,0,0.5);
+    }
+    .desktop-icon.selected .desktop-icon-label {
+      background: rgba(200,200,200,0.3);
+      border-radius: 4px;
+      padding: 1px 4px;
+    }
+
     /* ── LAUNCH NOTIFICATION ── */
     .launch-toast {
       position: fixed;
@@ -319,8 +330,8 @@
     /* ── SELECTION BOX ── */
     #selectionBox {
       position: fixed;
-      border: 1px solid rgba(100,160,255,0.8);
-      background: rgba(100,160,255,0.15);
+      border: 1px solid rgba(200,200,200,0.7);
+      background: rgba(220,220,220,0.12);
       pointer-events: none;
       display: none;
       z-index: 999;
@@ -502,11 +513,11 @@
     document.getElementById('dockMusic').addEventListener('click', () => launch('https://dj.anhthien.site', 'Music Producer'));
     document.getElementById('dockDev').addEventListener('click', () => launch('https://dev.anhthien.site', 'Developer'));
 
-    // Icon drag
+    // Icon positions
     const iconDefs = [
-      { id: 'aboutIcon',  x: 16, y: 16  },
-      { id: 'musicIcon',  x: 16, y: 136 },
-      { id: 'devIcon',    x: 16, y: 256 },
+      { id: 'aboutIcon', x: 16, y: 16  },
+      { id: 'musicIcon', x: 16, y: 136 },
+      { id: 'devIcon',   x: 16, y: 256 },
     ];
     iconDefs.forEach(({ id, x, y }) => {
       const el = document.getElementById(id);
@@ -514,52 +525,76 @@
       el.style.top  = y + 'px';
     });
 
-    let dragging = null, dragOffX = 0, dragOffY = 0, didDrag = false;
+    const allIcons = () => Array.from(document.querySelectorAll('.desktop-icon'));
+    const desktopArea = document.querySelector('.ubuntu-desktop-area');
+    const selBox = document.getElementById('selectionBox');
+
+    function getSelected() { return allIcons().filter(i => i.classList.contains('selected')); }
+    function deselectAll() { allIcons().forEach(i => i.classList.remove('selected')); }
+
+    // ── DRAG ICONS ──
+    let dragging = false, dragOffsets = [], didDrag = false;
 
     document.querySelectorAll('.desktop-icon').forEach(icon => {
       icon.addEventListener('mousedown', (e) => {
-        dragging = icon;
-        didDrag = false;
-        const rect = icon.getBoundingClientRect();
-        dragOffX = e.clientX - rect.left;
-        dragOffY = e.clientY - rect.top;
-        icon.style.zIndex = 100;
-        icon.style.transition = 'none';
+        e.stopPropagation();
         e.preventDefault();
+        didDrag = false;
+
+        // If clicking unselected icon, deselect others and select this one
+        if (!icon.classList.contains('selected')) {
+          deselectAll();
+          icon.classList.add('selected');
+        }
+
+        // Record offset from mouse to each selected icon's top-left
+        const area = desktopArea.getBoundingClientRect();
+        dragOffsets = getSelected().map(ic => ({
+          el: ic,
+          ox: e.clientX - area.left - parseInt(ic.style.left),
+          oy: e.clientY - area.top  - parseInt(ic.style.top),
+        }));
+
+        dragging = true;
+        getSelected().forEach(ic => { ic.style.zIndex = 100; ic.style.transition = 'none'; });
       });
     });
 
     document.addEventListener('mousemove', (e) => {
       if (!dragging) return;
-      const area = document.querySelector('.ubuntu-desktop-area').getBoundingClientRect();
-      let nx = e.clientX - area.left - dragOffX;
-      let ny = e.clientY - area.top  - dragOffY;
-      nx = Math.max(0, Math.min(nx, area.width  - dragging.offsetWidth));
-      ny = Math.max(0, Math.min(ny, area.height - dragging.offsetHeight));
-      dragging.style.left = nx + 'px';
-      dragging.style.top  = ny + 'px';
+      const area = desktopArea.getBoundingClientRect();
+      dragOffsets.forEach(({ el, ox, oy }) => {
+        let nx = e.clientX - area.left - ox;
+        let ny = e.clientY - area.top  - oy;
+        nx = Math.max(0, Math.min(nx, area.width  - el.offsetWidth));
+        ny = Math.max(0, Math.min(ny, area.height - el.offsetHeight));
+        el.style.left = nx + 'px';
+        el.style.top  = ny + 'px';
+      });
       didDrag = true;
     });
 
     document.addEventListener('mouseup', () => {
       if (!dragging) return;
-      dragging.style.zIndex = '';
-      dragging.style.transition = '';
-      if (didDrag) dragging.dataset.dragged = '1';
-      dragging = null;
+      dragging = false;
+      getSelected().forEach(ic => { ic.style.zIndex = ''; ic.style.transition = ''; });
+      if (didDrag) getSelected().forEach(ic => ic.dataset.dragged = '1');
     });
 
-    // Selection box
-    const selBox = document.getElementById('selectionBox');
-    const desktopArea = document.querySelector('.ubuntu-desktop-area');
+    // Click on desktop deselects all
+    desktopArea.addEventListener('mousedown', (e) => {
+      if (!e.target.closest('.desktop-icon')) deselectAll();
+    });
+
+    // ── SELECTION BOX ──
     let selStart = null;
 
     desktopArea.addEventListener('mousedown', (e) => {
       if (e.target.closest('.desktop-icon')) return;
       selStart = { x: e.clientX, y: e.clientY };
-      selBox.style.left   = e.clientX + 'px';
-      selBox.style.top    = e.clientY + 'px';
-      selBox.style.width  = '0px';
+      selBox.style.left = e.clientX + 'px';
+      selBox.style.top  = e.clientY + 'px';
+      selBox.style.width = '0px';
       selBox.style.height = '0px';
       selBox.style.display = 'block';
       e.preventDefault();
@@ -575,6 +610,15 @@
       selBox.style.top    = y + 'px';
       selBox.style.width  = w + 'px';
       selBox.style.height = h + 'px';
+
+      // Highlight icons that intersect the selection box
+      const selRect = { x, y, right: x + w, bottom: y + h };
+      allIcons().forEach(ic => {
+        const r = ic.getBoundingClientRect();
+        const overlaps = r.left < selRect.right && r.right > selRect.x &&
+                         r.top  < selRect.bottom && r.bottom > selRect.y;
+        ic.classList.toggle('selected', overlaps);
+      });
     });
 
     document.addEventListener('mouseup', () => {
