@@ -62,13 +62,14 @@
 
   <main class="col-cs">
 
+    <!-- Hero -->
     <section class="hero">
       <p class="hero-eyebrow animate-on-scroll">Full-Stack Developer · Seattle, WA</p>
       <h1 class="animate-on-scroll">Anh-Thien<br>Nguyen.</h1>
       <p class="hero-desc animate-on-scroll">
         I build full-stack web applications with React, Rails, and Node.js.
-        Currently developing a business simulation platform used by high school
-        students across Washington State.
+        Currently developing a business simulation platform used by 1,000+
+        high school students across Washington State.
       </p>
       <div class="hero-actions animate-on-scroll">
         <a href="https://www.anhthien.site/resume.pdf" target="_blank" rel="noopener" class="hero-btn hero-btn-primary">View Resume →</a>
@@ -77,43 +78,149 @@
       </div>
     </section>
 
+    <!-- Skills -->
+    <section class="portfolio-section animate-on-scroll">
+      <p class="section-label">Skills</p>
+      <div class="card">
+        <div class="skills-grid">
+          <div>
+            <p class="skill-label">Languages</p>
+            <div class="skill-tags">
+              <span>JavaScript</span><span>TypeScript</span><span>Python</span>
+              <span>Ruby</span><span>Java</span><span>C++</span><span>SQL</span>
+              <span>HTML</span><span>CSS</span><span>Lua</span><span>PHP</span>
+              <span>C#</span><span>F#</span>
+            </div>
+          </div>
+          <div>
+            <p class="skill-label">Frameworks &amp; Libraries</p>
+            <div class="skill-tags">
+              <span>React</span><span>Next.js</span><span>Ruby on Rails</span>
+              <span>Node.js</span><span>Express.js</span><span>tRPC</span>
+              <span>Tailwind CSS</span><span>Pandas</span><span>Matplotlib</span>
+            </div>
+          </div>
+          <div>
+            <p class="skill-label">Databases</p>
+            <div class="skill-tags">
+              <span>PostgreSQL</span><span>MySQL</span><span>MongoDB</span>
+              <span>DynamoDB</span><span>Firebase</span>
+            </div>
+          </div>
+          <div>
+            <p class="skill-label">Tools &amp; Platforms</p>
+            <div class="skill-tags">
+              <span>AWS</span><span>Docker</span><span>Git</span><span>Vercel</span>
+              <span>CI/CD</span><span>Linux/Unix</span><span>Jira</span>
+              <span>Confluence</span><span>Agile/SCRUM</span><span>REST APIs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
     <section class="portfolio-section animate-on-scroll">
       <p class="section-label">Experience</p>
       <div class="card">
+
         <div class="resume-item">
           <div class="resume-title">
             Full-Stack Developer — Washington Business Week
             <a href="https://wile.wbw.org/" target="_blank" rel="noopener" class="resume-link resume-url">wile.wbw.org</a>
           </div>
-          <div class="resume-meta">Sept 2025 – Present &middot; Rails, PostgreSQL</div>
-          <p>A business simulation platform where high school students run virtual companies, manage finances, and compete for the highest valuation.</p>
-          <img src="https://www.anhthien.site/WILE.png" alt="WILE website preview" loading="lazy" class="resume-embed" />
+          <div class="resume-meta">Sept 2025 – Present &middot; Rails, PostgreSQL, Docker, CI/CD</div>
+          <ul class="resume-bullets">
+            <li>Built a business simulation platform with Rails and PostgreSQL to replace paper workflows — helping 1,000+ students complete simulations 40% faster.</li>
+            <li>Set up Docker and CI/CD pipelines to ensure reliable production deployments and maintain 99.9% uptime during student events.</li>
+            <li>Added unit tests with Jest to reach 85% coverage, enabling 3+ new features per sprint and zero critical bugs.</li>
+          </ul>
+          <img src="https://www.anhthien.site/WILE.png" alt="WILE website preview" loading="lazy" class="resume-embed" style="margin-top:0.75rem" />
           <a class="btn btn-secondary resume-embed-link" href="https://wile.wbw.org/" target="_blank" rel="noopener">Open WILE</a>
         </div>
+
         <div class="resume-item">
           <div class="resume-title">
-            Full-Stack Developer — AceRocket
+            Full-Stack Developer Intern — AceRocket
             <a href="https://acerocket-sat-math.netlify.app/login.html" target="_blank" rel="noopener" class="resume-link resume-url">acerocket-sat-math.netlify.app</a>
           </div>
-          <div class="resume-meta">Apr – Sept 2025 &middot; React, Express.js, Firebase</div>
-          <p>An SAT prep platform with AI-powered problem sets, teacher grading tools, and student progress tracking.</p>
-          <img src="https://www.anhthien.site/ACEROCKET.png" alt="AceRocket website preview" loading="lazy" class="resume-embed" />
+          <div class="resume-meta">Apr – Sept 2025 &middot; React, Express.js, Tailwind, Firebase</div>
+          <ul class="resume-bullets">
+            <li>Improved React frontend and Express.js backend for an SAT prep app — reducing query times by 45% for 500+ students.</li>
+            <li>Designed reusable UI components with React and Tailwind to streamline teacher grading workflows — cutting grading time from 30+ min to under 5 min and tripling student engagement.</li>
+            <li>Optimized Firebase database with indexing strategies — reducing page loads by 30% and boosting retention.</li>
+          </ul>
+          <img src="https://www.anhthien.site/ACEROCKET.png" alt="AceRocket website preview" loading="lazy" class="resume-embed" style="margin-top:0.75rem" />
           <a class="btn btn-secondary resume-embed-link" href="https://acerocket-sat-math.netlify.app/login.html" target="_blank" rel="noopener">Open AceRocket</a>
         </div>
+
+        <div class="resume-item">
+          <div class="resume-title">Instructor, Lua Game Developer — Amazon iD Tech Camps</div>
+          <div class="resume-meta">May – Aug 2025 &middot; Lua, ROBLOX</div>
+          <ul class="resume-bullets">
+            <li>Taught Lua and ROBLOX game development using interactive, project-based lessons for 100+ students (ages 7–12).</li>
+            <li>Achieved 95% parent satisfaction and inspired 40% of students to pursue more coding courses.</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-title">IT Technician — Seattle University</div>
+          <div class="resume-meta">Sept 2025 – Present &middot; Jira, Confluence, Atlassian</div>
+          <ul class="resume-bullets">
+            <li>Supported campus-wide IT operations using Jira and Confluence to track and resolve 1,000+ weekly requests, maintaining 95%+ satisfaction among faculty and students.</li>
+          </ul>
+        </div>
+
       </div>
     </section>
 
+    <!-- Projects -->
     <section class="portfolio-section animate-on-scroll">
       <p class="section-label">Projects</p>
       <div class="card">
+
+        <div class="resume-item">
+          <div class="resume-title">Online Coding Platform — Multi-Language Code Execution
+            <a href="https://su-leetcode-frontend.vercel.app" target="_blank" rel="noopener" class="resume-link resume-url">su-leetcode-frontend.vercel.app</a>
+          </div>
+          <div class="resume-meta">Next.js, TypeScript, tRPC, Tailwind CSS, Piston API</div>
+          <ul class="resume-bullets">
+            <li>Built a coding platform supporting multi-language execution (JS, Python, Java, C++) with Piston API to automate ACM LeetCode sessions — processing 200+ submissions weekly.</li>
+            <li>Built type-safe tRPC APIs in TypeScript achieving 100% type coverage and reducing runtime errors by 60%.</li>
+            <li>Designed a responsive Next.js UI with Tailwind, increasing weekly active users by 25%.</li>
+          </ul>
+          <a class="btn btn-secondary resume-embed-link" href="https://su-leetcode-frontend.vercel.app" target="_blank" rel="noopener">Open Platform</a>
+        </div>
+
         <div class="resume-item">
           <div class="resume-title">Song Request Platform — Real-Time DJ Queue
             <a href="https://anhthiennguyen.github.io/songrequest/" target="_blank" rel="noopener" class="resume-link resume-url">anhthiennguyen.github.io/songrequest</a>
           </div>
-          <div class="resume-meta">React, Node.js, Firebase</div>
-          <p>Real-time queue system for concurrent DJ session users with dynamic vote-based ranking.</p>
-          <img src="https://www.anhthien.site/SONGREQUEST.png" alt="Song Request website preview" loading="lazy" class="resume-embed" />
+          <div class="resume-meta">React, Supabase, PostgreSQL</div>
+          <ul class="resume-bullets">
+            <li>Built a real-time song request system using React and Supabase, supporting 50+ concurrent users across shared DJ sessions.</li>
+            <li>Designed a relational PostgreSQL schema to manage sessions, song submissions, and vote tracking — handling 100+ API requests with consistent data integrity.</li>
+            <li>Implemented server-side vote aggregation and dynamic ranking logic, reducing manual queue management by 100%.</li>
+          </ul>
+          <img src="https://www.anhthien.site/SONGREQUEST.png" alt="Song Request website preview" loading="lazy" class="resume-embed" style="margin-top:0.75rem" />
           <a class="btn btn-secondary resume-embed-link" href="https://anhthiennguyen.github.io/songrequest/" target="_blank" rel="noopener">Open Song Request</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="portfolio-section animate-on-scroll">
+      <p class="section-label">Education</p>
+      <div class="card">
+        <div class="resume-item">
+          <div class="resume-title">Seattle University — B.S. Computer Science</div>
+          <div class="resume-meta">Expected June 2027</div>
+          <p>Courses: Cloud Computing (AWS), Artificial Intelligence</p>
+        </div>
+        <div class="resume-item">
+          <div class="resume-title">Bellevue College — Associate of Arts &amp; Science, DTA</div>
+          <div class="resume-meta">June 2024</div>
         </div>
       </div>
     </section>
