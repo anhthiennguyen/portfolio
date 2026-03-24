@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>About — Anh-Thien Nguyen</title>
+  <meta name="description" content="About Anh-Thien Nguyen — Full-Stack Developer and Music Producer based in Seattle, WA." />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://www.anhthien.site/aboutme" />
+  <meta property="og:title"       content="About — Anh-Thien Nguyen" />
+  <meta property="og:description" content="Full-Stack Developer and Music Producer based in Seattle, WA." />
+  <meta property="og:image"       content="https://www.anhthien.site/Embed.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="About — Anh-Thien Nguyen" />
+  <meta name="twitter:description" content="Full-Stack Developer and Music Producer based in Seattle, WA." />
+  <meta name="twitter:image"       content="https://www.anhthien.site/Embed.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.anhthien.site/style.css" />
+  <style>
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .slide-in-text {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    }
+    .slide-in-text-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .letter.space { display: inline; }
+    .letter.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── HERO ── */
+    .about-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 2rem 4rem;
+    }
+    .about-hero-inner {
+      max-width: 760px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .about-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 2rem;
+      border: 3px solid var(--border);
+    }
+    .about-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .about-tagline {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      font-family: 'Space Mono', monospace;
+    }
+    .about-bio {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+      max-width: 640px;
+      margin-bottom: 2rem;
+    }
+    .about-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── SECTIONS ── */
+    .about-section {
+      padding: 2rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .about-split { grid-template-columns: 1fr; }
+    }
+    .about-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .about-card-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .about-card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .about-card p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .accent-music { color: var(--accent-music); }
+    .accent-dev   { color: var(--accent-cs); }
+
+    /* ── TRAITS ── */
+    .traits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .trait-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+    }
+    .trait-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .trait-desc {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ── NAV LINKS ── */
+    .about-nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+    .about-nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .about-nav-links a:hover { color: var(--text); }
+    .about-nav-links a.music { color: var(--accent-music); }
+    .about-nav-links a.dev   { color: var(--accent-cs); }
+  </style>
+</head>
+<body>
+
+  <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-label="Loading">
+    <div class="loading-card">
+      <div class="duck-scene" aria-hidden="true">
+        <svg viewBox="0 0 100 72" width="96" height="69">
+          <ellipse class="duck-water" cx="50" cy="65" rx="36" ry="5" fill="rgba(45,106,79,0.13)"/>
+          <g class="duck-leg-left" style="transform-origin:40px 56px">
+            <line x1="40" y1="55" x2="38" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M33 63 Q38 61 43 63 L42 66 Q38 64 34 66 Z" fill="#f97316"/>
+          </g>
+          <g class="duck-leg-right" style="transform-origin:50px 56px">
+            <line x1="50" y1="55" x2="52" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M47 63 Q52 61 57 63 L56 66 Q52 64 48 66 Z" fill="#f97316"/>
+          </g>
+          <g class="duck-body-group">
+            <path d="M25 41 Q13 31 18 44 Q20 51 27 48 Z" fill="#f59e0b"/>
+            <path d="M27 38 Q16 29 20 42 Q22 49 29 45 Z" fill="#fbbf24"/>
+            <ellipse cx="46" cy="44" rx="22" ry="14" fill="#fbbf24"/>
+            <ellipse cx="44" cy="46" rx="13" ry="7" fill="#f59e0b" transform="rotate(-10 44 46)"/>
+            <circle cx="63" cy="29" r="13" fill="#fbbf24"/>
+            <path d="M73 28 L84 26 L84 31 L73 30 Z" fill="#f97316"/>
+            <circle cx="80" cy="27.5" r="0.8" fill="#d97706"/>
+            <circle cx="68" cy="26" r="2.8" fill="#1a1714"/>
+            <circle cx="68.9" cy="25.1" r="1" fill="white"/>
+          </g>
+        </svg>
+      </div>
+      <p class="loading-title">Loading</p>
+      <div class="loading-dots" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="page-nav">
+    <a href="https://www.anhthien.site">← anhthien.site</a>
+  </nav>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="about-hero">
+      <div class="about-hero-inner">
+        <img src="https://www.anhthien.site/profile_picture.jpg" alt="Anh-Thien Nguyen" class="about-photo animate-on-scroll" />
+        <p class="about-tagline animate-on-scroll">Full-Stack Developer & Music Producer — Seattle, WA</p>
+        <h1 class="animate-on-scroll">Anh-Thien<br>Nguyen.</h1>
+        <p class="about-bio animate-on-scroll">
+          I'm a developer and music producer based in Seattle, studying Computer Science at Seattle University.
+          I build full-stack web applications and produce music under the name <strong>LegendaryThien</strong> —
+          two disciplines that share the same core: pattern recognition, structure, and the pursuit of something
+          that resonates. I learn by listening, think before speaking, and approach every project with
+          curiosity and intention.
+        </p>
+        <div class="about-links animate-on-scroll">
+          <a href="https://dev.anhthien.site" class="hero-btn hero-btn-primary">Developer Portfolio →</a>
+          <a href="https://dj.anhthien.site" class="hero-btn hero-btn-secondary">Music Portfolio →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two sides -->
+    <section class="about-section animate-on-scroll">
+      <div class="about-split">
+        <div class="about-card">
+          <p class="about-card-label accent-dev">The Developer</p>
+          <h3>Full-Stack Engineer</h3>
+          <p>
+            Currently building at Washington Business Week and studying CS at Seattle University.
+            I work across React, Next.js, Rails, Node, and a wide range of databases.
+            I approach code the same way I approach music — find the pattern, build the structure,
+            make it feel effortless to the person on the other end.
+          </p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-label accent-music">The Artist</p>
+          <h3>Music Producer / DJ</h3>
+          <p>
+            I produce and DJ under the name LegendaryThien, with sets aired on KXSU 102.1 FM.
+            Music is how I process the world — it's where logic meets feeling.
+            I think strategically about how sound connects with people,
+            treating every set and production as intentional craft, not background noise.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values / Traits -->
+    <section class="about-section animate-on-scroll">
+      <p class="section-label">How I Move Through the World</p>
+      <div class="traits-grid">
+        <div class="trait-item">
+          <p class="trait-name">Present-Focused</p>
+          <p class="trait-desc">I live in the moment. Happiness lives in current experience, not in what's ahead or behind.</p>
+        </div>
+        <div class="trait-item">
+          <p class="trait-name">Continuous Learner</p>
+          <p class="trait-desc">Knowledge is the most powerful asset. I treat every experience as something to absorb and understand.</p>
+        </div>
+        <div class="trait-item">
+          <p class="trait-name">Listener First</p>
+          <p class="trait-desc">I think by listening. I only share when my intuition crystallizes into something I'm confident about.</p>
+        </div>
+        <div class="trait-item">
+          <p class="trait-name">Pattern Recognizer</p>
+          <p class="trait-desc">I naturally detect links and structures in information, code, music, and people.</p>
+        </div>
+        <div class="trait-item">
+          <p class="trait-name">Intentional</p>
+          <p class="trait-desc">I approach actions with clear purpose — whether writing code, making music, or meeting someone new.</p>
+        </div>
+        <div class="trait-item">
+          <p class="trait-name">Empathetic</p>
+          <p class="trait-desc">I have a strong ability to understand and share the feelings of others. Connection matters more than content.</p>
+        </div>
+        <div class="trait-item">
+          <p class="trait-name">Grounded</p>
+          <p class="trait-desc">I seek depth through sound and craft, not noise. Presence over pings.</p>
+        </div>
+        <div class="trait-item">
+          <p class="trait-name">Growth-Oriented</p>
+          <p class="trait-desc">Maturity is an infinite process. I reject the idea of ever reaching a peak — there's always more to become.</p>
+        </div>
+        <div class="trait-item">
+          <p class="trait-name">Archivist</p>
+          <p class="trait-desc">I quietly collect pieces of my own mind — capturing fleeting ideas before they fade, building systems from them.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer nav -->
+    <div class="about-nav-links">
+      <a href="https://dev.anhthien.site" class="dev">dev.anhthien.site →</a>
+      <a href="https://dj.anhthien.site" class="music">dj.anhthien.site →</a>
+      <a href="https://www.linkedin.com/in/anh-thien-nguyen/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://github.com/anhthiennguyen" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+
+  </main>
+
+  <script>
+    const loadingScreen = document.getElementById('loadingScreen');
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        loadingScreen.classList.add('is-hidden');
+        loadingScreen.addEventListener('transitionend', () => loadingScreen.remove(), { once: true });
+      }, 600);
+    }, { once: true });
+
+    function splitLetters(el) {
+      const nodes = Array.from(el.childNodes);
+      el.textContent = '';
+      nodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent.split('').forEach(ch => {
+            const span = document.createElement('span');
+            span.textContent = ch;
+            span.className = ch === ' ' ? 'letter space' : 'letter';
+            el.appendChild(span);
+          });
+        } else if (node.nodeName === 'BR') {
+          el.appendChild(document.createElement('br'));
+        } else {
+          el.appendChild(node.cloneNode(true));
+        }
+      });
+    }
+
+    function animateLetters(el, baseDelay = 0) {
+      el.querySelectorAll('.letter:not(.space)').forEach((span, i) => {
+        setTimeout(() => span.classList.add('visible'), baseDelay + i * 15);
+      });
+    }
+
+    const letterTargets = 'h1, .section-label';
+    document.querySelectorAll(letterTargets).forEach(el => splitLetters(el));
+
+    const letterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateLetters(entry.target);
+        } else {
+          entry.target.querySelectorAll('.letter:not(.space)').forEach(s => s.classList.remove('visible'));
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll(letterTargets).forEach(el => letterObserver.observe(el));
+
+    const slideTargets = '.about-tagline, .about-bio, .trait-name, .trait-desc, .about-card p, .about-card h3';
+    document.querySelectorAll(slideTargets).forEach(el => el.classList.add('slide-in-text'));
+
+    const slideObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('slide-in-text-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll(slideTargets).forEach(el => slideObserver.observe(el));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

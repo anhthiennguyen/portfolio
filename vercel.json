@@ -9,6 +9,10 @@
       "source": "/",
       "has": [{ "type": "host", "value": "dev.anhthien.site" }],
       "destination": "/dev/index.html"
+    },
+    {
+      "source": "/aboutme",
+      "destination": "/aboutme/index.html"
     }
   ]
 }
