@@ -440,27 +440,38 @@ header h1 {
 .resume-item:last-child  { border-bottom: none; padding-bottom: 0; }
 .resume-item:first-child { padding-top: 0.4rem; }
 
-/* collapsible */
-.resume-item.collapsible .resume-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+/* grid layout */
+.resume-grid {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.75rem;
+}
+
+@media (max-width: 860px) {
+  .resume-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .resume-grid { grid-template-columns: 1fr; }
+}
+
+/* grid cards */
+.resume-grid .resume-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem;
+  background: var(--surface);
   cursor: pointer;
-  user-select: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-.resume-item.collapsible .resume-meta { margin-bottom: 0; }
-.resume-chevron {
-  font-size: 1.2rem;
-  color: var(--muted);
-  line-height: 1;
-  transition: transform 0.2s ease;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
+.resume-grid .resume-item:hover {
+  border-color: rgba(45,106,79,0.4);
+  box-shadow: 0 4px 16px rgba(45,106,79,0.1);
 }
-.resume-item.collapsible.is-open .resume-chevron {
-  transform: rotate(90deg);
-}
+.resume-grid .resume-item .resume-meta { margin-bottom: 0; }
+
+/* collapsible */
 .resume-body {
   display: none;
   padding-top: 0.6rem;
