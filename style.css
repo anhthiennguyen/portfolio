@@ -728,6 +728,21 @@ footer::after  { content: ' —'; }
   .portfolio-section { padding: 3rem 1rem; }
 }
 
+.resume-bullets {
+  margin: 0.5rem 0 0;
+  padding-left: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  list-style: disc;
+}
+
+.resume-bullets li {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 /* ── NAV CARDS (homepage) ── */
 .bio {
   text-align: center;
