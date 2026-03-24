@@ -113,9 +113,9 @@ body {
 }
 
 .loading-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Mono', monospace;
   font-size: 1rem;
-  font-style: italic;
+  font-style: normal;
   color: var(--text);
 }
 
