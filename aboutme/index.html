@@ -137,6 +137,17 @@
     .accent-dev   { color: var(--accent-cs); }
 
     /* ── TRAITS ── */
+    .traits-category {
+      margin-bottom: 2rem;
+    }
+    .traits-category-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
     .traits-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -230,11 +241,8 @@
         <p class="about-tagline animate-on-scroll">Full-Stack Developer & Music Producer — Seattle, WA</p>
         <h1 class="animate-on-scroll">Anh-Thien<br>Nguyen.</h1>
         <p class="about-bio animate-on-scroll">
-          I'm a developer and music producer based in Seattle, studying Computer Science at Seattle University.
-          I build full-stack web applications and produce music under the name <strong>LegendaryThien</strong> —
-          two disciplines that share the same core: pattern recognition, structure, and the pursuit of something
-          that resonates. I learn by listening, think before speaking, and approach every project with
-          curiosity and intention.
+          I'm a developer and music producer based in Seattle, studying Computer Science at Seattle University
+          with a minor in Philosophy and Ethics. My favorite hobby is to produce music and DJ.
         </p>
         <div class="about-links animate-on-scroll">
           <a href="https://dev.anhthien.site" class="hero-btn hero-btn-primary">Developer Portfolio →</a>
@@ -243,73 +251,74 @@
       </div>
     </section>
 
-    <!-- Two sides -->
-    <section class="about-section animate-on-scroll">
-      <div class="about-split">
-        <div class="about-card">
-          <p class="about-card-label accent-dev">The Developer</p>
-          <h3>Full-Stack Engineer</h3>
-          <p>
-            Currently building at Washington Business Week and studying CS at Seattle University.
-            I work across React, Next.js, Rails, Node, and a wide range of databases.
-            I approach code the same way I approach music — find the pattern, build the structure,
-            make it feel effortless to the person on the other end.
-          </p>
-        </div>
-        <div class="about-card">
-          <p class="about-card-label accent-music">The Artist</p>
-          <h3>Music Producer / DJ</h3>
-          <p>
-            I produce and DJ under the name LegendaryThien, with sets aired on KXSU 102.1 FM.
-            Music is how I process the world — it's where logic meets feeling.
-            I think strategically about how sound connects with people,
-            treating every set and production as intentional craft, not background noise.
-          </p>
-        </div>
-      </div>
-    </section>
 
     <!-- Values / Traits -->
     <section class="about-section animate-on-scroll">
-      <p class="section-label">How I Move Through the World</p>
+      <p class="section-label">Values I try to live by</p>
       <div class="traits-grid">
-        <div class="trait-item">
-          <p class="trait-name">Present-Focused</p>
-          <p class="trait-desc">I live in the moment. Happiness lives in current experience, not in what's ahead or behind.</p>
-        </div>
-        <div class="trait-item">
-          <p class="trait-name">Continuous Learner</p>
-          <p class="trait-desc">Knowledge is the most powerful asset. I treat every experience as something to absorb and understand.</p>
-        </div>
-        <div class="trait-item">
-          <p class="trait-name">Listener First</p>
-          <p class="trait-desc">I think by listening. I only share when my intuition crystallizes into something I'm confident about.</p>
-        </div>
-        <div class="trait-item">
-          <p class="trait-name">Pattern Recognizer</p>
-          <p class="trait-desc">I naturally detect links and structures in information, code, music, and people.</p>
-        </div>
-        <div class="trait-item">
-          <p class="trait-name">Intentional</p>
-          <p class="trait-desc">I approach actions with clear purpose — whether writing code, making music, or meeting someone new.</p>
-        </div>
-        <div class="trait-item">
-          <p class="trait-name">Empathetic</p>
-          <p class="trait-desc">I have a strong ability to understand and share the feelings of others. Connection matters more than content.</p>
-        </div>
-        <div class="trait-item">
-          <p class="trait-name">Grounded</p>
-          <p class="trait-desc">I seek depth through sound and craft, not noise. Presence over pings.</p>
-        </div>
-        <div class="trait-item">
-          <p class="trait-name">Growth-Oriented</p>
-          <p class="trait-desc">Maturity is an infinite process. I reject the idea of ever reaching a peak — there's always more to become.</p>
-        </div>
-        <div class="trait-item">
-          <p class="trait-name">Archivist</p>
-          <p class="trait-desc">I quietly collect pieces of my own mind — capturing fleeting ideas before they fade, building systems from them.</p>
-        </div>
+        <div class="trait-item"><p class="trait-name">Connection</p><p class="trait-desc">I value genuine relationships — with people, sound, and ideas. Depth over surface, presence over pings.</p></div>
+        <div class="trait-item"><p class="trait-name">Clear Communication</p><p class="trait-desc">I value the power of honest, clear communication to resolve conflict and build understanding.</p></div>
+        <div class="trait-item"><p class="trait-name">Harmony</p><p class="trait-desc">I value maintaining peace in relationships and environments, avoiding unnecessary conflict.</p></div>
+        <div class="trait-item"><p class="trait-name">Belonging</p><p class="trait-desc">I value genuine friendship deeply — having learned its worth through experience.</p></div>
+        <div class="trait-item"><p class="trait-name">Empathy</p><p class="trait-desc">I value understanding and sharing the feelings of others. It shapes how I build, create, and connect.</p></div>
+        <div class="trait-item"><p class="trait-name">Social Adaptability</p><p class="trait-desc">I value being able to meet people where they are, adapting my energy to any room.</p></div>
+        <div class="trait-item"><p class="trait-name">Trust & Integrity</p><p class="trait-desc">I value trust, accountability, forgiveness, and honesty above all in relationships.</p></div>
+        <div class="trait-item"><p class="trait-name">Open-Mindedness</p><p class="trait-desc">I value staying receptive to new ideas and perspectives, even when they challenge what I know.</p></div>
+        <div class="trait-item"><p class="trait-name">Spontaneity</p><p class="trait-desc">I value acting on impulse in social settings — some of the best moments come unplanned.</p></div>
+        <div class="trait-item"><p class="trait-name">Exploration</p><p class="trait-desc">I value discovering new experiences, places, and ideas with curiosity and openness.</p></div>
+        <div class="trait-item"><p class="trait-name">Growth Through Discomfort</p><p class="trait-desc">I value putting myself in uncomfortable situations — that's where real growth happens.</p></div>
+        <div class="trait-item"><p class="trait-name">Approachability</p><p class="trait-desc">I value being kind, open, and approachable in every interaction.</p></div>
+        <div class="trait-item"><p class="trait-name">Presence</p><p class="trait-desc">I value being fully present. Connection over content, depth over noise.</p></div>
+        <div class="trait-item"><p class="trait-name">Living in the Moment</p><p class="trait-desc">I value the present above all — happiness lives in current experience, not what's ahead or behind.</p></div>
+        <div class="trait-item"><p class="trait-name">Balance</p><p class="trait-desc">I value a balanced life — physical health, mental well-being, and compassion for myself and others.</p></div>
+        <div class="trait-item"><p class="trait-name">Adaptability</p><p class="trait-desc">I value embracing change and randomness, seeing each new experience as unique.</p></div>
+        <div class="trait-item"><p class="trait-name">Pragmatism</p><p class="trait-desc">I value focusing on what I can control and releasing what I can't influence immediately.</p></div>
+        <div class="trait-item"><p class="trait-name">Altruism</p><p class="trait-desc">I value selflessness. The rewards of giving outweigh the rewards of keeping.</p></div>
+        <div class="trait-item"><p class="trait-name">Continuous Learning</p><p class="trait-desc">I value knowledge as the most powerful asset. Lack of knowledge is the root of most problems.</p></div>
+        <div class="trait-item"><p class="trait-name">Self-Awareness</p><p class="trait-desc">I value understanding my own limitations, tendencies, and how I show up in the world.</p></div>
+        <div class="trait-item"><p class="trait-name">Present-Focused</p><p class="trait-desc">I value addressing what can be done today and releasing what can't.</p></div>
+        <div class="trait-item"><p class="trait-name">Gratitude</p><p class="trait-desc">I value being thankful for experiences and possessions, recognizing their impermanence.</p></div>
+        <div class="trait-item"><p class="trait-name">Resilience</p><p class="trait-desc">I value accepting life's temporary nature and focusing on the good that remains.</p></div>
+        <div class="trait-item"><p class="trait-name">Personal Growth</p><p class="trait-desc">I value maturity as an infinite process — there's always more to become.</p></div>
+        <div class="trait-item"><p class="trait-name">Wisdom</p><p class="trait-desc">I value life lessons and philosophical insights that guide how I behave and see the world.</p></div>
+        <div class="trait-item"><p class="trait-name">Optimism</p><p class="trait-desc">I value maintaining a positive outlook and feeling generally satisfied with where I am and where I'm going.</p></div>
+        <div class="trait-item"><p class="trait-name">Ambition</p><p class="trait-desc">I value having goals and the drive to pursue them — not out of restlessness, but genuine desire to grow.</p></div>
+        <div class="trait-item"><p class="trait-name">Passion</p><p class="trait-desc">I value pursuing my interests with full enthusiasm. Whether code or music, I go all in.</p></div>
+        <div class="trait-item"><p class="trait-name">Curiosity</p><p class="trait-desc">I value understanding more about everything — subjects, people, experiences. Questions matter as much as answers.</p></div>
+        <div class="trait-item"><p class="trait-name">Patience</p><p class="trait-desc">I value staying calm and level-headed. Frustration with wasted time is my only exception.</p></div>
+        <div class="trait-item"><p class="trait-name">Growth</p><p class="trait-desc">I value continuous self-improvement and reject the idea of ever reaching peak maturity.</p></div>
+        <div class="trait-item"><p class="trait-name">Forward Thinking</p><p class="trait-desc">I value learning from the past while staying focused on the present and future.</p></div>
+        <div class="trait-item"><p class="trait-name">Calm</p><p class="trait-desc">I value a calm and untroubled attitude, rarely letting stress or anxiety take hold.</p></div>
+        <div class="trait-item"><p class="trait-name">Self-Analysis</p><p class="trait-desc">I value examining myself honestly to better understand who I am and why I act the way I do.</p></div>
+        <div class="trait-item"><p class="trait-name">Reflection</p><p class="trait-desc">I value regular introspection and self-assessment as a foundation for growth.</p></div>
+        <div class="trait-item"><p class="trait-name">Ease</p><p class="trait-desc">I value moving through life without being weighed down by worry, perfectionism, or social pressure.</p></div>
+        <div class="trait-item"><p class="trait-name">Groundedness</p><p class="trait-desc">I value transcendence through sound and craft, not escapism through chaos.</p></div>
+        <div class="trait-item"><p class="trait-name">Listening</p><p class="trait-desc">I value listening deeply. I only share when my intuition crystallizes into something I'm confident about.</p></div>
+        <div class="trait-item"><p class="trait-name">Quiet Understanding</p><p class="trait-desc">I value wisdom through absorbing and listening, not through the volume of words spoken.</p></div>
+        <div class="trait-item"><p class="trait-name">Preserving Ideas</p><p class="trait-desc">I value capturing fleeting thoughts before they fade and building systems from them.</p></div>
+        <div class="trait-item"><p class="trait-name">Introspection</p><p class="trait-desc">I value habitually examining my thoughts, feelings, and motives for deep self-awareness.</p></div>
+        <div class="trait-item"><p class="trait-name">Knowledge</p><p class="trait-desc">I value the power and importance of information in every form.</p></div>
+        <div class="trait-item"><p class="trait-name">Data</p><p class="trait-desc">I value quantitative approaches and letting evidence guide decisions over assumption.</p></div>
+        <div class="trait-item"><p class="trait-name">Structured Creativity</p><p class="trait-desc">I value a creative approach that is uniquely pattern-based and logically grounded.</p></div>
+        <div class="trait-item"><p class="trait-name">Systematic Thinking</p><p class="trait-desc">I value approaching tasks and ideas in an organized, methodical manner.</p></div>
+        <div class="trait-item"><p class="trait-name">Theory</p><p class="trait-desc">I value applying frameworks and psychological models to better understand situations.</p></div>
+        <div class="trait-item"><p class="trait-name">Strategy</p><p class="trait-desc">I value thinking ahead about how to share my work and maximize its impact on people.</p></div>
+        <div class="trait-item"><p class="trait-name">Efficiency</p><p class="trait-desc">I value accomplishing tasks in the most effective and productive way possible.</p></div>
+        <div class="trait-item"><p class="trait-name">Time</p><p class="trait-desc">I value time — my own and others'. Managing it well is how I stay focused on what matters.</p></div>
+        <div class="trait-item"><p class="trait-name">Practicality</p><p class="trait-desc">I value clear, objective reasons for action over vague intentions or impulse alone.</p></div>
+        <div class="trait-item"><p class="trait-name">Proactivity</p><p class="trait-desc">I value acting on ideas immediately to stay organized and prevent mental clutter.</p></div>
+        <div class="trait-item"><p class="trait-name">The Big Picture</p><p class="trait-desc">I value broad foundation and overall outcome more than getting lost in small details.</p></div>
+        <div class="trait-item"><p class="trait-name">Objectivity</p><p class="trait-desc">I value evaluating situations with facts and logic rather than emotion or bias.</p></div>
+        <div class="trait-item"><p class="trait-name">Deep Analysis</p><p class="trait-desc">I value analyzing situations thoroughly before acting, even when it slows me down.</p></div>
+        <div class="trait-item"><p class="trait-name">Autonomy</p><p class="trait-desc">I value making decisions based on my own logic and values, not external approval or pressure.</p></div>
+        <div class="trait-item"><p class="trait-name">Multipotentialism</p><p class="trait-desc">I value being drawn to multiple paths. Diverse pursuits are a strength, not indecision.</p></div>
+        <div class="trait-item"><p class="trait-name">Intentionality</p><p class="trait-desc">I value acting with clear purpose in everything I do — nothing by accident.</p></div>
+        <div class="trait-item"><p class="trait-name">New Environments</p><p class="trait-desc">I value approaching unfamiliar places like missions — with planning, curiosity, and full intention.</p></div>
+        <div class="trait-item"><p class="trait-name">Order</p><p class="trait-desc">I value turning chaos into clear systems. Structure enables everything else.</p></div>
+        <div class="trait-item"><p class="trait-name">Clarity</p><p class="trait-desc">I value precise definitions and frameworks. Clear terms eliminate confusion and create understanding.</p></div>
+        <div class="trait-item"><p class="trait-name">Patterns</p><p class="trait-desc">I value detecting links, structures, and recurring themes in information, behavior, and experience.</p></div>
       </div>
+
     </section>
 
     <!-- Footer nav -->
