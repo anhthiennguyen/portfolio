@@ -94,6 +94,30 @@
       flex-wrap: wrap;
     }
 
+    /* ── JOURNAL ENTRIES ── */
+    .journal-entry {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .journal-entry:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+    .journal-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      text-transform: lowercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .journal-entry p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text);
+      max-width: 620px;
+    }
+
     /* ── SECTIONS ── */
     .about-section {
       padding: 2rem 2rem;
@@ -309,110 +333,25 @@
 
     <!-- Values / Traits -->
     <section class="about-section animate-on-scroll">
-      <p class="section-label">I spend a lot of time reflecting to understand myself—how I think, what I value, and why I act the way I do. I enjoy philosophy because I genuinely like learning, especially about myself. I reflect by thinking deeply and writing down my thoughts. These are the written down traits I try to live by:</p>
-      <div class="traits-accordion">
-
-        <!-- Way of Life -->
-        <div class="accordion-section">
-          <button class="accordion-header" aria-expanded="false">
-            <span class="accordion-title">On Living</span>
-            <span class="accordion-count">32</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="accordion-body">
-            <div class="trait-row"><span class="trait-row-name">Living in the Moment</span><span class="trait-row-desc">I value the present above all — happiness lives in current experience, not ahead or behind.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Balance</span><span class="trait-row-desc">I value a balanced life encompassing physical health, mental well-being, and compassion.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Adaptability</span><span class="trait-row-desc">I value embracing change and randomness, seeing each experience as unique.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Pragmatism</span><span class="trait-row-desc">I value focusing on what I can control and releasing what I can't influence immediately.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Altruism</span><span class="trait-row-desc">I value selflessness. The rewards of giving outweigh the rewards of keeping.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Learning</span><span class="trait-row-desc">I value knowledge as a powerful asset — lack of it is the root of most problems.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Self-Awareness</span><span class="trait-row-desc">I value understanding my own limitations and how I show up in the world.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Present-Focus</span><span class="trait-row-desc">I value addressing what can be done today and releasing what can't.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Gratitude</span><span class="trait-row-desc">I value being thankful for what I have, recognizing its impermanence.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Resilience</span><span class="trait-row-desc">I value accepting life's temporary nature and focusing on what remains good.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Personal Growth</span><span class="trait-row-desc">I value maturity as an infinite process — there's always more to become.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Wisdom</span><span class="trait-row-desc">I value life lessons and philosophical insights that guide how I behave and see the world.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Optimism</span><span class="trait-row-desc">I value a positive perspective and feeling generally satisfied with where I am and where I'm going.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Ambition</span><span class="trait-row-desc">I value having goals and the genuine desire to pursue them.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Passion</span><span class="trait-row-desc">I value pursuing my interests with full enthusiasm — whether code or music, I go all in.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Curiosity</span><span class="trait-row-desc">I value the desire to understand more — subjects, people, experiences. Questions matter as much as answers.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Patience</span><span class="trait-row-desc">I value staying calm and level-headed. Frustration with wasted time is my only exception.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Forward Thinking</span><span class="trait-row-desc">I value learning from the past while staying focused on the present and future.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Calm</span><span class="trait-row-desc">I value an untroubled, low-stress attitude through everyday life.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Self-Analysis</span><span class="trait-row-desc">I value examining myself honestly to understand who I am and why I act the way I do.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Reflection</span><span class="trait-row-desc">I value regular introspection and self-assessment as a foundation for growth.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Ease</span><span class="trait-row-desc">I value moving through life without being weighed down by worry, perfectionism, or social pressure.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Groundedness</span><span class="trait-row-desc">I value transcendence through sound and craft, not escapism through chaos.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Listening</span><span class="trait-row-desc">I value listening deeply. I only share when my intuition crystallizes into something I'm confident about.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Quiet Understanding</span><span class="trait-row-desc">I value wisdom through absorbing, not through the volume of words spoken.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Archiving</span><span class="trait-row-desc">I value capturing fleeting thoughts before they fade and building systems from them.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Introspection</span><span class="trait-row-desc">I value examining my own thoughts, feelings, and motives for deep self-awareness.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Stoicism</span><span class="trait-row-desc">I value controlling my actions, accepting everything else, and moving forward without resistance.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Defined Values</span><span class="trait-row-desc">I value having clear principles that guide my decisions, actions, and behavior.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Polymathy</span><span class="trait-row-desc">I value pursuing broad, deep knowledge across multiple fields to connect ideas and create insight.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Reality</span><span class="trait-row-desc">I value facing reality directly — experiences and ideas that teach, challenge, and reflect truth over escapism.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Ease</span><span class="trait-row-desc">I value moving through life with ease, not weighed down by worry or the need to be perfect.</span></div>
-          </div>
+      <p class="section-label">Who I Am</p>
+      <div style="display:flex; flex-direction:column; gap:1.75rem; margin-top:1.5rem;">
+        <div class="journal-entry">
+          <p class="journal-label">— on living</p>
+          <p>I live in the present. What I have is temporary and that awareness makes me more grateful, more adaptable, and less inclined to resist change. I control my actions, accept everything else, and move forward without dragging weight behind me. Stress, worry, and social pressure rarely take hold because I've stopped fighting reality and started working with it. I stay grounded through stillness and sound, not through distraction or escapism.</p>
         </div>
-
-        <!-- Practical -->
-        <div class="accordion-section">
-          <button class="accordion-header" aria-expanded="false">
-            <span class="accordion-title">On Thinking</span>
-            <span class="accordion-count">21</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="accordion-body">
-            <div class="trait-row"><span class="trait-row-name">Knowledge</span><span class="trait-row-desc">I value the power and importance of information in every domain.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Facts over Feelings</span><span class="trait-row-desc">I value letting data and evidence guide decisions over assumption or emotion.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Logical Creativity</span><span class="trait-row-desc">I value a structured, pattern-based approach to creative work.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Organized Thinking</span><span class="trait-row-desc">I value approaching tasks systematically and methodically.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Theory</span><span class="trait-row-desc">I value applying frameworks and psychological concepts to understand situations.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Strategy</span><span class="trait-row-desc">I value optimizing how I share work for maximum reach and resonance.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Efficiency</span><span class="trait-row-desc">I value accomplishing tasks in the most effective and productive way possible.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Time Management</span><span class="trait-row-desc">I value managing my time well to stay focused on what actually matters.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Practicality</span><span class="trait-row-desc">I value clear, objective reasons for action over vague intentions or impulse.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Proactivity</span><span class="trait-row-desc">I value acting on ideas immediately to stay organized and reduce mental clutter.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Big-Picture Thinking</span><span class="trait-row-desc">I value broad outcomes and foundations over getting lost in small details.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Objectivity</span><span class="trait-row-desc">I value evaluating situations with facts and logic rather than emotion or bias.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Deep Analysis</span><span class="trait-row-desc">I value analyzing situations thoroughly before acting, even when it slows me down.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Autonomy</span><span class="trait-row-desc">I value making decisions based on my own logic and values, not external approval.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Multipotentialism</span><span class="trait-row-desc">I value being drawn to many paths — diverse pursuits are a strength, not indecision.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Intentionality</span><span class="trait-row-desc">I value acting with clear purpose in everything I do — nothing by accident.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Organization</span><span class="trait-row-desc">I value turning chaos into order — sorting and structuring ideas into clear systems.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Defining</span><span class="trait-row-desc">I value creating precise definitions and frameworks to eliminate confusion.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Pattern Recognition</span><span class="trait-row-desc">I value detecting patterns, links, and repeated themes in information and behavior.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Probabilistic Thinking</span><span class="trait-row-desc">I value speaking in likelihoods rather than absolutes — most things aren't 100% certain.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Avoiding Extremes</span><span class="trait-row-desc">I value balance over rigid identities — growth comes from adjusting between perspectives, not committing to one.</span></div>
-          </div>
+        <div class="journal-entry">
+          <p class="journal-label">— on knowledge</p>
+          <p>I pursue knowledge broadly and deeply across disciplines to connect ideas into real understanding. I listen before I speak, letting insight form on its own timeline, and I archive the fleeting thoughts and lessons that might otherwise disappear. Curiosity is constant, maturity is never finished. I learn because the act of understanding something new is its own reward, not to get somewhere, not to prove anything.</p>
         </div>
-
-        <!-- Social -->
-        <div class="accordion-section">
-          <button class="accordion-header" aria-expanded="false">
-            <span class="accordion-title">On People</span>
-            <span class="accordion-count">13</span>
-            <svg class="accordion-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="accordion-body">
-            <div class="trait-row"><span class="trait-row-name">Connection</span><span class="trait-row-desc">I value genuine relationships for emotional well-being — depth over surface, presence over pings.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Clear Communication</span><span class="trait-row-desc">I value honest, clear communication to resolve conflict and build real understanding.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Harmony</span><span class="trait-row-desc">I value maintaining peace in relationships and environments, avoiding unnecessary conflict.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Belonging</span><span class="trait-row-desc">I value genuine friendship deeply — I've learned its worth through experience.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Empathy</span><span class="trait-row-desc">I value understanding and sharing the feelings of others — it shapes how I build, create, and connect.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Adaptable Socializing</span><span class="trait-row-desc">I value developing the ability to connect with anyone, even when it doesn't come naturally.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Trust & Integrity</span><span class="trait-row-desc">I value trust, accountability, forgiveness, and honesty above all in relationships.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Open-Mindedness</span><span class="trait-row-desc">I value staying receptive to new ideas and perspectives, even when they challenge what I know.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Spontaneity</span><span class="trait-row-desc">I value acting on impulse in social settings — the best moments come unplanned.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Exploration</span><span class="trait-row-desc">I value discovering new experiences and environments with curiosity and openness.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Growth Through Discomfort</span><span class="trait-row-desc">I value stepping into uncomfortable situations — that's where real growth and confidence come from.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Approachability</span><span class="trait-row-desc">I value being kind, open, and friendly in every interaction.</span></div>
-            <div class="trait-row"><span class="trait-row-name">Presence</span><span class="trait-row-desc">I value being fully present. Connection over content, depth over noise.</span></div>
-          </div>
+        <div class="journal-entry">
+          <p class="journal-label">— on self</p>
+          <p>My ambition and passion comes from genuine enthusiasm over restlessness. I regularly examine my own thoughts, motives, and limitations honestly to realize that self-knowledge has given me clear principles to live by. I face reality directly, preferring what challenges and teaches over what merely comforts. Physical health, mental clarity, and compassion are the foundation. And underneath everything, I believe selflessness carries more weight than selfishness ever could.</p>
         </div>
-
+        <div class="journal-entry">
+          <p class="journal-label">— on people</p>
+          <p>Past loneliness taught me how much relationships matter, so I invest in them with trust and honesty. I'm naturally introverted but I've built the social skills to show up warmly and approachably when it counts, and I'll step outside my comfort zone to explore new experiences and meet people on their terms. I communicate directly because clarity matters more to me than comfort, and I forgive easily because I'd rather move forward than hold onto friction.</p>
+        </div>
       </div>
-
     </section>
 
     <!-- Footer nav -->
