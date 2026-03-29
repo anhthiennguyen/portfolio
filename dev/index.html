@@ -157,7 +157,7 @@
             <p class="skill-label">Languages</p>
             <div class="skill-tags">
               <span>JavaScript</span><span>TypeScript</span><span>Python</span>
-              <span>Ruby</span><span>Java</span><span>C++</span><span>SQL</span>
+              <span>Ruby</span><span>Java</span><span>C++</span><span>SQL</span><span>C</span>
               <span>HTML</span><span>CSS</span><span>Lua</span><span>PHP</span>
               <span>C#</span><span>F#</span>
             </div>
@@ -165,7 +165,7 @@
           <div>
             <p class="skill-label">Frameworks &amp; Libraries</p>
             <div class="skill-tags">
-              <span>React</span><span>Next.js</span><span>Ruby on Rails</span>
+              <span>React</span><span>Next.js</span><span>Ruby on Rails</span><span>JUCE</span>
               <span>Node.js</span><span>Express.js</span><span>tRPC</span>
               <span>Tailwind CSS</span><span>Pandas</span><span>Matplotlib</span>
               <span>Drizzle ORM</span><span>Prisma</span><span>Zod</span>
@@ -265,6 +265,19 @@
     <section class="portfolio-section animate-on-scroll">
       <p class="section-label">Projects</p>
       <div class="card">
+
+        <div class="resume-item">
+          <div class="resume-title">SpatialMixer — Spatial Mixing VST3/AU Plugin
+            <a href="https://github.com/anhthiennguyen/SpatialMixer" target="_blank" rel="noopener" class="resume-link resume-url">github.com/anhthiennguyen/SpatialMixer</a>
+          </div>
+          <div class="resume-meta">C++, JUCE, VST3/AU, Mid-Side DSP, macOS</div>
+          <ul class="resume-bullets">
+            <li>Built a stereo audio plugin in C++ using the JUCE framework — users place tracks on a 2D canvas where X controls stereo position and Y controls EQ band, making spatial mixing visual and tactile.</li>
+            <li>Engineered a cross-instance singleton so all open plugin instances share one live canvas, enabling a full-mix view inside any DAW without a separate control surface.</li>
+            <li>Implemented real-time anti-muddiness logic that detects overlapping frequency bands across tracks and automatically applies Q narrowing, centre-frequency shifting, and priority-based gain reduction to keep the mix clear.</li>
+            <li>Designed per-track Stereo/Pan mode: stereo mode uses Mid-Side widening with a symmetric mirror box; pan mode collapses to a constant-power mono pan with full left–right range.</li>
+          </ul>
+        </div>
 
         <div class="resume-item">
           <div class="resume-title">Song Request Platform — Real-Time DJ Queue
