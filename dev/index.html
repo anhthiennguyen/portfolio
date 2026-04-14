@@ -21,6 +21,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://www.anhthien.site/style.css" />
   <style>
+    #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; }
+    body { background: transparent !important; }
+    .loading-screen, .page-nav, main, footer { position: relative; z-index: 1; }
+    .page-nav { background: transparent !important; border-bottom-color: transparent !important; }
+    footer { background: var(--surface); }
+    .section-label { font-size: 0.5rem; }
+    .hero, .portfolio-section {
+      max-width: min(1080px, calc(100vw - 3rem));
+    }
+    .hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      min-height: calc(100vh - 52px - 6rem);
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(60px);
@@ -219,42 +240,7 @@
 </head>
 <body>
 
-  <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-label="Loading">
-    <div class="loading-card">
-      <div class="duck-scene" aria-hidden="true">
-        <svg viewBox="0 0 100 72" width="96" height="69">
-          <ellipse class="duck-water" cx="50" cy="65" rx="36" ry="5" fill="rgba(45,106,79,0.13)"/>
-          <g class="duck-leg-left" style="transform-origin:40px 56px">
-            <line x1="40" y1="55" x2="38" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M33 63 Q38 61 43 63 L42 66 Q38 64 34 66 Z" fill="#f97316"/>
-          </g>
-          <g class="duck-leg-right" style="transform-origin:50px 56px">
-            <line x1="50" y1="55" x2="52" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M47 63 Q52 61 57 63 L56 66 Q52 64 48 66 Z" fill="#f97316"/>
-          </g>
-          <g class="duck-body-group">
-            <path d="M25 41 Q13 31 18 44 Q20 51 27 48 Z" fill="#f59e0b"/>
-            <path d="M27 38 Q16 29 20 42 Q22 49 29 45 Z" fill="#fbbf24"/>
-            <ellipse cx="46" cy="44" rx="22" ry="14" fill="#fbbf24"/>
-            <ellipse cx="44" cy="46" rx="13" ry="7" fill="#f59e0b" transform="rotate(-10 44 46)"/>
-            <circle cx="63" cy="29" r="13" fill="#fbbf24"/>
-            <path d="M73 28 L84 26 L84 31 L73 30 Z" fill="#f97316"/>
-            <circle cx="80" cy="27.5" r="0.8" fill="#d97706"/>
-            <circle cx="68" cy="26" r="2.8" fill="#1a1714"/>
-            <circle cx="68.9" cy="25.1" r="1" fill="white"/>
-          </g>
-        </svg>
-      </div>
-      <p class="loading-title">Loading</p>
-      <div class="loading-dots" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </div>
-
-  <nav class="page-nav">
-    <a href="https://www.anhthien.site">← anhthien.site</a>
-  </nav>
+  <canvas id="bg-canvas"></canvas>
 
   <main class="col-cs">
 
@@ -279,8 +265,8 @@
 
     <!-- Skills -->
     <section class="portfolio-section animate-on-scroll">
-      <p class="section-label">Skills</p>
       <div class="card">
+        <p class="section-label">Skills</p>
         <div class="skills-grid">
           <div>
             <p class="skill-label">Languages</p>
@@ -325,9 +311,8 @@
 
     <!-- Experience -->
     <section class="portfolio-section animate-on-scroll">
-      <p class="section-label">Experience</p>
       <div class="card">
-
+        <p class="section-label">Experience</p>
         <div class="resume-item">
           <div class="resume-title">Full-Stack Developer — Washington Business Week
             <a href="https://wile.wbw.org/" target="_blank" rel="noopener" class="resume-link resume-url">wile.wbw.org</a>
@@ -386,16 +371,14 @@
             <li>Collaborated with a team on GitHub to design and develop challenging data structure problems in Java for Bellevue College CCAU24 coding competitions, focusing on ArrayLists, Priority/Heap Queues, and Sorting Algorithms.</li>
           </ul>
         </div>
-
       </div>
     </section>
 
     <!-- Projects -->
     <section class="portfolio-section animate-on-scroll">
-      <p class="section-label">Projects</p>
       <div class="card">
+        <p class="section-label">Projects</p>
         <div class="project-grid">
-
           <button class="project-card" onclick="openProjectModal('notes')">
             <img src="NOTES.png" alt="Notes app" />
             <div class="project-card-body">
@@ -443,7 +426,6 @@
               <div class="project-card-stack">Python · OpenCV</div>
             </div>
           </button>
-
         </div>
       </div>
     </section>
@@ -463,8 +445,8 @@
 
     <!-- Education -->
     <section class="portfolio-section animate-on-scroll">
-      <p class="section-label">Education</p>
       <div class="card">
+        <p class="section-label">Education</p>
         <div class="resume-item">
           <div class="resume-title">Seattle University — B.S. Computer Science</div>
           <div class="resume-meta">Expected June 2027</div>
@@ -483,14 +465,236 @@
     dev.anhthien.site &nbsp;·&nbsp; <a href="https://dj.anhthien.site" style="color:var(--accent-music);text-decoration:none">dj.anhthien.site →</a>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    const loadingScreen = document.getElementById('loadingScreen');
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        loadingScreen.classList.add('is-hidden');
-        loadingScreen.addEventListener('transitionend', () => loadingScreen.remove(), { once: true });
-      }, 600);
-    }, { once: true });
+    // ── DEV PAGE — CHERRY BLOSSOM QUAD FLY-THROUGH ──
+    (function () {
+      const SKY = 0xf4f7ee;
+      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(SKY);
+      scene.fog = new THREE.Fog(SKY, 24, 55);
+
+      const camera = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.1, 100);
+
+      // ── Lights ──
+      scene.add(new THREE.AmbientLight(0xffffff, 1.3));
+      const sun = new THREE.DirectionalLight(0xffffff, 0.9);
+      sun.position.set(8, 20, 10);
+      scene.add(sun);
+      const fill = new THREE.DirectionalLight(0xe8f5ee, 0.4);
+      fill.position.set(-5, 10, -5);
+      scene.add(fill);
+
+      // ── Ground (grass) ──
+      const ground = new THREE.Mesh(
+        new THREE.PlaneGeometry(80, 80),
+        new THREE.MeshLambertMaterial({ color: 0x7a9830 })
+      );
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = 0;
+      scene.add(ground);
+
+      // ── Central brick path ──
+      const path = new THREE.Mesh(
+        new THREE.PlaneGeometry(4.2, 70),
+        new THREE.MeshLambertMaterial({ color: 0xd4d4d4 })
+      );
+      path.rotation.x = -Math.PI / 2;
+      path.position.set(0, 0.01, -5);
+      scene.add(path);
+
+      // Path edge strips (lighter)
+      [-2.2, 2.2].forEach(x => {
+        const edge = new THREE.Mesh(
+          new THREE.PlaneGeometry(0.18, 70),
+          new THREE.MeshLambertMaterial({ color: 0xe5e5e5 })
+        );
+        edge.rotation.x = -Math.PI / 2;
+        edge.position.set(x, 0.02, -5);
+        scene.add(edge);
+      });
+
+      // ── Helper: green deciduous tree (matches #2d6a4f accent) ──
+      function addTree(x, z) {
+        const trunkH = 3.5 + Math.random() * 1.0;
+        const trunk = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.16, 0.28, trunkH, 7),
+          new THREE.MeshLambertMaterial({ color: 0x4a2f1a })
+        );
+        trunk.position.set(x, trunkH / 2, z);
+        scene.add(trunk);
+
+        // Green canopy — overlapping spheres in dev-page greens
+        const GREEN_SHADES = [0x6a8828, 0xb4c040, 0x4a6820, 0x96b038, 0x3a5818];
+        const clusterCount = 5 + Math.floor(Math.random() * 4);
+        for (let c = 0; c < clusterCount; c++) {
+          const r = 1.5 + Math.random() * 0.8;
+          const blob = new THREE.Mesh(
+            new THREE.SphereGeometry(r, 8, 6),
+            new THREE.MeshLambertMaterial({
+              color: GREEN_SHADES[c % GREEN_SHADES.length],
+              transparent: true,
+              opacity: 0.92
+            })
+          );
+          blob.position.set(
+            x + (Math.random() - 0.5) * 2.6,
+            trunkH + 0.8 + Math.random() * 2.0,
+            z + (Math.random() - 0.5) * 2.6
+          );
+          scene.add(blob);
+        }
+      }
+
+      // Trees lining both sides of path
+      const treePositions = [
+        // Left side (negative x)
+        [-4.5, 4], [-4.8, 8], [-4.5, 12], [-4.8, 16], [-4.6, 20], [-4.5, 24], [-4.7, 28],
+        // Right side (positive x)
+        [4.5, 4], [4.8, 8], [4.5, 12], [4.8, 16], [4.6, 20], [4.5, 24], [4.7, 28],
+        // Farther rows
+        [-4.5, 32], [4.5, 32], [-4.6, 36], [4.6, 36],
+      ];
+      treePositions.forEach(([x, z]) => addTree(x, z));
+
+      // ── Background buildings ──
+      function addBuilding(x, z, w, h, d, color) {
+        const b = new THREE.Mesh(
+          new THREE.BoxGeometry(w, h, d),
+          new THREE.MeshLambertMaterial({ color })
+        );
+        b.position.set(x, h / 2, z);
+        scene.add(b);
+        // Roof detail
+        const roof = new THREE.Mesh(
+          new THREE.BoxGeometry(w + 0.3, 0.4, d + 0.3),
+          new THREE.MeshLambertMaterial({ color: 0x8b4513 })
+        );
+        roof.position.set(x, h + 0.2, z);
+        scene.add(roof);
+        // Simple windows row
+        for (let wi = 0; wi < Math.floor(w / 2.2); wi++) {
+          const win = new THREE.Mesh(
+            new THREE.BoxGeometry(0.85, 1.1, 0.05),
+            new THREE.MeshBasicMaterial({ color: 0xd4ebe0 })
+          );
+          win.position.set(x - (w / 2) + 1.1 + wi * 2.2, h * 0.55, z - d / 2 - 0.01);
+          scene.add(win);
+        }
+      }
+
+      // Central building (far end of path)
+      addBuilding(0, 44, 12, 9, 5, 0xc8a882);
+      addBuilding(-9, 44, 7, 7, 4, 0xbd9e75);
+      addBuilding(9, 44, 7, 7, 4, 0xbd9e75);
+      // Flanking wings
+      addBuilding(-18, 42, 8, 6, 4, 0xb8936a);
+      addBuilding(18, 42, 8, 6, 4, 0xb8936a);
+
+      // ── Large evergreen fir (left background) ──
+      function addFir(x, z) {
+        const trunk = new THREE.Mesh(
+          new THREE.CylinderGeometry(0.2, 0.3, 2.5, 6),
+          new THREE.MeshLambertMaterial({ color: 0x3d1f0a })
+        );
+        trunk.position.set(x, 1.25, z);
+        scene.add(trunk);
+        [[0, 3, 2.5], [0, 4.5, 2.0], [0, 5.8, 1.5], [0, 7, 1.0]].forEach(([dy_offset, h, r]) => {
+          const tier = new THREE.Mesh(
+            new THREE.ConeGeometry(r, 2.5, 7),
+            new THREE.MeshLambertMaterial({ color: 0x4a6820 })
+          );
+          tier.position.set(x, h, z);
+          scene.add(tier);
+        });
+      }
+      addFir(-11, 18);
+      addFir(11, 22);
+      addFir(-13, 30);
+      addFir(13, 28);
+
+      // ── Falling leaf particles (green tones) ──
+      const PETAL_COUNT = 400;
+      const petalPos = new Float32Array(PETAL_COUNT * 3);
+      const petalVel = new Float32Array(PETAL_COUNT * 3);
+      for (let i = 0; i < PETAL_COUNT; i++) {
+        petalPos[i*3]     = (Math.random() - 0.5) * 22;
+        petalPos[i*3 + 1] = Math.random() * 16;
+        petalPos[i*3 + 2] = (Math.random()) * 40;
+        petalVel[i*3]     = (Math.random() - 0.5) * 0.010;
+        petalVel[i*3 + 1] = -(0.014 + Math.random() * 0.018);
+        petalVel[i*3 + 2] = (Math.random() - 0.5) * 0.007;
+      }
+      const petalGeo = new THREE.BufferGeometry();
+      const petalAttr = new THREE.BufferAttribute(petalPos, 3);
+      petalAttr.setUsage(THREE.DynamicDrawUsage);
+      petalGeo.setAttribute('position', petalAttr);
+      scene.add(new THREE.Points(petalGeo, new THREE.PointsMaterial({
+        color: 0x96b038, size: 0.12, transparent: true, opacity: 0.65, sizeAttenuation: true
+      })));
+
+      // ── Camera path (fly down the quad toward buildings) ──
+      const camPath = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0, 9, 2),
+        new THREE.Vector3(0.5, 6, 10),
+        new THREE.Vector3(-0.5, 3.5, 20),
+        new THREE.Vector3(0, 2.2, 32),
+      ]);
+      const lookPath = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0, 4, 18),
+        new THREE.Vector3(0, 3, 24),
+        new THREE.Vector3(0, 3, 34),
+        new THREE.Vector3(0, 3.5, 44),
+      ]);
+
+      camera.position.copy(camPath.getPoint(0));
+      const lp0 = lookPath.getPoint(0);
+      camera.lookAt(lp0.x, lp0.y, lp0.z);
+
+      let tFrac = 0, cFrac = 0;
+      window.addEventListener('scroll', () => {
+        const max = document.body.scrollHeight - window.innerHeight;
+        tFrac = max > 0 ? window.scrollY / max : 0;
+      });
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      (function animate() {
+        requestAnimationFrame(animate);
+        cFrac += (tFrac - cFrac) * 0.05;
+        const f = Math.max(0, Math.min(1, cFrac));
+
+        const cp = camPath.getPoint(f);
+        camera.position.lerp(cp, 0.08);
+        const lp = lookPath.getPoint(f);
+        camera.lookAt(lp.x, lp.y, lp.z);
+
+        // Animate falling petals
+        for (let i = 0; i < PETAL_COUNT; i++) {
+          petalPos[i*3]     += petalVel[i*3];
+          petalPos[i*3 + 1] += petalVel[i*3 + 1];
+          petalPos[i*3 + 2] += petalVel[i*3 + 2];
+          // Reset when petal hits ground
+          if (petalPos[i*3 + 1] < 0) {
+            petalPos[i*3]     = (Math.random() - 0.5) * 22;
+            petalPos[i*3 + 1] = 14 + Math.random() * 4;
+            petalPos[i*3 + 2] = Math.random() * 40;
+          }
+        }
+        petalAttr.needsUpdate = true;
+
+        renderer.render(scene, camera);
+      })();
+    })();
+  </script>
+  <script>
 
     document.querySelectorAll('.preview-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
