@@ -78,6 +78,135 @@
     }
     .resume-preview { display: none; margin-top: 0.5rem; }
     .resume-preview.is-open { display: block; }
+
+    /* Project grid */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .project-card {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      cursor: pointer;
+      position: relative;
+      background: #f4f4f4;
+      transition: transform 0.18s cubic-bezier(0.22,1,0.36,1), box-shadow 0.18s;
+      text-align: left;
+      padding: 0;
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+    }
+    .project-card img {
+      width: 100%;
+      height: 65%;
+      object-fit: cover;
+      display: block;
+    }
+    .project-card-body {
+      padding: 0.55rem 0.7rem 0.5rem;
+    }
+    .project-card-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.3;
+      margin-bottom: 0.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .project-card-stack {
+      font-size: 0.62rem;
+      color: #888;
+      font-family: 'Space Mono', monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .project-card-placeholder {
+      width: 100%;
+      height: 65%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 1.6rem;
+    }
+
+    /* Modal */
+    .project-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .project-modal-backdrop.is-open {
+      display: flex;
+    }
+    .project-modal {
+      background: #fff;
+      border-radius: 16px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+    }
+    .project-modal img {
+      width: 100%;
+      border-radius: 12px 12px 0 0;
+      display: block;
+    }
+    .project-modal-content {
+      padding: 1.4rem 1.6rem 1.6rem;
+    }
+    .project-modal-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      color: #1a1a1a;
+    }
+    .project-modal-meta {
+      font-size: 0.72rem;
+      color: #888;
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 0.9rem;
+    }
+    .project-modal-meta a {
+      color: #2d6a4f;
+      text-decoration: none;
+    }
+    .project-modal-meta a:hover { text-decoration: underline; }
+    .project-modal ul {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+    .project-modal ul li {
+      font-size: 0.82rem;
+      color: #333;
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+    .project-modal-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #999;
+      margin-top: -0.2rem;
+    }
+    .project-modal-close:hover { color: #333; }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLJ17QQWRF"></script>
@@ -265,99 +394,72 @@
     <section class="portfolio-section animate-on-scroll">
       <p class="section-label">Projects</p>
       <div class="card">
+        <div class="project-grid">
 
-        <div class="resume-item">
-          <div class="resume-title">Notes — AI-Powered Note-Taking App
-            <a href="https://github.com/anhthiennguyen/notes-app" target="_blank" rel="noopener" class="resume-link resume-url">github.com/anhthiennguyen/notes-app</a>
-          </div>
-          <div class="resume-meta">Next.js, TypeScript, Prisma, Turso, Groq, Tailwind CSS</div>
-          <ul class="resume-bullets">
-            <li>Built a full-stack note-taking app with rich text editing, notebooks, and diagram views — backed by Turso (edge SQLite) for low-latency global reads.</li>
-            <li>Integrated a streaming AI chat widget powered by Groq's llama-3.3-70b, giving instant answers without leaving the app.</li>
-            <li>Added an in-app file viewer supporting both PPTX and PDF, with PPTX parsed and rendered slide-by-slide client-side.</li>
-            <li>Implemented export to PDF and DOCX, PPTX import, and dark mode throughout.</li>
-          </ul>
-          <button class="preview-toggle">Preview</button>
-          <div class="resume-preview">
-            <img src="NOTES.png" alt="Notes app preview" loading="lazy" class="resume-embed" />
-            <a class="btn btn-secondary resume-embed-link" href="https://github.com/anhthiennguyen/notes-app" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
+          <button class="project-card" onclick="openProjectModal('notes')">
+            <img src="NOTES.png" alt="Notes app" />
+            <div class="project-card-body">
+              <div class="project-card-title">Notes — AI Note-Taking App</div>
+              <div class="project-card-stack">Next.js · Turso · Groq</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('spatialmixer')">
+            <img src="SPATIALMIXER.png" alt="SpatialMixer" />
+            <div class="project-card-body">
+              <div class="project-card-title">SpatialMixer — VST3/AU Plugin</div>
+              <div class="project-card-stack">C++ · JUCE · Mid-Side DSP</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('songrequest')">
+            <img src="https://www.anhthien.site/SONGREQUEST.png" alt="Song Request" />
+            <div class="project-card-body">
+              <div class="project-card-title">Song Request — DJ Queue</div>
+              <div class="project-card-stack">React · Firebase</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('codingplatform')">
+            <img src="https://www.anhthien.site/CODINGPLATFORM.png" alt="Coding Platform" />
+            <div class="project-card-body">
+              <div class="project-card-title">Online Coding Platform</div>
+              <div class="project-card-stack">Next.js · tRPC · TypeScript</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('birthday')">
+            <img src="BIRTHDAY.png" alt="Birthday Notifier" />
+            <div class="project-card-body">
+              <div class="project-card-title">Birthday Notifier</div>
+              <div class="project-card-stack">Python · AWS Lambda</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('brainrot')">
+            <img src="https://www.anhthien.site/BRAINROT.png" alt="Brainrot Video Looper" />
+            <div class="project-card-body">
+              <div class="project-card-title">Brainrot Video Looper</div>
+              <div class="project-card-stack">Python · OpenCV</div>
+            </div>
+          </button>
+
         </div>
-
-        <div class="resume-item">
-          <div class="resume-title">SpatialMixer — Spatial Mixing VST3/AU Plugin
-            <a href="https://github.com/anhthiennguyen/SpatialMixer" target="_blank" rel="noopener" class="resume-link resume-url">github.com/anhthiennguyen/SpatialMixer</a>
-          </div>
-          <div class="resume-meta">C++, JUCE, VST3/AU, Mid-Side DSP, macOS</div>
-          <ul class="resume-bullets">
-            <li>Built a stereo audio plugin in C++ using the JUCE framework — users place tracks on a 2D canvas where X controls stereo position and Y controls EQ band, making spatial mixing visual and tactile.</li>
-            <li>Engineered a cross-instance singleton so all open plugin instances share one live canvas, enabling a full-mix view inside any DAW without a separate control surface.</li>
-            <li>Implemented real-time anti-muddiness logic that detects overlapping frequency bands across tracks and automatically applies Q narrowing, centre-frequency shifting, and priority-based gain reduction to keep the mix clear.</li>
-            <li>Designed per-track Stereo/Pan mode: stereo mode uses Mid-Side widening with a symmetric mirror box; pan mode collapses to a constant-power mono pan with full left–right range.</li>
-          </ul>
-        </div>
-
-        <div class="resume-item">
-          <div class="resume-title">Birthday Notifier
-            <a href="https://github.com/anhthiennguyen/birthdaynotifier" target="_blank" rel="noopener" class="resume-link resume-url">github.com/anhthiennguyen/birthdaynotifier</a>
-          </div>
-          <div class="resume-meta">Python, AWS Lambda, EventBridge, TextBelt</div>
-          <ul class="resume-bullets">
-            <li>Automated birthday SMS notifications using AWS Lambda and EventBridge, triggering a Python function daily at midnight Pacific Time with zero manual intervention.</li>
-            <li>Integrated TextBelt API to deliver personalized texts to 40+ contacts stored in a JSON file, with graceful handling for missing phone numbers.</li>
-            <li>Deployed serverlessly on AWS — no server or computer required to keep it running.</li>
-          </ul>
-        </div>
-
-        <div class="resume-item">
-          <div class="resume-title">Song Request Platform — Real-Time DJ Queue
-            <a href="https://anhthiennguyen.github.io/songrequest/" target="_blank" rel="noopener" class="resume-link resume-url">anhthiennguyen.github.io/songrequest</a>
-          </div>
-          <div class="resume-meta">React, Firebase, PostgreSQL</div>
-          <ul class="resume-bullets">
-            <li>Built a real-time song request system using React and Firebase, supporting 50+ concurrent users across shared DJ sessions.</li>
-            <li>Designed a database schema to manage sessions, song submissions, and vote tracking — handling 100+ API requests with consistent data integrity.</li>
-            <li>Implemented server-side vote aggregation and dynamic ranking logic, reducing manual queue management by 100%.</li>
-          </ul>
-          <button class="preview-toggle">Preview</button>
-          <div class="resume-preview">
-            <img src="https://www.anhthien.site/SONGREQUEST.png" alt="Song Request website preview" loading="lazy" class="resume-embed" />
-            <a class="btn btn-secondary resume-embed-link" href="https://anhthiennguyen.github.io/songrequest/" target="_blank" rel="noopener">Open Song Request</a>
-          </div>
-        </div>
-
-        <div class="resume-item">
-          <div class="resume-title">Online Coding Platform — Multi-Language Code Execution
-            <a href="https://su-leetcode-frontend.vercel.app" target="_blank" rel="noopener" class="resume-link resume-url">su-leetcode-frontend.vercel.app</a>
-          </div>
-          <div class="resume-meta">Next.js, TypeScript, tRPC, Tailwind CSS, Rapid API</div>
-          <ul class="resume-bullets">
-            <li>Built a coding platform supporting multi-language execution (JS, Python, Java, C++) with Rapid API to automate ACM LeetCode sessions.</li>
-            <li>Built type-safe tRPC APIs in TypeScript achieving 100% type coverage and reducing runtime errors by 60%.</li>
-            <li>Designed a responsive Next.js UI with Tailwind, increasing weekly active users by 25%.</li>
-          </ul>
-          <button class="preview-toggle">Preview</button>
-          <div class="resume-preview">
-            <img src="https://www.anhthien.site/CODINGPLATFORM.png" alt="Coding Platform preview" loading="lazy" class="resume-embed" />
-            <a class="btn btn-secondary resume-embed-link" href="https://su-leetcode-frontend.vercel.app" target="_blank" rel="noopener">Open Platform</a>
-          </div>
-        </div>
-
-        <div class="resume-item">
-          <div class="resume-title">Brainrot Video Looper
-            <a href="https://github.com/anhthiennguyen/brainrotvideo" target="_blank" rel="noopener" class="resume-link resume-url">github.com/anhthiennguyen/brainrotvideo</a>
-          </div>
-          <div class="resume-meta">Python, OpenCV</div>
-          <p>Python utility that loops video playback using OpenCV with resizable windows, aspect ratio preservation, and keep-on-top support.</p>
-          <button class="preview-toggle">Preview</button>
-          <div class="resume-preview">
-            <img src="https://www.anhthien.site/BRAINROT.png" alt="Brain Rot Video preview" loading="lazy" class="resume-embed" />
-            <a class="btn btn-secondary resume-embed-link" href="https://github.com/anhthiennguyen/brainrotvideo" target="_blank" rel="noopener">View on GitHub</a>
-          </div>
-        </div>
-
       </div>
     </section>
+
+    <!-- Project modal -->
+    <div class="project-modal-backdrop" id="projectModalBackdrop" onclick="closeProjectModal(event)">
+      <div class="project-modal" id="projectModal">
+        <img id="modalImg" src="" alt="" />
+        <div class="project-modal-content">
+          <button class="project-modal-close" onclick="closeProjectModal()">✕</button>
+          <div class="project-modal-title" id="modalTitle"></div>
+          <div class="project-modal-meta" id="modalMeta"></div>
+          <ul id="modalBullets"></ul>
+        </div>
+      </div>
+    </div>
 
     <!-- Education -->
     <section class="portfolio-section animate-on-scroll">
@@ -446,6 +548,96 @@
       });
     }, { threshold: 0.3 });
     document.querySelectorAll(slideTargets).forEach(el => slideObserver.observe(el));
+
+    const projects = {
+      notes: {
+        title: 'Notes — AI-Powered Note-Taking App',
+        meta: 'Next.js · TypeScript · Prisma · Turso · Groq · Tailwind CSS &nbsp;·&nbsp; <a href="https://github.com/anhthiennguyen/notes-app" target="_blank" rel="noopener">github.com/anhthiennguyen/notes-app</a>',
+        img: 'NOTES.png',
+        bullets: [
+          'Built a full-stack note-taking app with rich text editing, notebooks, and diagram views — backed by Turso (edge SQLite) for low-latency global reads.',
+          'Integrated a streaming AI chat widget powered by Groq\'s llama-3.3-70b, giving instant answers without leaving the app.',
+          'Added an in-app file viewer supporting both PPTX and PDF, with PPTX parsed and rendered slide-by-slide client-side.',
+          'Implemented export to PDF and DOCX, PPTX import, and dark mode throughout.',
+        ],
+      },
+      spatialmixer: {
+        title: 'SpatialMixer — Spatial Mixing VST3/AU Plugin',
+        meta: 'C++ · JUCE · VST3/AU · Mid-Side DSP · macOS &nbsp;·&nbsp; <a href="https://github.com/anhthiennguyen/SpatialMixer" target="_blank" rel="noopener">github.com/anhthiennguyen/SpatialMixer</a>',
+        img: 'SPATIALMIXER.png',
+        bullets: [
+          'Built a stereo audio plugin in C++ using the JUCE framework — users place tracks on a 2D canvas where X controls stereo position and Y controls EQ band, making spatial mixing visual and tactile.',
+          'Engineered a cross-instance singleton so all open plugin instances share one live canvas, enabling a full-mix view inside any DAW without a separate control surface.',
+          'Implemented real-time anti-muddiness logic that detects overlapping frequency bands across tracks and automatically applies Q narrowing, centre-frequency shifting, and priority-based gain reduction to keep the mix clear.',
+          'Designed per-track Stereo/Pan mode: stereo mode uses Mid-Side widening with a symmetric mirror box; pan mode collapses to a constant-power mono pan with full left–right range.',
+        ],
+      },
+      songrequest: {
+        title: 'Song Request Platform — Real-Time DJ Queue',
+        meta: 'React · Firebase &nbsp;·&nbsp; <a href="https://anhthiennguyen.github.io/songrequest/" target="_blank" rel="noopener">anhthiennguyen.github.io/songrequest</a>',
+        img: 'https://www.anhthien.site/SONGREQUEST.png',
+        bullets: [
+          'Built a real-time song request system using React and Firebase, supporting 50+ concurrent users across shared DJ sessions.',
+          'Designed a database schema to manage sessions, song submissions, and vote tracking — handling 100+ API requests with consistent data integrity.',
+          'Implemented server-side vote aggregation and dynamic ranking logic, reducing manual queue management by 100%.',
+        ],
+      },
+      codingplatform: {
+        title: 'Online Coding Platform — Multi-Language Code Execution',
+        meta: 'Next.js · TypeScript · tRPC · Tailwind CSS · Rapid API &nbsp;·&nbsp; <a href="https://su-leetcode-frontend.vercel.app" target="_blank" rel="noopener">su-leetcode-frontend.vercel.app</a>',
+        img: 'https://www.anhthien.site/CODINGPLATFORM.png',
+        bullets: [
+          'Built a coding platform supporting multi-language execution (JS, Python, Java, C++) with Rapid API to automate ACM LeetCode sessions.',
+          'Built type-safe tRPC APIs in TypeScript achieving 100% type coverage and reducing runtime errors by 60%.',
+          'Designed a responsive Next.js UI with Tailwind, increasing weekly active users by 25%.',
+        ],
+      },
+      birthday: {
+        title: 'Birthday Notifier',
+        meta: 'Python · AWS Lambda · EventBridge · TextBelt &nbsp;·&nbsp; <a href="https://github.com/anhthiennguyen/birthdaynotifier" target="_blank" rel="noopener">github.com/anhthiennguyen/birthdaynotifier</a>',
+        img: 'BIRTHDAY.png',
+        bullets: [
+          'Automated birthday SMS notifications using AWS Lambda and EventBridge, triggering a Python function daily at midnight Pacific Time with zero manual intervention.',
+          'Integrated TextBelt API to deliver personalized texts to 40+ contacts stored in a JSON file, with graceful handling for missing phone numbers.',
+          'Deployed serverlessly on AWS — no server or computer required to keep it running.',
+        ],
+      },
+      brainrot: {
+        title: 'Brainrot Video Looper',
+        meta: 'Python · OpenCV &nbsp;·&nbsp; <a href="https://github.com/anhthiennguyen/brainrotvideo" target="_blank" rel="noopener">github.com/anhthiennguyen/brainrotvideo</a>',
+        img: 'https://www.anhthien.site/BRAINROT.png',
+        bullets: [
+          'Python utility that loops video playback using OpenCV with resizable windows, aspect ratio preservation, and keep-on-top support.',
+        ],
+      },
+    };
+
+    function openProjectModal(id) {
+      const p = projects[id];
+      if (!p) return;
+      const imgEl = document.getElementById('modalImg');
+      if (p.img) {
+        imgEl.src = p.img;
+        imgEl.alt = p.title;
+        imgEl.style.display = 'block';
+      } else {
+        imgEl.style.display = 'none';
+      }
+      document.getElementById('modalTitle').textContent = p.title;
+      document.getElementById('modalMeta').innerHTML = p.meta;
+      const ul = document.getElementById('modalBullets');
+      ul.innerHTML = p.bullets.map(b => `<li>${b}</li>`).join('');
+      document.getElementById('projectModalBackdrop').classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal(e) {
+      if (e && e.target !== document.getElementById('projectModalBackdrop')) return;
+      document.getElementById('projectModalBackdrop').classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProjectModal(); });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
