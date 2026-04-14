@@ -7,16 +7,16 @@
 }
 
 :root {
-  --bg:            #f9f8f6;
-  --bg2:           #f3f2ef;
+  --bg:            #ffffff;
+  --bg2:           #f8f8f8;
   --surface:       #ffffff;
-  --surface2:      #f3f2ef;
-  --border:        #e8e7e3;
+  --surface2:      #f8f8f8;
+  --border:        #e5e5e5;
   --text:          #1a1714;
   --muted:         #6e6860;
   --accent-music:  #c0392b;
   --accent-cs:     #2d6a4f;
-  --accent-soft:   #d4cfc9;
+  --accent-soft:   #d4d4d4;
   --radius:        16px;
 }
 
@@ -662,7 +662,7 @@ footer::after  { content: ' —'; }
   align-items: center;
   justify-content: space-between;
   padding: 0.9rem 2rem;
-  background: rgba(249, 248, 246, 0.92);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);

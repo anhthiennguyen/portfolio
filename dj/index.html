@@ -21,6 +21,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://www.anhthien.site/style.css" />
   <style>
+    #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; }
+    body { background: transparent !important; }
+    .loading-screen, .page-nav, header, main, footer { position: relative; z-index: 1; }
+    .page-nav { background: var(--surface) !important; }
+    footer { background: var(--surface); }
+    header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(60px);
@@ -68,55 +78,24 @@
 </head>
 <body>
 
-  <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-label="Loading">
-    <div class="loading-card">
-      <div class="duck-scene" aria-hidden="true">
-        <svg viewBox="0 0 100 72" width="96" height="69">
-          <ellipse class="duck-water" cx="50" cy="65" rx="36" ry="5" fill="rgba(192,57,43,0.13)"/>
-          <g class="duck-leg-left" style="transform-origin:40px 56px">
-            <line x1="40" y1="55" x2="38" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M33 63 Q38 61 43 63 L42 66 Q38 64 34 66 Z" fill="#f97316"/>
-          </g>
-          <g class="duck-leg-right" style="transform-origin:50px 56px">
-            <line x1="50" y1="55" x2="52" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M47 63 Q52 61 57 63 L56 66 Q52 64 48 66 Z" fill="#f97316"/>
-          </g>
-          <g class="duck-body-group">
-            <path d="M25 41 Q13 31 18 44 Q20 51 27 48 Z" fill="#f59e0b"/>
-            <path d="M27 38 Q16 29 20 42 Q22 49 29 45 Z" fill="#fbbf24"/>
-            <ellipse cx="46" cy="44" rx="22" ry="14" fill="#fbbf24"/>
-            <ellipse cx="44" cy="46" rx="13" ry="7" fill="#f59e0b" transform="rotate(-10 44 46)"/>
-            <circle cx="63" cy="29" r="13" fill="#fbbf24"/>
-            <path d="M73 28 L84 26 L84 31 L73 30 Z" fill="#f97316"/>
-            <circle cx="80" cy="27.5" r="0.8" fill="#d97706"/>
-            <circle cx="68" cy="26" r="2.8" fill="#1a1714"/>
-            <circle cx="68.9" cy="25.1" r="1" fill="white"/>
-          </g>
-        </svg>
-      </div>
-      <p class="loading-title">Loading</p>
-      <div class="loading-dots" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </div>
+  <canvas id="bg-canvas"></canvas>
 
   <nav class="page-nav">
     <a href="https://www.anhthien.site">← anhthien.site</a>
   </nav>
 
-<header>
-    <div class="header-inner">
-      <img src="dj_pfp.jpg" alt="Anh-Thien Nguyen" class="profile-pic" />
-      <div>
-        <h1>LegendaryThien</h1>
-        <p class="tagline">Music Producer / DJ — Seattle, WA</p>
-        <p style="font-size:0.7rem;color:var(--muted);margin-top:6px;font-family:'Space Mono',monospace;">booking: <a href="mailto:dj.legendarythien@gmail.com" style="color:var(--muted);text-decoration:none;">dj.legendarythien@gmail.com</a></p>
-      </div>
-    </div>
-  </header>
-
   <main class="page-single col-music">
+
+    <header>
+      <div class="header-inner">
+        <img src="dj_pfp.jpg" alt="Anh-Thien Nguyen" class="profile-pic" />
+        <div>
+          <h1>LegendaryThien</h1>
+          <p class="tagline">Music Producer / DJ — Seattle, WA</p>
+          <p style="font-size:0.7rem;color:var(--muted);margin-top:6px;font-family:'Space Mono',monospace;">booking: <a href="mailto:dj.legendarythien@gmail.com" style="color:var(--muted);text-decoration:none;">dj.legendarythien@gmail.com</a></p>
+        </div>
+      </div>
+    </header>
 
     <!-- Links -->
     <div class="card animate-on-scroll link-row">
@@ -181,44 +160,198 @@
     dj.anhthien.site &nbsp;·&nbsp; <a href="https://dev.anhthien.site" style="color:var(--accent-cs);text-decoration:none">dev.anhthien.site →</a>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    const loadingScreen = document.getElementById('loadingScreen');
-    const MIN_LOAD_TIME = 600;
-    const MAX_WAIT_TIME = 4200;
-    let loadStartTime = Date.now();
-    let iframesLoaded = 0;
-    let totalIframes = 0;
-    let readyToHide = false;
+    // ── MUSIC PAGE — EDM FLY-THROUGH ──
+    (function () {
+      const BG = 0xf8f8f8;
+      const RED = 0xc0392b;
+      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setSize(window.innerWidth, window.innerHeight);
 
-    function hideLoadingScreen() {
-      if (!loadingScreen || loadingScreen.classList.contains('is-hidden')) return;
-      loadingScreen.classList.add('is-hidden');
-      loadingScreen.addEventListener('transitionend', () => loadingScreen.remove(), { once: true });
-    }
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(BG);
+      scene.fog = new THREE.Fog(BG, 28, 55);
 
-    function checkIfReady() {
-      const elapsed = Date.now() - loadStartTime;
-      if (elapsed >= MIN_LOAD_TIME && (iframesLoaded >= totalIframes || elapsed >= MAX_WAIT_TIME)) {
-        if (!readyToHide) { readyToHide = true; hideLoadingScreen(); }
+      const camera = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.1, 110);
+
+      // ── Lights ──
+      scene.add(new THREE.AmbientLight(0xffffff, 1.0));
+      const sun = new THREE.DirectionalLight(0xffffff, 0.8);
+      sun.position.set(8, 20, 10);
+      scene.add(sun);
+      const redFill = new THREE.DirectionalLight(RED, 0.3);
+      redFill.position.set(-8, 8, 12);
+      scene.add(redFill);
+
+      function mk(geo, color, opts) {
+        return new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color, ...opts }));
       }
-    }
 
-    const iframes = document.querySelectorAll('iframe');
-    totalIframes = iframes.length;
+      // ── Ground — light gray floor ──
+      const ground = mk(new THREE.PlaneGeometry(80, 80), 0xeeeeee);
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = -0.5;
+      scene.add(ground);
 
-    if (totalIframes === 0) {
-      window.addEventListener('load', () => setTimeout(checkIfReady, MIN_LOAD_TIME), { once: true });
-    } else {
-      iframes.forEach(iframe => {
-        iframe.addEventListener('load', () => { iframesLoaded++; checkIfReady(); }, { once: true });
-        setTimeout(() => {
-          if (!iframe.dataset.loaded) { iframesLoaded++; iframe.dataset.loaded = 'true'; checkIfReady(); }
-        }, 3000);
+      // ── Stage — black with red accents ──
+      const stage = mk(new THREE.BoxGeometry(16, 0.6, 5), 0x111111);
+      stage.position.set(0, 0, -3);
+      scene.add(stage);
+
+      // Stage fascia — red
+      const fascia = mk(new THREE.BoxGeometry(16, 1.2, 0.2), RED);
+      fascia.position.set(0, 0.3, -0.5);
+      scene.add(fascia);
+      // Thin white stripe
+      const stripe = mk(new THREE.BoxGeometry(16, 0.15, 0.22), 0xffffff);
+      stripe.position.set(0, 0.85, -0.5);
+      scene.add(stripe);
+
+      // Stage roof — black
+      const roof = mk(new THREE.BoxGeometry(17, 0.3, 6), 0x111111);
+      roof.position.set(0, 8.8, -3);
+      scene.add(roof);
+      const roofFront = mk(new THREE.BoxGeometry(17, 2.5, 0.2), RED);
+      roofFront.position.set(0, 7.6, -0.1);
+      scene.add(roofFront);
+
+      // Truss legs — black
+      [-7, 7].forEach(x => {
+        const leg = mk(new THREE.BoxGeometry(0.35, 8.8, 0.35), 0x111111);
+        leg.position.set(x, 4.4, -0.1);
+        scene.add(leg);
       });
-      window.addEventListener('load', checkIfReady, { once: true });
-    }
 
-    setTimeout(checkIfReady, MAX_WAIT_TIME);
+      // Back wall — off-white
+      const wall = mk(new THREE.BoxGeometry(18, 16, 0.2), 0xf0f0f0);
+      wall.position.set(0, 8, -5.8);
+      scene.add(wall);
+
+      // ── Light beams — red tones ──
+      const BEAM_COLORS = [0xc0392b, 0xe74c3c, 0x922b21, 0xff6b6b, 0xc0392b, 0xe74c3c];
+      const BEAM_X = [-5.5, -3.3, -1.1, 1.1, 3.3, 5.5];
+      const beams = BEAM_X.map((x, i) => {
+        const b = new THREE.Mesh(
+          new THREE.ConeGeometry(1.2, 10, 8, 1, true),
+          new THREE.MeshBasicMaterial({ color: BEAM_COLORS[i], transparent: true, opacity: 0.2, side: THREE.DoubleSide, depthWrite: false })
+        );
+        b.position.set(x, 8.8, -3);
+        b.rotation.x = Math.PI;
+        scene.add(b);
+        const pl = new THREE.PointLight(RED, 1.5, 12);
+        pl.position.set(x, 0.5, -3);
+        scene.add(pl);
+        return b;
+      });
+
+      // ── Speaker towers — black ──
+      [-6.5, 6.5].forEach(x => {
+        const tower = mk(new THREE.BoxGeometry(1.4, 4, 1.2), 0x111111);
+        tower.position.set(x, 2, -0.8);
+        scene.add(tower);
+        [1.2, 0.1, -0.8].forEach(y => {
+          const cone = mk(new THREE.CylinderGeometry(0.4, 0.45, 0.1, 8), 0x222222);
+          cone.rotation.x = Math.PI / 2;
+          cone.position.set(x, y + 2, -0.18);
+          scene.add(cone);
+        });
+      });
+
+      // ── Crowd — dark silhouettes matching --text ──
+      const crowdMat = new THREE.MeshLambertMaterial({ color: 0x1a1714 });
+      const bodyIM = new THREE.InstancedMesh(new THREE.BoxGeometry(0.42, 1, 0.22), crowdMat, 100);
+      const headIM = new THREE.InstancedMesh(new THREE.SphereGeometry(0.2, 6, 5), crowdMat, 100);
+      const dummy = new THREE.Object3D();
+      let ci = 0;
+      for (let row = 0; row < 6 && ci < 100; row++) {
+        for (let col = 0; col < 17 && ci < 100; col++) {
+          const h = 1.1 + Math.random() * 0.65;
+          const x = -7.5 + col * 0.95 + (Math.random() - 0.5) * 0.3;
+          const z = 4.5 + row * 2.8 + (Math.random() - 0.5) * 0.4;
+          dummy.position.set(x, h / 2 - 0.5, z); dummy.scale.set(1, h, 1); dummy.updateMatrix();
+          bodyIM.setMatrixAt(ci, dummy.matrix);
+          dummy.position.set(x, h + 0.02, z); dummy.scale.set(1, 1, 1); dummy.updateMatrix();
+          headIM.setMatrixAt(ci, dummy.matrix);
+          ci++;
+        }
+      }
+      bodyIM.instanceMatrix.needsUpdate = true;
+      headIM.instanceMatrix.needsUpdate = true;
+      scene.add(bodyIM); scene.add(headIM);
+
+      // ── Confetti — red palette ──
+      const PC = 500;
+      const pPos = new Float32Array(PC * 3);
+      const pCol = new Float32Array(PC * 3);
+      const pal = [[0.75,0.22,0.17],[0.91,0.30,0.24],[0.57,0.10,0.13],[1,0.42,0.42],[0.9,0.9,0.9]];
+      for (let i = 0; i < PC; i++) {
+        pPos[i*3]   = (Math.random()-0.5)*36;
+        pPos[i*3+1] = 0.5 + Math.random()*12;
+        pPos[i*3+2] = (Math.random()-0.5)*44;
+        const c = pal[i % pal.length];
+        pCol[i*3]=c[0]; pCol[i*3+1]=c[1]; pCol[i*3+2]=c[2];
+      }
+      const pGeo = new THREE.BufferGeometry();
+      pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+      pGeo.setAttribute('color', new THREE.BufferAttribute(pCol, 3));
+      scene.add(new THREE.Points(pGeo,
+        new THREE.PointsMaterial({ size: 0.13, vertexColors: true, transparent: true, opacity: 0.9 })));
+
+      // ── Camera path ──
+      const camPath = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0, 9, 26),
+        new THREE.Vector3(-2, 6, 17),
+        new THREE.Vector3(1.5, 3, 8),
+        new THREE.Vector3(0, 1.5, 1.5),
+      ]);
+      const lookPath = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0, 4, 0),
+        new THREE.Vector3(0, 3, -1),
+        new THREE.Vector3(0, 2, -2),
+        new THREE.Vector3(0, 2, -4),
+      ]);
+
+      const p0 = camPath.getPoint(0);
+      camera.position.set(p0.x, p0.y, p0.z);
+      const l0 = lookPath.getPoint(0);
+      camera.lookAt(l0.x, l0.y, l0.z);
+
+      let tFrac = 0, cFrac = 0;
+      window.addEventListener('scroll', () => {
+        const max = document.body.scrollHeight - window.innerHeight;
+        tFrac = max > 0 ? window.scrollY / max : 0;
+      });
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      (function animate() {
+        requestAnimationFrame(animate);
+        const t = performance.now() * 0.001;
+        cFrac += (tFrac - cFrac) * 0.05;
+        const f = Math.max(0, Math.min(1, cFrac));
+
+        const cp = camPath.getPoint(f);
+        camera.position.lerp(cp, 0.1);
+        const lp = lookPath.getPoint(f);
+        camera.lookAt(lp.x, lp.y, lp.z);
+
+        beams.forEach((b, i) => {
+          const ph = i * 1.05;
+          b.rotation.y = Math.sin(t * 0.65 + ph) * 0.6;
+          b.rotation.z = Math.cos(t * 0.48 + ph) * 0.4;
+          b.material.opacity = 0.12 + Math.abs(Math.sin(t * 1.9 + ph)) * 0.15;
+        });
+
+        renderer.render(scene, camera);
+      })();
+    })();
+  </script>
+  <script>
 
     function splitLetters(el) {
       const nodes = Array.from(el.childNodes);
