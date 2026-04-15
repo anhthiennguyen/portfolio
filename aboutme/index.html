@@ -170,7 +170,7 @@
   <!-- Dialogue UI -->
   <div id="dialogue-wrap">
     <div id="dialogue-box">
-      <div id="dialogue-name">thien</div>
+      <div id="dialogue-name">thien <span id="dialogue-counter" style="float:right;color:#bbb;font-weight:400;letter-spacing:0.04em;"></span></div>
       <p id="dialogue-text"></p>
       <div id="end-links">
         <div class="end-btn-row">
@@ -207,18 +207,24 @@
     // ── Dialogues ──
     const DIALOGUES = [
       "Hi! I'm Thien!",
-      "I'm a Full-Stack Developer and Software Engineer based in Seattle. I study Computer Science at Seattle University with a minor in Philosophy and Ethics. My favorite hobby is to produce music and DJ.",
-      "Here's some things about my personality!",
-      "(1/3): I am someone who believes that what I have is temporary, and that awareness makes me more grateful and able to appreciate life as it is. I am someone who aims to deal with suffering positively, focusing on what I can control, accepting everything else, and continuing forward with resilience. I stay grounded through stillness, facing reality directly, while also allowing myself to enjoy life and find satisfaction in it.",
-      "(2/3): I am someone who pursues knowledge broadly and deeply across disciplines because I have a deep passion for learning. I highly value learning because I desire to grow in wisdom in order to live a more fulfilling life. I regularly reflect on my own thoughts to constantly refine the clear principles I live by. I believe maturity takes a lifetime to develop, and there's always more to understand",
-      "(3/3): I dealt with loneliness in the past and that taught me the value of meaningful relationships, so I step outside comfort to connect with others. I invest in them with trust and honesty, communicate directly because clarity matters to me, and I strive to be selfless meeting others where they're at and making a positive impact in other people's lives.",
+      "I'm a Full-Stack Developer and Software Engineer based in Seattle.",
+      "I study Computer Science at Seattle University, with a minor in Philosophy and Ethics.",
+      "My favorite hobby is producing music and DJing.",
+      "Here are some things about my personality!",
+      "I believe that what I have is temporary, and that awareness makes me more grateful and able to appreciate life as it is.",
+      "I'm someone who tries to deal with suffering positively, focusing on what I can control, accepting everything else, and continuing forward with resilience.",
+      "I pursue it broadly and deeply because I have a deep passion for learning and a desire to grow in wisdom.",
+      "I regularly reflect on my own thoughts to refine the principles I live by. I believe maturity takes a lifetime, and there's always more to understand.",
+      "Loneliness in the past taught me the value of meaningful relationships, so I step outside my comfort zone to connect with others.",
+      "I invest in people with trust and honesty, communicate directly, and strive to be selfless, making a positive impact wherever I can.",
       "Anyway, that's a bit about me. Feel free to look around! :D"
     ];
 
     // ── UI elements ──
-    const dBox   = document.getElementById('dialogue-box');
-    const dText  = document.getElementById('dialogue-text');
-    const dNext  = document.getElementById('dialogue-next');
+    const dBox     = document.getElementById('dialogue-box');
+    const dText    = document.getElementById('dialogue-text');
+    const dNext    = document.getElementById('dialogue-next');
+    const dCounter = document.getElementById('dialogue-counter');
     const endLinks = document.getElementById('end-links');
     const progressEl = document.getElementById('progress');
 
@@ -236,6 +242,7 @@
         d.classList.toggle('done',   i < idx);
         d.classList.toggle('active', i === idx);
       });
+      dCounter.textContent = `${idx + 1} / ${DIALOGUES.length}`;
     }
 
     // ── Dialogue state ──
@@ -280,7 +287,7 @@
       function tick() {
         if (i < text.length) {
           dText.insertBefore(document.createTextNode(text[i++]), cursor);
-          typeTimer = setTimeout(tick, 10);
+          typeTimer = setTimeout(tick, 16);
         } else {
           cursor.remove();
           isTyping = false;
