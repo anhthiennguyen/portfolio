@@ -26,9 +26,9 @@
     * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpolygon points='2,2 2,20 6,15 10,22 13,21 9,14 16,14' fill='white' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important; }
     a, button, .island-card { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpolygon points='2,2 2,20 6,15 10,22 13,21 9,14 16,14' fill='white' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, pointer !important; }
 
-    body { overflow: hidden; height: 100vh; font-family: 'Inter', sans-serif; }
+    body { overflow: hidden; height: 100vh; height: 100dvh; font-family: 'Inter', sans-serif; }
 
-    canvas { position: fixed; inset: 0; z-index: 1; display: block; }
+    canvas { position: fixed; inset: 0; z-index: 1; display: block; width: 100% !important; height: 100% !important; }
 
     #hero-name {
       position: fixed; top: 28px; left: 50%; transform: translateX(-50%);
@@ -51,6 +51,11 @@
       padding: 10px 22px 9px; text-align: center; z-index: 10;
       transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
       box-shadow: 0 4px 20px rgba(0,0,0,0.12); user-select: none;
+    }
+    @media (max-width: 500px) {
+      .island-card { padding: 7px 12px 6px; border-radius: 10px; }
+      .island-card .card-title { font-size: 0.72rem; }
+      .island-card .card-hint { font-size: 0.5rem; }
     }
     .island-card.hovered, .island-card:hover {
       background: rgba(255,255,255,0.97);
@@ -139,8 +144,20 @@
     scene.fog = new THREE.Fog(0x8ecae6, 20, 40);
 
     const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(0, 6, 12);
-    camera.lookAt(0, 0.5, 0);
+
+    function setCamForViewport() {
+      const aspect = window.innerWidth / window.innerHeight;
+      if (aspect < 0.75) {
+        // portrait mobile — pull back so side islands stay in frame
+        camera.position.set(0, 9, 20);
+      } else if (aspect < 1.1) {
+        camera.position.set(0, 7, 15);
+      } else {
+        camera.position.set(0, 6, 12);
+      }
+      camera.lookAt(0, 0.5, 0);
+    }
+    setCamForViewport();
 
     // ── LIGHTS ──
     scene.add(new THREE.AmbientLight(0xffeedd, 0.8));
@@ -405,7 +422,9 @@
       setTimeout(() => { toast.classList.remove('show'); window.location.href = url; }, 900);
     }
 
-    window.addEventListener('click', () => { if (hoveredDef) navigate(hoveredDef.url, hoveredDef.label); });
+    window.addEventListener('click', () => {
+      if (hoveredDef) navigate(hoveredDef.url, hoveredDef.label);
+    });
     ISLAND_DEFS.forEach(def => def.cardEl.addEventListener('click', () => navigate(def.url, def.label)));
 
     // ── PROJECT 3D → SCREEN ──
@@ -420,6 +439,7 @@
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
+      setCamForViewport();
     });
 
     // ── ANIMATE ──
