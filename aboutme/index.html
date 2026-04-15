@@ -423,80 +423,73 @@
 
     scene.add(island);
 
-    // ── Cat (low-poly chibi, matching pfp) ──
-    const catGroup = new THREE.Group();
-    const W = 0xf0eeea, PK = 0xffb3c6, DK = 0x1a1714;
+    // ── Chibi Thien ──
+    const catGroup = new THREE.Group(); // name kept for animation compat
 
-    // Body
-    const catBody = mesh(new THREE.SphereGeometry(0.28, 8, 7), W);
-    catBody.scale.y = 0.9;
-    catGroup.add(catBody);
+    const SKIN  = 0xd4956a;  // warm tan
+    const HAIR  = 0x1c110c;  // very dark brown
+    const SHIRT = 0xf0f0f0;  // white shirt
+    const PK    = 0xffb3c6;  // blush
 
-    // Head
-    const catHead = mesh(new THREE.SphereGeometry(0.255, 8, 7), W);
-    catHead.position.y = 0.44;
+    // ── Torso ──
+    const torso = mesh(new THREE.SphereGeometry(0.23, 8, 7), SHIRT);
+    torso.scale.set(1.0, 0.88, 0.82);
+    catGroup.add(torso);
+
+
+    // ── Hair cap — dome shape (partial sphere) covers top of head cleanly ──
+    const hairCap = mesh(
+      new THREE.SphereGeometry(0.256, 10, 8, 0, Math.PI * 2, 0, Math.PI * 0.42),
+      HAIR
+    );
+    hairCap.position.set(0, 0.425, 0.006);
+    catGroup.add(hairCap);
+    // Small back piece to fill below the dome
+    const hairBack = box(0.38, 0.1, 0.05, HAIR);
+    hairBack.position.set(0, 0.35, -0.22);
+    catGroup.add(hairBack);
+
+    // ── Head (skin) ──
+    const catHead = mesh(new THREE.SphereGeometry(0.235, 8, 7), SKIN);
+    catHead.position.set(0, 0.425, 0.022);
     catGroup.add(catHead);
 
-    // Ears (4-sided cones for faceted look)
-    [[-0.135, 0.635, -0.17], [0.135, 0.635, 0.17]].forEach(([x, y, rz]) => {
-      const ear = mesh(new THREE.ConeGeometry(0.082, 0.145, 4), W);
-      ear.position.set(x, y, 0); ear.rotation.z = rz;
-      catGroup.add(ear);
-    });
+    // ── Short bangs ──
+    const bangs = box(0.3, 0.055, 0.044, HAIR);
+    bangs.position.set(0, 0.522, 0.208);
+    catGroup.add(bangs);
 
-    // Eyes — thin boxes angled inward (happy squint like pfp)
-    const eyeGeo = new THREE.BoxGeometry(0.082, 0.017, 0.008);
-    [[-0.082, 0.27], [0.082, -0.27]].forEach(([x, rz]) => {
-      const eye = mesh(eyeGeo, DK);
-      eye.position.set(x, 0.455, 0.24); eye.rotation.z = rz;
+    // ── Face ──
+    // Eyes — small, slightly squished
+    const eyeGeo = new THREE.SphereGeometry(0.027, 6, 5);
+    [[-0.076, 0.435, 0.232], [0.076, 0.435, 0.232]].forEach(([x, y, z]) => {
+      const eye = mesh(eyeGeo, 0x1a0f0a);
+      eye.scale.y = 0.58;
+      eye.position.set(x, y, z);
       catGroup.add(eye);
     });
-
-    // Nose
-    const nose = mesh(new THREE.ConeGeometry(0.019, 0.022, 3), DK);
-    nose.rotation.x = Math.PI; nose.position.set(0, 0.416, 0.25);
-    catGroup.add(nose);
-
-    // Cheeks
-    const cheekGeo = new THREE.SphereGeometry(0.053, 6, 5);
+    // Nose dot
+    const noseDot = sph(0.017, 0x1a0f0a);
+    noseDot.position.set(0, 0.405, 0.246);
+    catGroup.add(noseDot);
+    // Blush
     const cheekMats = [];
-    [[-0.122, 0.405, 0.235], [0.122, 0.405, 0.235]].forEach(([x, y, z]) => {
-      const m = new THREE.MeshLambertMaterial({ color: PK, transparent: true, opacity: 0.55 });
+    const cheekGeo = new THREE.SphereGeometry(0.046, 6, 5);
+    [[-0.108, 0.388, 0.22], [0.108, 0.388, 0.22]].forEach(([x, y, z]) => {
+      const m = new THREE.MeshLambertMaterial({ color: PK, transparent: true, opacity: 0.5 });
       cheekMats.push(m);
       const ch = new THREE.Mesh(cheekGeo, m);
-      ch.scale.z = 0.28; ch.position.set(x, y, z);
+      ch.scale.z = 0.3; ch.position.set(x, y, z);
       catGroup.add(ch);
     });
 
-    // Paws
-    const pawGeo = new THREE.SphereGeometry(0.09, 6, 5);
-    [[-0.245, -0.03, 0.17], [0.245, -0.03, 0.17]].forEach(([x, y, z]) => {
-      const p = mesh(pawGeo, W); p.scale.set(0.75, 1.1, 0.7);
-      p.position.set(x, y, z); catGroup.add(p);
-    });
-
-    // Feet
-    const footGeo = new THREE.SphereGeometry(0.09, 6, 5);
-    [[-0.13, -0.27, 0.14], [0.13, -0.27, 0.14]].forEach(([x, y, z]) => {
-      const f = mesh(footGeo, W); f.scale.set(0.88, 0.5, 1.0);
-      f.position.set(x, y, z); catGroup.add(f);
-    });
-
-    // Tail
-    const tailCurve = new THREE.QuadraticBezierCurve3(
-      new THREE.Vector3(0.18, -0.16, -0.2),
-      new THREE.Vector3(-0.44, 0.08, -0.28),
-      new THREE.Vector3(-0.48, 0.26, 0.06)
-    );
-    catGroup.add(mesh(new THREE.TubeGeometry(tailCurve, 10, 0.034, 5, false), W));
-
-    // Gold stars (octahedra like the pfp)
+    // ── Floating stars (decorative) ──
     const starMat = new THREE.MeshLambertMaterial({ color: 0xf0c040, emissive: 0xd4a010, emissiveIntensity: 0.45 });
     const starGeo = new THREE.OctahedronGeometry(0.075);
     const stars = [
-      { pos: [0.58, 0.32, 0.22],  speed: 0.72, phase: 0    },
-      { pos: [-0.52, 0.62, 0.04], speed: 0.5,  phase: 2.1  },
-      { pos: [0.18, 0.88, -0.16], speed: 0.9,  phase: 4.2  },
+      { pos: [0.58, 0.32, 0.22],  speed: 0.72, phase: 0   },
+      { pos: [-0.52, 0.62, 0.04], speed: 0.5,  phase: 2.1 },
+      { pos: [0.18, 0.88, -0.16], speed: 0.9,  phase: 4.2 },
     ].map(d => {
       const s = new THREE.Mesh(starGeo, starMat);
       s.position.set(...d.pos);
