@@ -199,7 +199,7 @@
   <script>
     // ── MUSIC PAGE — EDM FLY-THROUGH ──
     (function () {
-      const BG = 0xf8f8f8;
+      const BG = 0x000000;
       const RED = 0xc0392b;
       const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('bg-canvas'), antialias: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -225,7 +225,7 @@
       }
 
       // ── Ground — light gray floor ──
-      const ground = mk(new THREE.PlaneGeometry(80, 80), 0xeeeeee);
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(80, 80), new THREE.MeshBasicMaterial({ color: 0xe8c99a }));
       ground.rotation.x = -Math.PI / 2;
       ground.position.y = -0.5;
       scene.add(ground);
@@ -260,7 +260,7 @@
       });
 
       // Back wall — off-white
-      const wall = mk(new THREE.BoxGeometry(18, 16, 0.2), 0xf0f0f0);
+      const wall = mk(new THREE.BoxGeometry(18, 16, 0.2), 0x000000);
       wall.position.set(0, 8, -5.8);
       scene.add(wall);
 
@@ -294,7 +294,7 @@
         });
       });
 
-      // ── Crowd — dark silhouettes matching --text ──
+      // ── Crowd — black silhouettes ──
       const crowdMat = new THREE.MeshLambertMaterial({ color: 0x1a1714 });
       const bodyIM = new THREE.InstancedMesh(new THREE.BoxGeometry(0.42, 1, 0.22), crowdMat, 100);
       const headIM = new THREE.InstancedMesh(new THREE.SphereGeometry(0.2, 6, 5), crowdMat, 100);
