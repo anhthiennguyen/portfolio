@@ -430,6 +430,14 @@
             </div>
           </button>
 
+          <button class="project-card" onclick="openProjectModal('messagemeet')">
+            <img src="MESSAGEMEET.png" alt="MessageMeet" />
+            <div class="project-card-body">
+              <div class="project-card-title">MessageMeet — Availability Scheduler</div>
+              <div class="project-card-stack">React · Firebase · Tailwind</div>
+            </div>
+          </button>
+
           <button class="project-card" onclick="openProjectModal('songrequest')">
             <img src="https://www.anhthien.site/SONGREQUEST.png" alt="Song Request" />
             <div class="project-card-body">
@@ -809,6 +817,16 @@
           'Engineered a cross-instance singleton so all open plugin instances share one live canvas, enabling a full-mix view inside any DAW without a separate control surface.',
           'Implemented real-time anti-muddiness logic that detects overlapping frequency bands across tracks and automatically applies Q narrowing, centre-frequency shifting, and priority-based gain reduction to keep the mix clear.',
           'Designed per-track Stereo/Pan mode: stereo mode uses Mid-Side widening with a symmetric mirror box; pan mode collapses to a constant-power mono pan with full left–right range.',
+        ],
+      },
+      messagemeet: {
+        title: 'MessageMeet — Availability Scheduler',
+        meta: 'React · Firebase · Tailwind &nbsp;·&nbsp; <a href="https://anhthiennguyen.github.io/MessageMeet/" target="_blank" rel="noopener">anhthiennguyen.github.io/MessageMeet</a>',
+        img: 'MESSAGEMEET.png',
+        bullets: [
+          'Built a weekly availability scheduler with a When2Meet-style drag-to-select grid at 15-minute intervals, persisted to Firestore in real time.',
+          'Implemented smart free-time detection that merges consecutive free slots into ranges and groups days with identical schedules.',
+          'Auto-generates a natural-language availability message (e.g. "Mon/Wed: Before 10am, 12pm–2pm, After 4pm") with a one-click copy button.',
         ],
       },
       songrequest: {
