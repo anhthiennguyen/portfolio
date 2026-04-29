@@ -469,6 +469,14 @@
               <div class="project-card-stack">Python · OpenCV</div>
             </div>
           </button>
+
+          <button class="project-card" onclick="openProjectModal('todolist')">
+            <img src="TODOLIST.png" alt="Distributed To-Do List" />
+            <div class="project-card-body">
+              <div class="project-card-title">Distributed To-Do — Task Manager</div>
+              <div class="project-card-stack">React · Firebase · Vite</div>
+            </div>
+          </button>
         </div>
       </div>
     </section>
@@ -865,6 +873,17 @@
         img: 'https://www.anhthien.site/BRAINROT.png',
         bullets: [
           'Python utility that loops video playback using OpenCV with resizable windows, aspect ratio preservation, and keep-on-top support.',
+        ],
+      },
+      todolist: {
+        title: 'Distributed To-Do — Real-Time Task Manager',
+        meta: 'React · Firebase · Vite &nbsp;·&nbsp; <a href="https://github.com/anhthiennguyen/distributed-to-do-list" target="_blank" rel="noopener">github.com/anhthiennguyen/distributed-to-do-list</a>',
+        img: 'TODOLIST.png',
+        bullets: [
+          'Built a real-time to-do app backed by Firestore, syncing tasks and categories live across devices with no page refresh.',
+          'Implemented drag-and-drop reordering for both tasks and color-coded categories in a unified root list, including cross-category task filing.',
+          'Added inline double-click editing for task and category names, and a native color wheel for per-category color customization.',
+          'Supported JSON import/export for task backup and bulk data transfer across sessions.',
         ],
       },
     };
