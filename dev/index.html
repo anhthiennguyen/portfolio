@@ -101,11 +101,30 @@
     .resume-preview { display: none; margin-top: 0.5rem; }
     .resume-preview.is-open { display: block; }
 
+    /* Project subsections */
+    .project-subhead {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+      color: #2d6a4f;
+      margin: 1.4rem 0 0.6rem;
+    }
+    .project-subhead:first-child { margin-top: 0; }
+    .project-subhead.primary {
+      font-size: 0.78rem;
+      border-left: 3px solid #2d6a4f;
+      padding-left: 0.5rem;
+    }
+    .project-subhead.secondary { color: #666; }
+
     /* Project grid */
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       gap: 1rem;
+      margin-bottom: 0.4rem;
     }
     .project-card {
       aspect-ratio: 1;
@@ -449,6 +468,7 @@
     <section class="portfolio-section animate-on-scroll">
       <div class="card">
         <p class="section-label">Projects</p>
+        <p class="project-subhead primary">Full-Stack</p>
         <div class="project-grid">
           <button class="project-card" onclick="openProjectModal('pollenatlas')">
             <div class="project-card-placeholder">🌿</div>
@@ -463,14 +483,6 @@
             <div class="project-card-body">
               <div class="project-card-title">Notes — AI Note-Taking App</div>
               <div class="project-card-stack">Next.js · Turso · Groq</div>
-            </div>
-          </button>
-
-          <button class="project-card" onclick="openProjectModal('spatialmixer')">
-            <img src="SPATIALMIXER.png" alt="MixSuite" />
-            <div class="project-card-body">
-              <div class="project-card-title">MixSuite — Spatial Mixing Suite</div>
-              <div class="project-card-stack">C++ · JUCE · VST3/AU · DSP</div>
             </div>
           </button>
 
@@ -498,6 +510,68 @@
             </div>
           </button>
 
+          <button class="project-card" onclick="openProjectModal('todolist')">
+            <img src="TODOLIST.png" alt="Distributed To-Do List" />
+            <div class="project-card-body">
+              <div class="project-card-title">Distributed To-Do — Task Manager</div>
+              <div class="project-card-stack">React · Firebase · Vite</div>
+            </div>
+          </button>
+        </div>
+
+        <p class="project-subhead secondary">Music Plugins</p>
+        <div class="project-grid">
+          <button class="project-card" onclick="openProjectModal('spatialmixer')">
+            <img src="SPATIALMIXER.png" alt="MixSuite" />
+            <div class="project-card-body">
+              <div class="project-card-title">MixSuite — Spatial Mixing Suite</div>
+              <div class="project-card-stack">C++ · JUCE · VST3/AU · DSP</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('autocompressor')">
+            <div class="project-card-placeholder">⚡</div>
+            <div class="project-card-body">
+              <div class="project-card-title">AutoCompressor</div>
+              <div class="project-card-stack">C++ · JUCE · VST3/AU</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('tempodetector')">
+            <div class="project-card-placeholder">🥁</div>
+            <div class="project-card-body">
+              <div class="project-card-title">TempoDetector — BPM Analyzer</div>
+              <div class="project-card-stack">C++ · JUCE · VST3/AU · DSP</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('prioritysidechain')">
+            <div class="project-card-placeholder">🎚</div>
+            <div class="project-card-body">
+              <div class="project-card-title">PrioritySidechain — Ducker</div>
+              <div class="project-card-stack">C++ · JUCE · VST3/AU · DSP</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('musicpackager')">
+            <div class="project-card-placeholder">📦</div>
+            <div class="project-card-body">
+              <div class="project-card-title">MusicPackager — FLP Packager</div>
+              <div class="project-card-stack">C++ · JUCE · VST3/AU</div>
+            </div>
+          </button>
+
+          <button class="project-card" onclick="openProjectModal('autotrackassigner')">
+            <div class="project-card-placeholder">🎛</div>
+            <div class="project-card-body">
+              <div class="project-card-title">Auto Track Assigner</div>
+              <div class="project-card-stack">Python · FL Studio MIDI API</div>
+            </div>
+          </button>
+        </div>
+
+        <p class="project-subhead secondary">Other</p>
+        <div class="project-grid">
           <button class="project-card" onclick="openProjectModal('birthday')">
             <img src="BIRTHDAY.png" alt="Birthday Notifier" />
             <div class="project-card-body">
@@ -511,14 +585,6 @@
             <div class="project-card-body">
               <div class="project-card-title">Brainrot Video Looper</div>
               <div class="project-card-stack">Python · OpenCV</div>
-            </div>
-          </button>
-
-          <button class="project-card" onclick="openProjectModal('todolist')">
-            <img src="TODOLIST.png" alt="Distributed To-Do List" />
-            <div class="project-card-body">
-              <div class="project-card-title">Distributed To-Do — Task Manager</div>
-              <div class="project-card-stack">React · Firebase · Vite</div>
             </div>
           </button>
         </div>
@@ -869,6 +935,56 @@
           'Integrated a streaming AI chat widget powered by Groq\'s llama-3.3-70b, giving instant answers without leaving the app.',
           'Added an in-app file viewer supporting both PPTX and PDF, with PPTX parsed and rendered slide-by-slide client-side.',
           'Implemented export to PDF and DOCX, PPTX import, and dark mode throughout.',
+        ],
+      },
+      autocompressor: {
+        title: 'AutoCompressor — Level-Following Auto-Compressor',
+        meta: 'C++ · JUCE · VST3/AU · CMake',
+        img: null,
+        bullets: [
+          'Level-following auto-compressor VST3/AU plugin that continuously tracks signal level with an asymmetric EMA envelope follower and adjusts gain to hit a target dB level — rising signal uses attack speed, falling signal uses release speed to avoid pumping.',
+          'Configurable target level (−40 to −6 dB), attack/release times, max boost (up to +24 dB), and max cut (up to −24 dB) with stereo-linked peak detection that preserves stereo balance.',
+          'Throttled gain-history ring buffer drives a real-time chart in the UI; gain and input RMS exposed as atomics for lock-free reads across the audio/UI thread boundary.',
+        ],
+      },
+      tempodetector: {
+        title: 'TempoDetector — Real-Time BPM Analyzer',
+        meta: 'C++ · JUCE · VST3/AU · DSP · CMake',
+        img: null,
+        bullets: [
+          'Analysis-only VST3/AU plugin that detects BPM in real time using spectral-flux-inspired onset detection — computes energy of the first-difference signal per hop to emphasise transients over sustained tones.',
+          'Onset strengths are stored in a circular buffer; autocorrelation over a configurable BPM window (40–240 BPM) finds the best-fit lag, converts to BPM, and derives a confidence score against the lag-0 power.',
+          'Smooths estimates within 8 BPM of the running reading to suppress jitter; scrolling onset waveform visualizer rendered lock-free via a separate atomic ring buffer. Audio passes through unchanged.',
+        ],
+      },
+      prioritysidechain: {
+        title: 'PrioritySidechain — Sidechain Ducker',
+        meta: 'C++ · JUCE · VST3/AU · DSP · CMake',
+        img: null,
+        bullets: [
+          'Sidechain compressor/ducker VST3/AU plugin with a dedicated stereo sidechain input bus — ducks the main signal whenever the sidechain envelope exceeds a threshold.',
+          'Ballistic envelope follower with independent attack and release; gain reduction scales linearly from unity to the configured depth (down to −60 dB) based on normalised excess above threshold, giving smooth, proportional ducking.',
+          'Real-time sidechain level and gain-reduction meters exported as atomics for smooth, tear-free UI metering.',
+        ],
+      },
+      musicpackager: {
+        title: 'MusicPackager — FL Studio Project Packager',
+        meta: 'C++ · JUCE · VST3/AU · CMake',
+        img: null,
+        bullets: [
+          'VST3/AU utility plugin that scans an FL Studio .flp binary (without the FL SDK) to extract all referenced audio file paths — handles both UTF-16 LE Windows paths and UTF-8 macOS paths by walking the raw byte stream.',
+          'Copies the .flp and all referenced samples into a self-contained folder or ZIP archive; resolves filename collisions with a counter suffix and reports any samples not found on the current machine.',
+          'Background worker thread keeps the audio thread non-blocking; progress percentage and status messages are shared lock-safely via a CriticalSection for real-time UI feedback.',
+        ],
+      },
+      autotrackassigner: {
+        title: 'Auto Track Assigner — FL Studio MIDI Script',
+        meta: 'Python · FL Studio MIDI API',
+        img: null,
+        bullets: [
+          'FL Studio MIDI script that assigns every unassigned Channel Rack channel to a unique, unused Mixer track in a single command — eliminating manual drag-and-drop routing across large projects.',
+          'Two-pass algorithm: first collects all mixer slots already in use, then fills unassigned channels into the next available slot — existing routing is left completely untouched.',
+          'Triggered via MIDI CC 112, Note 127, or automatically on script load; gracefully reports assignment count, detects a full mixer, and aborts early if the FL Studio version\'s API is read-only.',
         ],
       },
       spatialmixer: {
