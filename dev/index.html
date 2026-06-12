@@ -470,14 +470,6 @@
         <p class="section-label">Projects</p>
         <p class="project-subhead primary">Full-Stack</p>
         <div class="project-grid">
-          <button class="project-card" onclick="openProjectModal('pollenatlas')">
-            <div class="project-card-placeholder">🌿</div>
-            <div class="project-card-body">
-              <div class="project-card-title">Pollen Atlas — Allergy Platform</div>
-              <div class="project-card-stack">Next.js · Stripe · OAuth · Vercel</div>
-            </div>
-          </button>
-
           <button class="project-card" onclick="openProjectModal('notes')">
             <img src="NOTES.png" alt="Notes app" />
             <div class="project-card-body">
@@ -522,15 +514,23 @@
         <p class="project-subhead secondary">Music Plugins</p>
         <div class="project-grid">
           <button class="project-card" onclick="openProjectModal('spatialmixer')">
-            <img src="SPATIALMIXER.png" alt="MixSuite" />
+            <img src="SPATIALMIXER.png" alt="SpatialMixer" />
             <div class="project-card-body">
-              <div class="project-card-title">MixSuite — Spatial Mixing Suite</div>
+              <div class="project-card-title">SpatialMixer — 3D Mixing Suite</div>
               <div class="project-card-stack">C++ · JUCE · VST3/AU · DSP</div>
             </div>
           </button>
 
+          <button class="project-card" onclick="openProjectModal('visualeq')">
+            <div class="project-card-placeholder">EQ</div>
+            <div class="project-card-body">
+              <div class="project-card-title">VisualEQ — Multi-Track EQ</div>
+              <div class="project-card-stack">C++ · JUCE · VST3/AU · IIR</div>
+            </div>
+          </button>
+
           <button class="project-card" onclick="openProjectModal('autocompressor')">
-            <div class="project-card-placeholder">⚡</div>
+            <div class="project-card-placeholder">AC</div>
             <div class="project-card-body">
               <div class="project-card-title">AutoCompressor</div>
               <div class="project-card-stack">C++ · JUCE · VST3/AU</div>
@@ -538,7 +538,7 @@
           </button>
 
           <button class="project-card" onclick="openProjectModal('tempodetector')">
-            <div class="project-card-placeholder">🥁</div>
+            <div class="project-card-placeholder">TD</div>
             <div class="project-card-body">
               <div class="project-card-title">TempoDetector — BPM Analyzer</div>
               <div class="project-card-stack">C++ · JUCE · VST3/AU · DSP</div>
@@ -546,7 +546,7 @@
           </button>
 
           <button class="project-card" onclick="openProjectModal('prioritysidechain')">
-            <div class="project-card-placeholder">🎚</div>
+            <div class="project-card-placeholder">PS</div>
             <div class="project-card-body">
               <div class="project-card-title">PrioritySidechain — Ducker</div>
               <div class="project-card-stack">C++ · JUCE · VST3/AU · DSP</div>
@@ -554,7 +554,7 @@
           </button>
 
           <button class="project-card" onclick="openProjectModal('musicpackager')">
-            <div class="project-card-placeholder">📦</div>
+            <div class="project-card-placeholder">MP</div>
             <div class="project-card-body">
               <div class="project-card-title">MusicPackager — FLP Packager</div>
               <div class="project-card-stack">C++ · JUCE · VST3/AU</div>
@@ -562,7 +562,7 @@
           </button>
 
           <button class="project-card" onclick="openProjectModal('autotrackassigner')">
-            <div class="project-card-placeholder">🎛</div>
+            <div class="project-card-placeholder">AT</div>
             <div class="project-card-body">
               <div class="project-card-title">Auto Track Assigner</div>
               <div class="project-card-stack">Python · FL Studio MIDI API</div>
@@ -611,7 +611,7 @@
         <div class="resume-item">
           <div class="resume-title">Seattle University — B.S. Computer Science</div>
           <div class="resume-meta">Expected June 2027</div>
-          <p>Minors: Philosophy &amp; Ethics &nbsp;·&nbsp; Courses: Cloud Computing (AWS), Artificial Intelligence, Mobile Dev (Flutter)</p>
+          <p>B.A. Philosophy &nbsp;·&nbsp; Courses: Cloud Computing (AWS), Artificial Intelligence, Distributed Systems, Cybersecurity</p>
         </div>
         <div class="resume-item">
           <div class="resume-title">Bellevue College — Associate of Arts &amp; Science, DTA</div>
@@ -915,17 +915,6 @@
     document.querySelectorAll(slideTargets).forEach(el => slideObserver.observe(el));
 
     const projects = {
-      pollenatlas: {
-        title: 'Pollen Atlas — Full-Stack Allergy Forecasting Platform',
-        meta: 'Next.js · TypeScript · Stripe · Google OAuth · Vercel &nbsp;·&nbsp; <a href="https://www.pollenatlas.com/" target="_blank" rel="noopener">pollenatlas.com</a>',
-        img: null,
-        bullets: [
-          'Built a full-stack allergy forecasting SaaS from scratch — patient-facing pollen dashboard and a complete allergist portal — deploying both frontend and backend to Vercel.',
-          'Integrated Stripe subscription billing and built an internal admin dashboard tracking MRR, ARR, invoices, and failed payments with API response caching.',
-          'Implemented Google OAuth with cross-origin auth (localStorage Bearer tokens), local pollen forecast, air quality page, multi-step allergist registration wizard, profile photo upload, and patient alert system.',
-          'Iterated deployment from Railway to Cloudflare Pages to Vercel, resolving CORS, auth cookie, and TypeScript build errors at each stage.',
-        ],
-      },
       notes: {
         title: 'Notes — AI-Powered Note-Taking App',
         meta: 'Next.js · TypeScript · Prisma · Turso · Groq · Tailwind CSS &nbsp;·&nbsp; <a href="https://github.com/anhthiennguyen/notes-app" target="_blank" rel="noopener">github.com/anhthiennguyen/notes-app</a>',
@@ -988,14 +977,24 @@
         ],
       },
       spatialmixer: {
-        title: 'MixSuite — Multi-Track Spatial Mixing Suite',
-        meta: 'C++ · JUCE · VST3/AU · CMake · FFT · Mid-Side DSP &nbsp;·&nbsp; <a href="https://github.com/anhthiennguyen/mixsuite" target="_blank" rel="noopener">github.com/anhthiennguyen/mixsuite</a>',
+        title: 'SpatialMixer — Multi-Track 3D Mixing Suite',
+        meta: 'C++ · JUCE · VST3/AU · CMake · Mid-Side DSP',
         img: 'SPATIALMIXER.png',
         bullets: [
-          'Built a dual-module VST3/AU plugin in C++ with JUCE: a 7-band parametric EQ with real-time spectrum analysis and a 2D canvas for spatial mixing — controlling up to 8 simultaneous plugin instances from one shared view.',
-          'Engineered a lock-free audio pipeline using atomic operations and spin locks to keep the audio thread non-blocking; separate smooth and fast-response FFT analysers (2048-point) drive the real-time spectrum and goniometer displays.',
-          'Implemented collision detection that auto-resolves overlapping track positions via priority-based gain reduction, Q narrowing, and centre-frequency shifting to prevent frequency masking across tracks.',
-          'Designed per-track Stereo/Pan mode: stereo uses Mid-Side widening with a mirrored canvas display; pan collapses to constant-power mono with full left–right range.',
+          'Multi-instance VST3/AU spatial mixing plugin where each loaded instance represents one track; a SharedMixerState singleton lets all instances share a single 2D canvas so track positions can be dragged from any open editor.',
+          'Priority-based collision resolution: when tracks overlap in the canvas, resolveAndPush recomputes DSP params across all affected tracks and calls applyResolvedDSP on each processor — preventing frequency masking without manual intervention.',
+          'Per-track mode: Stereo uses Mid-Side widening with a mirrored canvas display; Pan collapses to constant-power mono with full left–right range; Master mode bypasses spatial processing.',
+          'SpectrumAnalyser and StereoScope per instance feed real-time spectrum and goniometer displays; state (position, height, label, priority, colour) serialized to XML for full DAW recall.',
+        ],
+      },
+      visualeq: {
+        title: 'VisualEQ — Multi-Track Parametric EQ',
+        meta: 'C++ · JUCE · VST3/AU · IIR · CMake',
+        img: null,
+        bullets: [
+          '7-band parametric EQ VST3/AU with per-band frequency (20 Hz–20 kHz), gain (±24 dB), Q, enable toggle, and filter type — Bell, Low Shelf, High Shelf, Low Cut, High Cut, Notch, or Band Pass — processed as chained IIR filters on independent L/R filter chains.',
+          'SharedAnalyserState singleton (up to 8 instances) lets every open VisualEQ editor see all other tracks\' spectra simultaneously — enabling cross-track muddiness detection without switching between plugin windows.',
+          'Per-track color assignment via an in-plugin colour picker with randomiser; track colours propagate across all open editors through the shared state so each track\'s spectrum curve is always identifiable.',
         ],
       },
       messagemeet: {
