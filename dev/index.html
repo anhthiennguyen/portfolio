@@ -349,8 +349,44 @@
       <div class="card">
         <p class="section-label">Experience</p>
         <div class="resume-item">
+          <div class="resume-title">Research Assistant — AI Ethics Lab, Seattle University
+            <a href="https://github.com/nkremerh/sugarscape" target="_blank" rel="noopener" class="resume-link resume-url">github.com/nkremerh/sugarscape</a>
+          </div>
+          <div class="resume-meta">Summer 2026 &middot; Python &middot; Multi-Agent Simulation &middot; Sugarscape</div>
+          <ul class="resume-bullets">
+            <li>Implementing social contractarianism as an algorithm inside a Sugarscape multi-agent simulation, extending prior lab work on altruism, egoism, utilitarianism, and Asimov's Three Laws.</li>
+            <li>Translating the contractarian model — a bottom-up, democratically-ratified social contract that agents can amend over time — marking a significant departure from the top-down ethical theories previously encoded in the simulation.</li>
+            <li>Research targets IEEE ETHICS / IEEE ISTAS publication; all software and reproducibility instructions are publicly available at digital-terraria-lab.github.io.</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-title">Web Developer (1099 Contractor) — Vantage Path Consulting, LLC
+            <a href="https://vantagepathconsulting.com/" target="_blank" rel="noopener" class="resume-link resume-url">vantagepathconsulting.com</a>
+          </div>
+          <div class="resume-meta">May – Jun 2026 &middot; HTML &middot; Cloudflare Pages &middot; DNS / GoDaddy</div>
+          <ul class="resume-bullets">
+            <li>Performed full QA pass of the Lenora™ platform website — verified all hyperlinks, navigation flows, and visual layout across every page section.</li>
+            <li>Researched five deployment platforms (Netlify, Vercel, Cloudflare Pages, GitHub Pages, AWS Amplify) and authored a written pros/cons comparison; selected Cloudflare Pages, updated GoDaddy nameservers, and connected the custom domain end-to-end.</li>
+            <li>Assessed grant funding options for the DAWN initiative — reviewed eligibility criteria, deadlines, and organizational fit, then compiled a recommendations report.</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <div class="resume-title">Full-Stack Developer — Pollen Atlas
+            <a href="https://www.pollenatlas.com/" target="_blank" rel="noopener" class="resume-link resume-url">pollenatlas.com</a>
+          </div>
+          <div class="resume-meta">2026 &middot; Next.js &middot; Stripe &middot; Google OAuth &middot; Vercel</div>
+          <ul class="resume-bullets">
+            <li>Built a full-stack allergy forecasting SaaS from scratch — patient-facing pollen dashboard, and a complete allergist portal — deploying both the frontend and backend to Vercel.</li>
+            <li>Integrated Stripe subscription billing and built an internal admin dashboard tracking MRR, ARR, invoices, and failed payments with API response caching; wired a multi-step allergist registration wizard.</li>
+            <li>Implemented Google OAuth with cross-origin auth (localStorage Bearer tokens), local pollen forecast, air quality page, profile photo upload, and a patient alert system — iterated from Railway to Cloudflare Pages to Vercel through a series of targeted CORS and auth fixes.</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
           <div class="resume-title">Full-Stack Developer — Washington Business Week
-            <a href="https://wbw-erp-simulator-b232037c8a32.herokuapp.com/" target="_blank" rel="noopener" class="resume-link resume-url">wbw-erp-simulator-b232037c8a32.herokuapp.com</a>
+            <a href="https://erp.wbw.org" target="_blank" rel="noopener" class="resume-link resume-url">erp.wbw.org</a>
           </div>
           <div class="resume-meta">Sept 2025 – Present &middot; Rails, PostgreSQL, Docker, CI/CD</div>
           <ul class="resume-bullets">
@@ -414,6 +450,14 @@
       <div class="card">
         <p class="section-label">Projects</p>
         <div class="project-grid">
+          <button class="project-card" onclick="openProjectModal('pollenatlas')">
+            <div class="project-card-placeholder">🌿</div>
+            <div class="project-card-body">
+              <div class="project-card-title">Pollen Atlas — Allergy Platform</div>
+              <div class="project-card-stack">Next.js · Stripe · OAuth · Vercel</div>
+            </div>
+          </button>
+
           <button class="project-card" onclick="openProjectModal('notes')">
             <img src="NOTES.png" alt="Notes app" />
             <div class="project-card-body">
@@ -805,6 +849,17 @@
     document.querySelectorAll(slideTargets).forEach(el => slideObserver.observe(el));
 
     const projects = {
+      pollenatlas: {
+        title: 'Pollen Atlas — Full-Stack Allergy Forecasting Platform',
+        meta: 'Next.js · TypeScript · Stripe · Google OAuth · Vercel &nbsp;·&nbsp; <a href="https://www.pollenatlas.com/" target="_blank" rel="noopener">pollenatlas.com</a>',
+        img: null,
+        bullets: [
+          'Built a full-stack allergy forecasting SaaS from scratch — patient-facing pollen dashboard and a complete allergist portal — deploying both frontend and backend to Vercel.',
+          'Integrated Stripe subscription billing and built an internal admin dashboard tracking MRR, ARR, invoices, and failed payments with API response caching.',
+          'Implemented Google OAuth with cross-origin auth (localStorage Bearer tokens), local pollen forecast, air quality page, multi-step allergist registration wizard, profile photo upload, and patient alert system.',
+          'Iterated deployment from Railway to Cloudflare Pages to Vercel, resolving CORS, auth cookie, and TypeScript build errors at each stage.',
+        ],
+      },
       notes: {
         title: 'Notes — AI-Powered Note-Taking App',
         meta: 'Next.js · TypeScript · Prisma · Turso · Groq · Tailwind CSS &nbsp;·&nbsp; <a href="https://github.com/anhthiennguyen/notes-app" target="_blank" rel="noopener">github.com/anhthiennguyen/notes-app</a>',
