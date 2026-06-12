@@ -421,7 +421,7 @@
         </div>
 
         <div class="resume-item">
-          <div class="resume-title">Full-Stack Developer Intern — AceRocket
+          <div class="resume-title">Full-Stack Developer — AceRocket
             <a href="https://acerocket-sat-math.netlify.app/login.html" target="_blank" rel="noopener" class="resume-link resume-url">acerocket-sat-math.netlify.app</a>
           </div>
           <div class="resume-meta">Apr – Sept 2025 &middot; React, Express.js, Tailwind, Firebase</div>
@@ -577,6 +577,17 @@
             <div class="project-card-body">
               <div class="project-card-title">Auto Track Assigner</div>
               <div class="project-card-stack">Python · FL Studio MIDI API</div>
+            </div>
+          </button>
+        </div>
+
+        <p class="project-subhead secondary">Personal</p>
+        <div class="project-grid">
+          <button class="project-card" onclick="openProjectModal('waterfountainmap')">
+            <img src="WATERFOUNTAINMAP.png" alt="fish.bowl" />
+            <div class="project-card-body">
+              <div class="project-card-title">fish.bowl — Water Fountain Map</div>
+              <div class="project-card-stack">Next.js · Supabase · Tailwind</div>
             </div>
           </button>
         </div>
@@ -1012,7 +1023,7 @@
       },
       songrequest: {
         title: 'Song Request Platform — Real-Time DJ Queue',
-        meta: 'React · Firebase &nbsp;·&nbsp; <a href="https://anhthiennguyen.github.io/songrequest/" target="_blank" rel="noopener">anhthiennguyen.github.io/songrequest</a>',
+        meta: 'React · Firebase &nbsp;·&nbsp; <a href="https://request.anhthien.site" target="_blank" rel="noopener">request.anhthien.site</a>',
         img: 'https://www.anhthien.site/SONGREQUEST.png',
         bullets: [
           'Built a real-time song request system using React and Firebase, supporting 50+ concurrent users across shared DJ sessions.',
@@ -1038,6 +1049,16 @@
           'Automated birthday SMS notifications using AWS Lambda and EventBridge, triggering a Python function daily at midnight Pacific Time with zero manual intervention.',
           'Integrated TextBelt API to deliver personalized texts to 40+ contacts stored in a JSON file, with graceful handling for missing phone numbers.',
           'Deployed serverlessly on AWS — no server or computer required to keep it running.',
+        ],
+      },
+      waterfountainmap: {
+        title: 'fish.bowl — Water Fountain Map',
+        meta: 'Next.js · Supabase · Tailwind CSS · TypeScript',
+        img: 'WATERFOUNTAINMAP.png',
+        bullets: [
+          'Interactive map app where users can pin and discover water fountains, restrooms, and power outlets nearby.',
+          'Built with Next.js and Supabase for real-time marker storage; uses the Nominatim geocoding API to resolve addresses to coordinates.',
+          'Google OAuth sign-in with a custom fish-themed onboarding flow; supports adding, viewing, and deleting map markers.',
         ],
       },
       brainrot: {
