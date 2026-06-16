@@ -407,16 +407,17 @@
           <div class="resume-title">Full-Stack Developer — Washington Business Week
             <a href="https://erp.wbw.org" target="_blank" rel="noopener" class="resume-link resume-url">erp.wbw.org</a>
           </div>
-          <div class="resume-meta">Sept 2025 – Present &middot; Rails, PostgreSQL, CI/CD</div>
+          <div class="resume-meta">Sept 2025 – Present &middot; Rails &middot; PostgreSQL &middot; Hotwire &middot; Docker &middot; CI/CD</div>
           <ul class="resume-bullets">
-            <li>Built a business simulation platform with Rails and PostgreSQL to replace paper workflows — helping 1,000+ students complete simulations 40% faster.</li>
-            <li>Set up CI/CD pipelines to ensure reliable production deployments and maintain 99.9% uptime during student events.</li>
-            <li>Added unit tests with Rails Minitest to reach 85% coverage, enabling 3+ new features per sprint and zero critical bugs.</li>
+            <li>Architected and built a full-stack business simulation platform replacing paper workflows — supporting two business types (Retail and Service), three access roles (admin, chair, team), and a transactional quarter-advance engine that atomically calculates revenue, expenses, sentiment scores, valuation, and stock prices across all teams.</li>
+            <li>Implemented a layered financial engine across 10+ service objects (retail/service revenue, sentiment, assets, loan, board sentiment, projected profit, emerging options) with money-rails storing all dollar values as integer cents; added an A/B emerging-situations system whose chosen options apply targeted adjustments to any financial summary field.</li>
+            <li>Containerized with Docker and deployed to Heroku; configured a GitHub Actions CI pipeline running Brakeman security scans, RuboCop linting, importmap auditing, and 54 Minitest files spanning models, controllers, and services.</li>
+            <li>Managed development using GitHub Issues and Projects with a Scrum workflow — organized sprints, tracked bugs, and coordinated feature delivery across the team.</li>
           </ul>
           <button class="preview-toggle">Preview</button>
           <div class="resume-preview">
             <img src="https://www.anhthien.site/WILE.png" alt="WILE website preview" loading="lazy" class="resume-embed" />
-            <a class="btn btn-secondary resume-embed-link" href="https://wbw-erp-simulator-b232037c8a32.herokuapp.com/" target="_blank" rel="noopener">Open WILE</a>
+            <a class="btn btn-secondary resume-embed-link" href="https://erp.wbw.org" target="_blank" rel="noopener">Open BERP</a>
           </div>
         </div>
 
