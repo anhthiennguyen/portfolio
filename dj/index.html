@@ -337,15 +337,15 @@
       // ── Camera path ──
       const camPath = new THREE.CatmullRomCurve3([
         new THREE.Vector3(0, 9, 26),
-        new THREE.Vector3(-2, 6, 17),
-        new THREE.Vector3(1.5, 3, 8),
-        new THREE.Vector3(0, 1.5, 1.5),
+        new THREE.Vector3(-0.4, 8.4, 23),
+        new THREE.Vector3(0.4, 7.8, 20),
+        new THREE.Vector3(0, 7.2, 18),
       ]);
       const lookPath = new THREE.CatmullRomCurve3([
         new THREE.Vector3(0, 4, 0),
-        new THREE.Vector3(0, 3, -1),
-        new THREE.Vector3(0, 2, -2),
-        new THREE.Vector3(0, 2, -4),
+        new THREE.Vector3(0, 3.8, -1),
+        new THREE.Vector3(0, 3.6, -2),
+        new THREE.Vector3(0, 3.5, -3),
       ]);
 
       const p0 = camPath.getPoint(0);
@@ -367,11 +367,10 @@
       (function animate() {
         requestAnimationFrame(animate);
         const t = performance.now() * 0.001;
-        cFrac += (tFrac - cFrac) * 0.05;
+        cFrac += (tFrac - cFrac) * 0.03;
         const f = Math.max(0, Math.min(1, cFrac));
 
-        const cp = camPath.getPoint(f);
-        camera.position.lerp(cp, 0.1);
+        camera.position.lerp(camPath.getPoint(f), 0.05);
         const lp = lookPath.getPoint(f);
         camera.lookAt(lp.x, lp.y, lp.z);
 
