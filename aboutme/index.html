@@ -90,12 +90,20 @@
     #end-links { display: none; flex-direction: column; gap: 0.75rem; }
     #end-links.show { display: flex; }
 
+    #dialogue-box { transition: background 0.35s, border-color 0.35s, box-shadow 0.35s; }
+    #dialogue-box.is-end {
+      background: rgba(185, 0, 0, 0.9);
+      border-color: rgba(255, 120, 120, 0.35);
+    }
+    #dialogue-box.is-end #dialogue-name { color: rgba(255,200,200,0.7); }
+    #dialogue-box.is-end #dialogue-text { color: #fff; }
+
     .yt-btn {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      background: #ff0000;
-      color: #fff;
+      background: #fff;
+      color: #cc0000;
       text-decoration: none;
       font-family: 'Space Mono', monospace;
       font-size: 0.82rem;
@@ -104,28 +112,28 @@
       padding: 0.7rem 1.1rem;
       border-radius: 10px;
       transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
-      box-shadow: 0 3px 14px rgba(255,0,0,0.25);
+      box-shadow: 0 3px 14px rgba(0,0,0,0.15);
     }
     .yt-btn:hover {
-      background: #cc0000;
+      background: rgba(255,255,255,0.9);
       transform: translateY(-1px);
-      box-shadow: 0 5px 20px rgba(255,0,0,0.35);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
     }
     .yt-btn svg { flex-shrink: 0; }
 
     .end-nav-row {
       display: flex; gap: 1rem; flex-wrap: wrap;
       padding-top: 0.25rem;
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid rgba(255,255,255,0.25);
     }
     .end-nav-row a {
       font-family: 'Space Mono', monospace;
       font-size: 0.7rem;
-      color: #aaa;
+      color: rgba(255,255,255,0.6);
       text-decoration: none;
       transition: color 0.15s;
     }
-    .end-nav-row a:hover { color: #1a1714; }
+    .end-nav-row a:hover { color: #fff; }
 
     /* ── Progress dots (right side) ── */
     #progress {
@@ -240,8 +248,7 @@
       "I believe that what I have is temporary, and that awareness makes me more grateful and able to appreciate life as it is.",
       "I'm someone who tries to deal with suffering positively, focusing on what I can control, accepting everything else, and continuing forward with resilience.",
       "I pursue knowledge broadly and deeply because I have a deep passion for learning and a desire to grow in wisdom.",
-      "I regularly reflect on my own thoughts to refine the principles I live by. I believe maturity takes a lifetime, and there's always more to understand.",
-      "If you want to learn more, I talk a lot about my values on my YouTube channel — check it out below! :)"
+      "I regularly reflect on my own thoughts to refine the principles I live by. I believe maturity takes a lifetime, and there's always more to understand."
     ];
 
     // ── UI elements ──
@@ -332,8 +339,9 @@
 
     function showEnd() {
       finished = true;
-      dText.textContent = '';
+      dText.textContent = "If you want to learn more, I talk a lot about my values on my YouTube channel — check it out below! :)";
       dNext.classList.remove('show');
+      dBox.classList.add('is-end');
       endLinks.classList.add('show');
       dots.forEach(d => d.classList.add('done'));
       progressEl.style.display = 'none';
