@@ -521,8 +521,8 @@
           <button class="project-card" onclick="openProjectModal('hengmengdex')">
             <img src="HENGMENGDEX.png" alt="HengMeng Dex" />
             <div class="project-card-body">
-              <div class="project-card-title">HengMeng Dex — Pokedex-Style App</div>
-              <div class="project-card-stack">React · Firebase</div>
+              <div class="project-card-title">HengMeng Dex — Custom Pokémon TCG</div>
+              <div class="project-card-stack">React · Firebase · WebRTC</div>
             </div>
           </button>
         </div>
@@ -1028,13 +1028,14 @@
         ],
       },
       hengmengdex: {
-        title: 'HengMeng Dex — Pokedex-Style App',
-        meta: 'React · Firebase Auth · Firestore &nbsp;·&nbsp; <a href="https://hengmengdex.vercel.app/" target="_blank" rel="noopener">hengmengdex.vercel.app</a>',
+        title: 'HengMeng Dex — Custom Pokémon Trading Card Game',
+        meta: 'React · Firebase Auth · Firestore · PeerJS/WebRTC &nbsp;·&nbsp; <a href="https://hengmengdex.vercel.app/" target="_blank" rel="noopener">hengmengdex.vercel.app</a>',
         img: 'HENGMENGDEX.png',
         bullets: [
-          'Built a Pokedex-style browsing app with a guest-viewable grid of entries, each with an image, description, and HP/Attack stats, backed by Firestore in real time.',
-          'Implemented email/password auth with a client-side image resize-to-Base64 pipeline (stored directly on the Firestore doc) to avoid requiring Firebase\'s paid Storage tier.',
-          'Added ownership-based permissions: signed-in users can add, edit, and delete their own entries, while a Firestore-backed admin role can manage any entry.',
+          'Built a multi-tenant platform where users create shareable "Dexes" of fully custom Pokémon-style cards (photo, HP, type, attacks, evolution stage, weakness/resistance) and invite friends to contribute and battle.',
+          'Implemented a from-scratch rules engine matching the official Pokémon TCG: automatic deck/hand/Prize-card dealing, Bench and Energy attachment, Evolution, weakness/resistance damage math, and all 5 Special Conditions resolved via a Pokémon Checkup step each turn.',
+          'Real-time 1v1 battles over WebRTC (PeerJS) with a host-authoritative state machine and per-connection state redaction, so each player\'s hand, deck, and Prize cards stay genuinely hidden from their opponent — not just hidden in the UI.',
+          'Firebase Auth + Firestore backend with ownership/admin-gated CRUD, client-side image compression to Base64 to avoid Firebase\'s paid Storage tier, and a hand-authored no-code rule builder for custom card abilities.',
         ],
       },
       todolist: {
