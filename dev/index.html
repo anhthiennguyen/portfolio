@@ -517,6 +517,14 @@
               <div class="project-card-stack">Next.js · Supabase · Tailwind</div>
             </div>
           </button>
+
+          <button class="project-card" onclick="openProjectModal('hengmengdex')">
+            <img src="HENGMENGDEX.png" alt="HengMeng Dex" />
+            <div class="project-card-body">
+              <div class="project-card-title">HengMeng Dex — Pokedex-Style App</div>
+              <div class="project-card-stack">React · Firebase</div>
+            </div>
+          </button>
         </div>
 
         <p class="project-subhead secondary">Serverless</p>
@@ -1017,6 +1025,16 @@
         img: 'https://www.anhthien.site/BRAINROT.png',
         bullets: [
           'Python utility that loops video playback using OpenCV with resizable windows, aspect ratio preservation, and keep-on-top support.',
+        ],
+      },
+      hengmengdex: {
+        title: 'HengMeng Dex — Pokedex-Style App',
+        meta: 'React · Firebase Auth · Firestore &nbsp;·&nbsp; <a href="https://hengmengdex.vercel.app/" target="_blank" rel="noopener">hengmengdex.vercel.app</a>',
+        img: 'HENGMENGDEX.png',
+        bullets: [
+          'Built a Pokedex-style browsing app with a guest-viewable grid of entries, each with an image, description, and HP/Attack stats, backed by Firestore in real time.',
+          'Implemented email/password auth with a client-side image resize-to-Base64 pipeline (stored directly on the Firestore doc) to avoid requiring Firebase\'s paid Storage tier.',
+          'Added ownership-based permissions: signed-in users can add, edit, and delete their own entries, while a Firestore-backed admin role can manage any entry.',
         ],
       },
       todolist: {
