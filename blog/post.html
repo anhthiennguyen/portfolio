@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Blog — Anh-Thien Nguyen</title>
+  <meta name="description" content="Writing and notes from Anh-Thien Nguyen — software, music, and whatever else." />
+  <meta property="og:type"        content="article" />
+  <meta property="og:image"       content="https://www.anhthien.site/Embed.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:image"       content="https://www.anhthien.site/Embed.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://www.anhthien.site/style.css" />
+  <style>
+    .blog-empty {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+    .blog-empty p { margin-top: 0.4rem; }
+
+    .post-header { margin-bottom: 1.75rem; }
+    .post-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+    .post-title {
+      font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-top: 0.4rem;
+    }
+    .post-body {
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+    .post-body p { margin-bottom: 1rem; }
+    .post-body h2 { font-size: 1.2rem; font-weight: 600; margin: 1.6rem 0 0.6rem; }
+    .post-body h3 { font-size: 1.05rem; font-weight: 600; margin: 1.3rem 0 0.5rem; }
+    .post-body a { color: var(--accent-cs); }
+    .post-body code {
+      background: var(--surface2);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85em;
+    }
+    .post-body pre {
+      background: var(--surface2);
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+    .post-body pre code { background: none; padding: 0; }
+    .post-body blockquote {
+      border-left: 3px solid var(--border);
+      padding-left: 1rem;
+      color: var(--muted);
+      margin: 1rem 0;
+    }
+    .post-body ul, .post-body ol { padding-left: 1.2rem; margin-bottom: 1rem; }
+    .post-body img { max-width: 100%; border-radius: 10px; margin: 1rem 0; }
+  </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLJ17QQWRF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QLJ17QQWRF');
+  </script>
+</head>
+<body>
+
+  <div class="loading-screen" id="loadingScreen" aria-live="polite" aria-label="Loading">
+    <div class="loading-card">
+      <div class="duck-scene" aria-hidden="true">
+        <svg viewBox="0 0 100 72" width="96" height="69">
+          <ellipse class="duck-water" cx="50" cy="65" rx="36" ry="5" fill="rgba(45,106,79,0.13)"/>
+          <g class="duck-leg-left" style="transform-origin:40px 56px"><line x1="40" y1="55" x2="38" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/><path d="M33 63 Q38 61 43 63 L42 66 Q38 64 34 66 Z" fill="#f97316"/></g>
+          <g class="duck-leg-right" style="transform-origin:50px 56px"><line x1="50" y1="55" x2="52" y2="63" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/><path d="M47 63 Q52 61 57 63 L56 66 Q52 64 48 66 Z" fill="#f97316"/></g>
+          <g class="duck-body-group">
+            <path d="M25 41 Q13 31 18 44 Q20 51 27 48 Z" fill="#f59e0b"/>
+            <path d="M27 38 Q16 29 20 42 Q22 49 29 45 Z" fill="#fbbf24"/>
+            <ellipse cx="46" cy="44" rx="22" ry="14" fill="#fbbf24"/>
+            <ellipse cx="44" cy="46" rx="13" ry="7" fill="#f59e0b" transform="rotate(-10 44 46)"/>
+            <circle cx="63" cy="29" r="13" fill="#fbbf24"/>
+            <path d="M73 28 L84 26 L84 31 L73 30 Z" fill="#f97316"/>
+            <circle cx="80" cy="27.5" r="0.8" fill="#d97706"/>
+            <circle cx="68" cy="26" r="2.8" fill="#1a1714"/>
+            <circle cx="68.9" cy="25.1" r="1" fill="white"/>
+          </g>
+        </svg>
+      </div>
+      <p class="loading-title">Loading</p>
+      <div class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const ls = document.getElementById('loadingScreen');
+        ls.classList.add('is-hidden');
+        ls.addEventListener('transitionend', () => ls.remove(), { once: true });
+      }, 500);
+    }, { once: true });
+  </script>
+
+  <nav class="page-nav">
+    <a href="https://www.anhthien.site/blog">← blog</a>
+  </nav>
+
+  <main class="page-single">
+    <div id="postContent">
+      <div class="card blog-empty">
+        <h3>Loading…</h3>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <a href="https://www.anhthien.site" style="text-decoration:none;color:inherit">anhthien.site</a>
+  </footer>
+
+  <script>
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str ?? '';
+      return div.innerHTML;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(`${dateStr}T00:00:00`);
+      if (isNaN(d)) return dateStr;
+      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function parseXml(text) {
+      const doc = new DOMParser().parseFromString(text, 'application/xml');
+      if (doc.querySelector('parsererror')) throw new Error('XML parse error');
+      return doc;
+    }
+
+    function fieldText(doc, tag) {
+      return doc.querySelector(tag)?.textContent?.trim() ?? '';
+    }
+
+    function notFound() {
+      document.getElementById('postContent').innerHTML = `
+        <div class="card blog-empty">
+          <h3>Post not found</h3>
+          <p>This post doesn't exist or couldn't be loaded. <a href="https://www.anhthien.site/blog">Back to blog →</a></p>
+        </div>
+      `;
+    }
+
+    async function loadPost() {
+      const slug = new URLSearchParams(location.search).get('slug');
+      if (!slug || /[\/\\]/.test(slug)) return notFound();
+
+      try {
+        const res = await fetch(`posts/${slug}.xml`);
+        if (!res.ok) throw new Error('post fetch failed');
+        const doc = parseXml(await res.text());
+
+        const title = fieldText(doc, 'title') || 'Untitled';
+        const date = fieldText(doc, 'date');
+        const bodyHtml = doc.querySelector('body')?.textContent ?? '';
+
+        document.title = `${title} — Anh-Thien Nguyen`;
+
+        document.getElementById('postContent').innerHTML = `
+          <header class="post-header">
+            <div class="post-date">${escapeHtml(formatDate(date))}</div>
+            <h1 class="post-title">${escapeHtml(title)}</h1>
+          </header>
+          <div class="post-body">${bodyHtml}</div>
+        `;
+      } catch (err) {
+        notFound();
+      }
+    }
+
+    loadPost();
+  </script>
+
+</body>
+</html>

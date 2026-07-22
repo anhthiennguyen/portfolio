@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Lists every post file that should show up on /blog.
+  Add a new <post file="..." /> line (and drop the matching XML file
+  in this folder) to publish a post. Order here doesn't matter —
+  the blog sorts posts by their <date> automatically.
+-->
+<manifest>
+  <post file="hello-world.xml" />
+</manifest>
