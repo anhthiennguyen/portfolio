@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Post template. Copy this file to a new name (e.g. some-topic.xml),
+  edit the fields below, then add it to manifest.xml.
+
+  - date must be YYYY-MM-DD so posts sort correctly.
+  - summary is the teaser shown on the /blog listing page.
+  - body is raw HTML inside a CDATA block — write <p>, <a>, <h2>,
+    <code>, <pre>, <blockquote>, <ul>/<li>, <img>, etc. directly.
+-->
+<post>
+  <title>Hello, World</title>
+  <date>2026-07-21</date>
+  <summary>The first post — mostly here to prove the XML pipeline works end to end.</summary>
+  <body><![CDATA[
+    <p>This is a template post showing how the blog pulls content from XML files instead of hardcoded HTML.</p>
+    <p>To add a real post: copy this file to a new name, fill in the fields, and register it in <code>manifest.xml</code>. Delete this file once you don't need the example anymore.</p>
+  ]]></body>
+</post>
