@@ -471,8 +471,8 @@
     const DIALOGUES = [
       "Hi! I'm Thien!",
       "I'm a Full-Stack Developer and Software Engineer based in Seattle.",
-      "I study Computer Science at Seattle University, with a B.A. in Philosophy on the side.",
-      "My favorite hobby is producing music and DJing.",
+      "I study Computer Science at Seattle University, with a B.A. in Philosophy on the side. I also like to produce music and DJ.",
+      "Let's take a look around.",
     ];
 
     const dialogueWrap = document.getElementById('dialogue-wrap');
@@ -508,7 +508,7 @@
     function nextLine() {
       curIdx++;
       if (curIdx >= DIALOGUES.length) {
-        showEnd();
+        finishDialogue();
         return;
       }
       updateDots(curIdx);
@@ -548,16 +548,14 @@
       dNext.classList.add('show');
     }
 
-    function showEnd() {
+    function finishDialogue() {
       finished = true;
+      clearTimeout(typeTimer);
       dNext.classList.remove('show');
       dots.forEach(d => d.classList.add('done'));
       progressEl.style.display = 'none';
-      typeLine("Let's take a look around.");
-      setTimeout(() => {
-        dialogueWrap.classList.add('fade-out');
-        goToMenu();
-      }, 1500);
+      dialogueWrap.classList.add('fade-out');
+      goToMenu();
     }
 
     function advance() {
@@ -571,13 +569,7 @@
 
     function skipToMenu() {
       if (finished) return;
-      finished = true;
-      clearTimeout(typeTimer);
-      dNext.classList.remove('show');
-      dots.forEach(d => d.classList.add('done'));
-      progressEl.style.display = 'none';
-      dialogueWrap.classList.add('fade-out');
-      goToMenu();
+      finishDialogue();
     }
 
     window.addEventListener('click', advance);
