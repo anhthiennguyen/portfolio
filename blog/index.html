@@ -6,7 +6,7 @@
   <title>Blog — Anh-Thien Nguyen</title>
   <meta name="description" content="Writing and notes from Anh-Thien Nguyen — software, music, and whatever else." />
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://www.anhthien.site/blog" />
+  <meta property="og:url"         content="https://blog.anhthien.site/" />
   <meta property="og:title"       content="Blog — Anh-Thien Nguyen" />
   <meta property="og:description" content="Writing and notes from Anh-Thien Nguyen — software, music, and whatever else." />
   <meta property="og:image"       content="https://www.anhthien.site/Embed.png" />
@@ -153,7 +153,7 @@
     async function loadPosts() {
       const listEl = document.getElementById('postList');
       try {
-        const manifestRes = await fetch('/blog/posts/manifest.xml');
+        const manifestRes = await fetch('/posts/manifest.xml');
         if (!manifestRes.ok) throw new Error('manifest fetch failed');
         const manifestDoc = parseXml(await manifestRes.text());
         const files = [...manifestDoc.querySelectorAll('post')]
@@ -162,7 +162,7 @@
 
         const posts = await Promise.all(files.map(async (file) => {
           try {
-            const res = await fetch(`/blog/posts/${file}`);
+            const res = await fetch(`/posts/${file}`);
             if (!res.ok) return null;
             const doc = parseXml(await res.text());
             return {
@@ -184,7 +184,7 @@
         }
 
         listEl.innerHTML = valid.map((p) => `
-          <a class="card post-card" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">
+          <a class="card post-card" href="/post.html?slug=${encodeURIComponent(p.slug)}">
             <div class="post-card-date">${escapeHtml(formatDate(p.date))}</div>
             <h3 class="post-card-title">${escapeHtml(p.title)}</h3>
             <p class="post-card-summary">${escapeHtml(p.summary)}</p>
