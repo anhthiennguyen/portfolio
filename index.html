@@ -24,9 +24,9 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpolygon points='2,2 2,20 6,15 10,22 13,21 9,14 16,14' fill='white' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto !important; }
-    a, button, .island-card { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpolygon points='2,2 2,20 6,15 10,22 13,21 9,14 16,14' fill='white' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, pointer !important; }
+    a, button, .island-card, #dialogue-box { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 20 24'%3E%3Cpolygon points='2,2 2,20 6,15 10,22 13,21 9,14 16,14' fill='white' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, pointer !important; }
 
-    body { overflow: hidden; height: 100vh; height: 100dvh; font-family: 'Inter', sans-serif; }
+    body { overflow: hidden; height: 100vh; height: 100dvh; font-family: 'Inter', sans-serif; background: #8ecae6; }
 
     canvas { position: fixed; inset: 0; z-index: 1; display: block; width: 100% !important; height: 100% !important; }
 
@@ -49,9 +49,11 @@
       background: rgba(255,255,255,0.82); backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.6); border-radius: 14px;
       padding: 10px 22px 9px; text-align: center; z-index: 10;
-      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s, background 0.2s, box-shadow 0.2s, transform 0.2s;
       box-shadow: 0 4px 20px rgba(0,0,0,0.12); user-select: none;
     }
+    .island-card.show { opacity: 1; pointer-events: auto; }
     @media (max-width: 500px) {
       .island-card { padding: 7px 12px 6px; border-radius: 10px; }
       .island-card .card-title { font-size: 0.72rem; }
@@ -77,6 +79,100 @@
       white-space: nowrap; z-index: 20;
     }
     #launchToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* ── Intro dialogue box ── */
+    #dialogue-wrap {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(660px, calc(100vw - 2rem));
+      z-index: 10;
+      transition: opacity 0.4s;
+    }
+    #dialogue-wrap.fade-out { opacity: 0; pointer-events: none; }
+    #dialogue-box {
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem 1.05rem;
+      box-shadow: 0 8px 36px rgba(0,0,0,0.13);
+      min-height: 6.5rem;
+      transition: box-shadow 0.2s;
+    }
+    #dialogue-box:hover { box-shadow: 0 10px 44px rgba(0,0,0,0.18); }
+    #dialogue-name {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #2d6a4f;
+      margin-bottom: 0.5rem;
+    }
+    #dialogue-text {
+      font-size: 0.96rem;
+      line-height: 1.78;
+      color: #1a1714;
+      min-height: 2.8em;
+    }
+    #dialogue-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.05em;
+      background: #1a1714;
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: cur-blink 0.75s step-end infinite;
+    }
+    @keyframes cur-blink { 50% { opacity: 0; } }
+    #dialogue-next {
+      text-align: right;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      margin-top: 0.55rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    #dialogue-next.show { opacity: 1; }
+
+    /* ── Progress dots (right side) ── */
+    #progress {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 50%;
+      transform: translateY(50%);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 10;
+    }
+    .pdot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      transition: background 0.25s, transform 0.25s;
+    }
+    .pdot.done   { background: rgba(255,255,255,0.65); }
+    .pdot.active { background: rgba(255,255,255,0.97); transform: scale(1.35); }
+
+    /* ── Scene cut transition (intro → menu) ── */
+    #sceneFade {
+      position: fixed; inset: 0; z-index: 12;
+      background: #8ecae6;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.45s ease;
+    }
+    #sceneFade.active { opacity: 1; }
+
+    @media (max-width: 500px) {
+      #dialogue-box  { padding: 1rem 1.1rem 0.85rem; }
+      #dialogue-text { font-size: 0.88rem; }
+      #progress      { display: none; }
+    }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLJ17QQWRF"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-QLJ17QQWRF');</script>
@@ -107,14 +203,36 @@
       <div class="loading-dots" aria-hidden="true"><span></span><span></span><span></span></div>
     </div>
   </div>
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const ls = document.getElementById('loadingScreen');
+        ls.classList.add('is-hidden');
+        ls.addEventListener('transitionend', () => ls.remove(), { once: true });
+      }, 800);
+    }, { once: true });
+  </script>
 
   <canvas id="c"></canvas>
+
+  <div id="sceneFade"></div>
 
   <div id="hero-name">
     <div class="name">Anh-Thien Nguyen</div>
     <div class="sub">Seattle, WA</div>
   </div>
 
+  <!-- Intro dialogue -->
+  <div id="dialogue-wrap">
+    <div id="dialogue-box">
+      <div id="dialogue-name">thien <span id="dialogue-counter" style="float:right;color:#bbb;font-weight:400;letter-spacing:0.04em;"></span></div>
+      <p id="dialogue-text"></p>
+      <div id="dialogue-next">click anywhere to continue ▶</div>
+    </div>
+  </div>
+  <div id="progress"></div>
+
+  <!-- Main menu -->
   <div class="island-card" id="card-about"><div class="card-title">Blog</div><div class="card-hint">click to enter ↗</div></div>
   <div class="island-card" id="card-music"><div class="card-title">Music</div><div class="card-hint">click to enter ↗</div></div>
   <div class="island-card" id="card-dev"><div class="card-title">Dev</div><div class="card-hint">click to enter ↗</div></div>
@@ -123,62 +241,353 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    // ── LOADING ──
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const ls = document.getElementById('loadingScreen');
-        ls.classList.add('is-hidden');
-        ls.addEventListener('transitionend', () => ls.remove(), { once: true });
-      }, 800);
-    }, { once: true });
+  (function () {
 
-    // ── RENDERER ──
+    let phase = 'intro'; // 'intro' | 'menu'
+
+    // ── SHARED RENDERER ──
     const canvas = document.getElementById('c');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x8ecae6, 1); // sky blue fallback
+    renderer.setClearColor(0x8ecae6, 1);
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x8ecae6);
-    scene.fog = new THREE.Fog(0x8ecae6, 20, 40);
+    // ── SHARED GEOMETRY HELPERS ──
+    function mesh(geo, color, opts = {}) {
+      return new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color, ...opts }));
+    }
+    function box(w, h, d, c, o)          { return mesh(new THREE.BoxGeometry(w, h, d), c, o); }
+    function cyl(rt, rb, h, seg, c, o)   { return mesh(new THREE.CylinderGeometry(rt, rb, h, seg), c, o); }
+    function cone(r, h, seg, c, o)       { return mesh(new THREE.ConeGeometry(r, h, seg), c, o); }
+    function sph(r, c, o)                { return mesh(new THREE.SphereGeometry(r, 10, 8), c, o); }
+    function buildCloud(x, y, z) {
+      const g = new THREE.Group();
+      const m = new THREE.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 });
+      [[0,0,0,1.1,0.5],[-0.9,0.15,0,0.75,0.42],[0.9,0.1,0,0.82,0.44],[0,0.2,-0.3,0.65,0.38]].forEach(([cx,cy,cz,rx,ry]) => {
+        const sp = new THREE.Mesh(new THREE.SphereGeometry(rx, 7, 5), m);
+        sp.position.set(cx, cy, cz); sp.scale.y = ry / rx; g.add(sp);
+      });
+      g.position.set(x, y, z);
+      return g;
+    }
 
-    const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
+    // ════════════════════════════════════════════════════════
+    // INTRO SCENE — cozy island + chibi Thien + dialogue
+    // ════════════════════════════════════════════════════════
+
+    const introScene = new THREE.Scene();
+    introScene.background = new THREE.Color(0x8ecae6);
+    introScene.fog = new THREE.Fog(0x8ecae6, 20, 42);
+
+    const introCamera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 100);
+    introCamera.position.set(0, 2.2, 4.8);
+    introCamera.lookAt(0, 0.55, 0);
+
+    introScene.add(new THREE.AmbientLight(0xffeedd, 0.88));
+    const introSun = new THREE.DirectionalLight(0xfff8e8, 1.25);
+    introSun.position.set(8, 14, 6);
+    introScene.add(introSun);
+    const introFill = new THREE.DirectionalLight(0xc8e0ff, 0.38);
+    introFill.position.set(-8, 4, 8);
+    introScene.add(introFill);
+    const fireLight = new THREE.PointLight(0xff9944, 0.7, 4);
+    fireLight.position.set(0.55, 0.95, 0.15);
+    introScene.add(fireLight);
+
+    // Island
+    const introIsland = new THREE.Group();
+    const iRock = cyl(1.1, 0.68, 1.55, 8, 0xa08060);
+    iRock.position.y = -0.52;
+    introIsland.add(iRock);
+    const iDirt = cyl(1.15, 1.1, 0.2, 8, 0x7a5c3a);
+    iDirt.position.y = 0.36;
+    introIsland.add(iDirt);
+    const iGrass = cyl(1.2, 1.15, 0.14, 8, 0x6abf6e);
+    iGrass.position.y = 0.48;
+    introIsland.add(iGrass);
+
+    // Campfire logs
+    const log1 = cyl(0.055, 0.055, 0.58, 5, 0x8B5E3C);
+    log1.rotation.z = Math.PI / 2.5; log1.position.set(-0.13, 0.63, 0.1);
+    introIsland.add(log1);
+    const log2 = cyl(0.055, 0.055, 0.58, 5, 0x7a4e28);
+    log2.rotation.z = -Math.PI / 2.5; log2.position.set(0.13, 0.63, 0.1);
+    introIsland.add(log2);
+    const flame1 = sph(0.11, 0xff6a00, { emissive: 0xff3300, emissiveIntensity: 0.7 });
+    flame1.position.set(0, 0.82, 0.1);
+    introIsland.add(flame1);
+    const flame2 = sph(0.07, 0xffcc00, { emissive: 0xffaa00, emissiveIntensity: 0.9 });
+    flame2.position.set(0, 0.93, 0.1);
+    introIsland.add(flame2);
+    introIsland.userData.flames = [flame1, flame2];
+
+    // Bench
+    const iSeat = box(0.58, 0.065, 0.19, 0x9e7040);
+    iSeat.position.set(0.6, 0.63, 0.15); introIsland.add(iSeat);
+    [0.42, 0.78].forEach(x => {
+      const leg = box(0.055, 0.15, 0.055, 0x7a5530);
+      leg.position.set(x, 0.545, 0.15); introIsland.add(leg);
+    });
+
+    // Flowers
+    [[-0.6, 0.22], [-0.75, -0.28], [0.35, -0.62]].forEach(([x, z]) => {
+      const stem = cyl(0.02, 0.02, 0.17, 4, 0x3a8a3a);
+      stem.position.set(x, 0.64, z); introIsland.add(stem);
+      const petal = sph(0.075, Math.random() > 0.5 ? 0xff88aa : 0xffddaa);
+      petal.position.set(x, 0.74, z); introIsland.add(petal);
+    });
+
+    // Tree
+    const iTrunk = cyl(0.075, 0.1, 0.58, 5, 0x7a4e28);
+    iTrunk.position.set(-0.48, 0.86, -0.28); introIsland.add(iTrunk);
+    const iLeaves1 = cone(0.44, 0.68, 6, 0x2d8a4e);
+    iLeaves1.position.set(-0.48, 1.3, -0.28); introIsland.add(iLeaves1);
+    const iLeaves2 = cone(0.3, 0.5, 6, 0x258040);
+    iLeaves2.position.set(-0.48, 1.66, -0.28); introIsland.add(iLeaves2);
+
+    introScene.add(introIsland);
+
+    // Chibi Thien
+    const catGroup = new THREE.Group();
+    const SKIN  = 0xd4956a, HAIR = 0x1c110c, SHIRT = 0xf0f0f0, PK = 0xffb3c6;
+
+    const torso = mesh(new THREE.SphereGeometry(0.23, 8, 7), SHIRT);
+    torso.scale.set(1.0, 0.88, 0.82);
+    catGroup.add(torso);
+
+    const hairCap = mesh(new THREE.SphereGeometry(0.256, 10, 8, 0, Math.PI * 2, 0, Math.PI * 0.42), HAIR);
+    hairCap.position.set(0, 0.425, 0.006);
+    catGroup.add(hairCap);
+    const hairBack = box(0.38, 0.1, 0.05, HAIR);
+    hairBack.position.set(0, 0.35, -0.22);
+    catGroup.add(hairBack);
+
+    const catHead = mesh(new THREE.SphereGeometry(0.235, 8, 7), SKIN);
+    catHead.position.set(0, 0.425, 0.022);
+    catGroup.add(catHead);
+
+    const bangs = box(0.3, 0.055, 0.044, HAIR);
+    bangs.position.set(0, 0.522, 0.208);
+    catGroup.add(bangs);
+
+    const eyeGeo = new THREE.SphereGeometry(0.027, 6, 5);
+    [[-0.076, 0.435, 0.232], [0.076, 0.435, 0.232]].forEach(([x, y, z]) => {
+      const eye = mesh(eyeGeo, 0x1a0f0a);
+      eye.scale.y = 0.58;
+      eye.position.set(x, y, z);
+      catGroup.add(eye);
+    });
+    const noseDot = sph(0.017, 0x1a0f0a);
+    noseDot.position.set(0, 0.405, 0.246);
+    catGroup.add(noseDot);
+
+    const cheekMats = [];
+    const cheekGeo = new THREE.SphereGeometry(0.046, 6, 5);
+    [[-0.108, 0.388, 0.22], [0.108, 0.388, 0.22]].forEach(([x, y, z]) => {
+      const m = new THREE.MeshLambertMaterial({ color: PK, transparent: true, opacity: 0.5 });
+      cheekMats.push(m);
+      const ch = new THREE.Mesh(cheekGeo, m);
+      ch.scale.z = 0.3; ch.position.set(x, y, z);
+      catGroup.add(ch);
+    });
+
+    const starMat = new THREE.MeshLambertMaterial({ color: 0xf0c040, emissive: 0xd4a010, emissiveIntensity: 0.45 });
+    const starGeo = new THREE.OctahedronGeometry(0.075);
+    const stars = [
+      { pos: [0.58, 0.32, 0.22],  speed: 0.72, phase: 0   },
+      { pos: [-0.52, 0.62, 0.04], speed: 0.5,  phase: 2.1 },
+      { pos: [0.18, 0.88, -0.16], speed: 0.9,  phase: 4.2 },
+    ].map(d => {
+      const s = new THREE.Mesh(starGeo, starMat);
+      s.position.set(...d.pos);
+      s.userData = { base: s.position.clone(), speed: d.speed, phase: d.phase };
+      catGroup.add(s);
+      return s;
+    });
+
+    catGroup.position.set(-0.28, 0.58, 0.25);
+    introScene.add(catGroup);
+
+    let hopVel = 0, hopActive = false;
+    function catHop() { hopVel = 0.055; hopActive = true; }
+
+    const introClouds = [
+      buildCloud(-7, 4, -5), buildCloud(6, 4.5, -4),
+      buildCloud(-2, 5.5, -9), buildCloud(8, 3.5, 0),
+      buildCloud(-9, 4, 1.5),
+    ];
+    introClouds.forEach(c => introScene.add(c));
+
+    const CAT_BASE_Y = catGroup.position.y;
+    function updateIntroFrame(t) {
+      const flicker = 0.88 + Math.sin(t * 13) * 0.12 + Math.sin(t * 18) * 0.06;
+      introIsland.userData.flames.forEach(f => f.scale.setScalar(flicker));
+      fireLight.intensity = 0.55 + Math.sin(t * 12) * 0.15;
+
+      const bob = Math.sin(t * 1.15) * 0.025;
+      if (hopActive) {
+        hopVel -= 0.004;
+        catGroup.position.y = CAT_BASE_Y + bob + Math.max(hopVel * 8, 0);
+        if (hopVel < -0.02) { hopActive = false; hopVel = 0; }
+      } else {
+        catGroup.position.y = CAT_BASE_Y + bob;
+      }
+
+      catHead.rotation.z = Math.sin(t * 0.55) * 0.065;
+
+      const blush = 0.44 + Math.sin(t * 1.9) * 0.12;
+      cheekMats.forEach(m => { m.opacity = blush; });
+
+      stars.forEach(s => {
+        const d = s.userData;
+        s.position.y = d.base.y + Math.sin(t * d.speed + d.phase) * 0.085;
+        s.rotation.y = t * 1.6 + d.phase;
+        s.rotation.x = t * 0.9  + d.phase;
+      });
+
+      introClouds.forEach((c, i) => { c.position.x += Math.sin(t * 0.05 + i) * 0.002; });
+    }
+
+    // ── Dialogue ──
+    const DIALOGUES = [
+      "Hi! I'm Thien!",
+      "I'm a Full-Stack Developer and Software Engineer based in Seattle.",
+      "I study Computer Science at Seattle University, with a B.A. in Philosophy on the side.",
+    ];
+
+    const dialogueWrap = document.getElementById('dialogue-wrap');
+    const dText    = document.getElementById('dialogue-text');
+    const dNext    = document.getElementById('dialogue-next');
+    const dCounter = document.getElementById('dialogue-counter');
+    const progressEl = document.getElementById('progress');
+
+    DIALOGUES.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'pdot';
+      d.dataset.i = i;
+      progressEl.appendChild(d);
+    });
+    const dots = progressEl.querySelectorAll('.pdot');
+
+    function updateDots(idx) {
+      dots.forEach((d, i) => {
+        d.classList.toggle('done',   i < idx);
+        d.classList.toggle('active', i === idx);
+      });
+      dCounter.textContent = `${idx + 1} / ${DIALOGUES.length}`;
+    }
+
+    let curIdx = -1, isTyping = false, typeTimer, started = false, finished = false;
+
+    function startDialogue() {
+      if (started) return;
+      started = true;
+      nextLine();
+    }
+
+    function nextLine() {
+      curIdx++;
+      if (curIdx >= DIALOGUES.length) {
+        showEnd();
+        return;
+      }
+      updateDots(curIdx);
+      dNext.classList.remove('show');
+      catHop();
+      typeLine(DIALOGUES[curIdx]);
+    }
+
+    function typeLine(text) {
+      dText.textContent = '';
+      const cursor = document.createElement('span');
+      cursor.id = 'dialogue-cursor';
+      dText.appendChild(cursor);
+
+      let i = 0;
+      isTyping = true;
+
+      function tick() {
+        if (i < text.length) {
+          dText.insertBefore(document.createTextNode(text[i++]), cursor);
+          typeTimer = setTimeout(tick, 12);
+        } else {
+          cursor.remove();
+          isTyping = false;
+          dNext.classList.add('show');
+        }
+      }
+      tick();
+    }
+
+    function skipType(text) {
+      clearTimeout(typeTimer);
+      isTyping = false;
+      dText.textContent = text;
+      const cur = document.getElementById('dialogue-cursor');
+      if (cur) cur.remove();
+      dNext.classList.add('show');
+    }
+
+    function showEnd() {
+      finished = true;
+      dNext.classList.remove('show');
+      dots.forEach(d => d.classList.add('done'));
+      progressEl.style.display = 'none';
+      typeLine("Let's take a look around.");
+      setTimeout(() => {
+        dialogueWrap.classList.add('fade-out');
+        goToMenu();
+      }, 1500);
+    }
+
+    function advance() {
+      if (!started || finished) return;
+      if (isTyping) {
+        skipType(DIALOGUES[curIdx]);
+      } else {
+        nextLine();
+      }
+    }
+
+    window.addEventListener('click', advance);
+    window.addEventListener('keydown', e => {
+      if (e.key === ' ' || e.key === 'Enter' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        advance();
+      }
+    });
+
+    // ════════════════════════════════════════════════════════
+    // MENU SCENE — the three islands
+    // ════════════════════════════════════════════════════════
+
+    const menuScene = new THREE.Scene();
+    menuScene.background = new THREE.Color(0x8ecae6);
+    menuScene.fog = new THREE.Fog(0x8ecae6, 20, 40);
+
+    const menuCamera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
 
     function setCamForViewport() {
       const aspect = window.innerWidth / window.innerHeight;
       if (aspect < 0.75) {
-        // portrait mobile — pull back so side islands stay in frame
-        camera.position.set(0, 9, 20);
+        menuCamera.position.set(0, 9, 20);
       } else if (aspect < 1.1) {
-        camera.position.set(0, 7, 15);
+        menuCamera.position.set(0, 7, 15);
       } else {
-        camera.position.set(0, 6, 12);
+        menuCamera.position.set(0, 6, 12);
       }
-      camera.lookAt(0, 0.5, 0);
+      menuCamera.lookAt(0, 0.5, 0);
     }
     setCamForViewport();
 
-    // ── LIGHTS ──
-    scene.add(new THREE.AmbientLight(0xffeedd, 0.8));
-    const sun = new THREE.DirectionalLight(0xfff8e8, 1.2);
-    sun.position.set(8, 14, 6);
-    scene.add(sun);
-    const fill = new THREE.DirectionalLight(0xc8e0ff, 0.4);
-    fill.position.set(-8, 4, 8);
-    scene.add(fill);
+    menuScene.add(new THREE.AmbientLight(0xffeedd, 0.8));
+    const menuSun = new THREE.DirectionalLight(0xfff8e8, 1.2);
+    menuSun.position.set(8, 14, 6);
+    menuScene.add(menuSun);
+    const menuFill = new THREE.DirectionalLight(0xc8e0ff, 0.4);
+    menuFill.position.set(-8, 4, 8);
+    menuScene.add(menuFill);
 
-    // ── HELPERS ──
-    function mesh(geo, color, opts = {}) {
-      const mat = new THREE.MeshLambertMaterial({ color, ...opts });
-      return new THREE.Mesh(geo, mat);
-    }
-    function box(w, h, d, color, opts)     { return mesh(new THREE.BoxGeometry(w, h, d), color, opts); }
-    function cyl(rt, rb, h, seg, color, opts) { return mesh(new THREE.CylinderGeometry(rt, rb, h, seg), color, opts); }
-    function cone(r, h, seg, color, opts)  { return mesh(new THREE.ConeGeometry(r, h, seg), color, opts); }
-    function sph(r, color, opts)           { return mesh(new THREE.SphereGeometry(r, 10, 8), color, opts); }
-
-    // ── BASE ISLAND ──
     function baseIsland(grassColor) {
       const g = new THREE.Group();
       const rock = cyl(1.05, 0.65, 1.5, 8, 0xa08060);
@@ -193,41 +602,36 @@
       return g;
     }
 
-    // ── ISLAND 1: ABOUT ME — intrapersonal / cozy ──
     function buildAbout() {
-      const g = baseIsland(0x6abf6e); // warm green
+      const g = baseIsland(0x6abf6e);
 
-      // Campfire logs
-      const log1 = cyl(0.05, 0.05, 0.55, 5, 0x8B5E3C);
-      log1.rotation.z = Math.PI / 2.5;
-      log1.position.set(-0.12, 0.62, -0.05);
-      g.add(log1);
-      const log2 = cyl(0.05, 0.05, 0.55, 5, 0x7a4e28);
-      log2.rotation.z = -Math.PI / 2.5;
-      log2.position.set(0.12, 0.62, -0.05);
-      g.add(log2);
+      const mLog1 = cyl(0.05, 0.05, 0.55, 5, 0x8B5E3C);
+      mLog1.rotation.z = Math.PI / 2.5;
+      mLog1.position.set(-0.12, 0.62, -0.05);
+      g.add(mLog1);
+      const mLog2 = cyl(0.05, 0.05, 0.55, 5, 0x7a4e28);
+      mLog2.rotation.z = -Math.PI / 2.5;
+      mLog2.position.set(0.12, 0.62, -0.05);
+      g.add(mLog2);
 
-      // Flame (glowing orange sphere)
-      const flame = sph(0.13, 0xff6a00, { emissive: 0xff3300, emissiveIntensity: 0.8 });
-      flame.position.set(0, 0.82, -0.05);
-      g.add(flame);
-      const flame2 = sph(0.08, 0xffcc00, { emissive: 0xffaa00, emissiveIntensity: 1 });
-      flame2.position.set(0, 0.92, -0.05);
-      g.add(flame2);
-      g.userData.flame = [flame, flame2];
+      const mFlame = sph(0.13, 0xff6a00, { emissive: 0xff3300, emissiveIntensity: 0.8 });
+      mFlame.position.set(0, 0.82, -0.05);
+      g.add(mFlame);
+      const mFlame2 = sph(0.08, 0xffcc00, { emissive: 0xffaa00, emissiveIntensity: 1 });
+      mFlame2.position.set(0, 0.92, -0.05);
+      g.add(mFlame2);
+      g.userData.flame = [mFlame, mFlame2];
 
-      // Bench
-      const seat = box(0.55, 0.06, 0.18, 0x9e7040);
-      seat.position.set(0.55, 0.62, 0.1);
-      g.add(seat);
-      const leg1 = box(0.05, 0.14, 0.05, 0x7a5530);
-      leg1.position.set(0.38, 0.54, 0.1);
-      g.add(leg1);
-      const leg2 = box(0.05, 0.14, 0.05, 0x7a5530);
-      leg2.position.set(0.72, 0.54, 0.1);
-      g.add(leg2);
+      const mSeat = box(0.55, 0.06, 0.18, 0x9e7040);
+      mSeat.position.set(0.55, 0.62, 0.1);
+      g.add(mSeat);
+      const mLeg1 = box(0.05, 0.14, 0.05, 0x7a5530);
+      mLeg1.position.set(0.38, 0.54, 0.1);
+      g.add(mLeg1);
+      const mLeg2 = box(0.05, 0.14, 0.05, 0x7a5530);
+      mLeg2.position.set(0.72, 0.54, 0.1);
+      g.add(mLeg2);
 
-      // Small flowers
       [[-0.55, 0.2], [-0.7, -0.3], [0.3, -0.6]].forEach(([x, z]) => {
         const stem = cyl(0.02, 0.02, 0.16, 4, 0x3a8a3a);
         stem.position.set(x, 0.63, z);
@@ -237,46 +641,40 @@
         g.add(petal);
       });
 
-      // Tree
-      const trunk = cyl(0.07, 0.1, 0.55, 5, 0x7a4e28);
-      trunk.position.set(-0.45, 0.83, -0.3);
-      g.add(trunk);
-      const leaves1 = cone(0.42, 0.65, 6, 0x2d8a4e);
-      leaves1.position.set(-0.45, 1.26, -0.3);
-      g.add(leaves1);
-      const leaves2 = cone(0.28, 0.48, 6, 0x258040);
-      leaves2.position.set(-0.45, 1.62, -0.3);
-      g.add(leaves2);
+      const mTrunk = cyl(0.07, 0.1, 0.55, 5, 0x7a4e28);
+      mTrunk.position.set(-0.45, 0.83, -0.3);
+      g.add(mTrunk);
+      const mLeaves1 = cone(0.42, 0.65, 6, 0x2d8a4e);
+      mLeaves1.position.set(-0.45, 1.26, -0.3);
+      g.add(mLeaves1);
+      const mLeaves2 = cone(0.28, 0.48, 6, 0x258040);
+      mLeaves2.position.set(-0.45, 1.62, -0.3);
+      g.add(mLeaves2);
 
       return g;
     }
 
-    // ── ISLAND 2: MUSIC — EDM festival ──
     function buildMusic() {
-      const g = baseIsland(0x52c282); // vibrant green
+      const g = baseIsland(0x52c282);
 
-      // Stage platform
       const stage = box(1.4, 0.1, 0.7, 0x2a2a3a);
       stage.position.set(0, 0.58, -0.1);
       g.add(stage);
 
-      // Speaker towers
       [-0.6, 0.6].forEach(x => {
         const spk = box(0.22, 0.6, 0.2, 0x1a1a2a);
         spk.position.set(x, 0.95, -0.1);
         g.add(spk);
-        // speaker cone
-        const cone1 = cyl(0.07, 0.09, 0.04, 8, 0x555566);
-        cone1.rotation.x = Math.PI / 2;
-        cone1.position.set(x, 0.98, 0.01);
-        g.add(cone1);
-        const cone2 = cyl(0.04, 0.06, 0.04, 8, 0x555566);
-        cone2.rotation.x = Math.PI / 2;
-        cone2.position.set(x, 0.88, 0.01);
-        g.add(cone2);
+        const speakerCone1 = cyl(0.07, 0.09, 0.04, 8, 0x555566);
+        speakerCone1.rotation.x = Math.PI / 2;
+        speakerCone1.position.set(x, 0.98, 0.01);
+        g.add(speakerCone1);
+        const speakerCone2 = cyl(0.04, 0.06, 0.04, 8, 0x555566);
+        speakerCone2.rotation.x = Math.PI / 2;
+        speakerCone2.position.set(x, 0.88, 0.01);
+        g.add(speakerCone2);
       });
 
-      // Light beams (colored cones pointing up)
       const beamColors = [0xff00ff, 0x00ffff, 0xffff00];
       [-0.45, 0, 0.45].forEach((x, i) => {
         const beam = cone(0.06, 1.1, 6, beamColors[i], { transparent: true, opacity: 0.55 });
@@ -286,13 +684,11 @@
         g.userData['beam' + i] = beam;
       });
 
-      // Disco ball
       const disco = sph(0.15, 0xdddddd, { emissive: 0xaaaaaa, emissiveIntensity: 0.3 });
       disco.position.set(0, 1.55, -0.1);
       g.add(disco);
       g.userData.disco = disco;
 
-      // Sub bass box
       const sub = box(0.35, 0.28, 0.2, 0x111122);
       sub.position.set(0, 0.72, -0.1);
       g.add(sub);
@@ -300,47 +696,39 @@
       return g;
     }
 
-    // ── ISLAND 3: DEV — techy computer ──
     function buildDev() {
-      const g = baseIsland(0x4ab8c4); // tech blue-green
+      const g = baseIsland(0x4ab8c4);
 
-      // Monitor stand
       const stand = cyl(0.06, 0.1, 0.22, 6, 0x888899);
       stand.position.set(0, 0.7, 0);
       g.add(stand);
-      const base = box(0.3, 0.04, 0.22, 0x666677);
-      base.position.set(0, 0.59, 0);
-      g.add(base);
+      const devBase = box(0.3, 0.04, 0.22, 0x666677);
+      devBase.position.set(0, 0.59, 0);
+      g.add(devBase);
 
-      // Monitor body
       const monitor = box(0.75, 0.52, 0.07, 0x222233);
       monitor.position.set(0, 1.1, 0);
       g.add(monitor);
-      // Screen (glowing)
       const screen = box(0.64, 0.42, 0.04, 0x003366, { emissive: 0x002255, emissiveIntensity: 0.8 });
       screen.position.set(0, 1.1, 0.05);
       g.add(screen);
       g.userData.screen = screen;
 
-      // Code lines on screen (thin boxes)
       [0.08, 0.02, -0.04, -0.1].forEach((y, i) => {
         const line = box(0.28 - i * 0.04, 0.025, 0.01, 0x00ff88, { emissive: 0x00dd66, emissiveIntensity: 1 });
         line.position.set(-0.1 + i * 0.02, 1.1 + y, 0.08);
         g.add(line);
       });
 
-      // Server rack (right side)
       const rack = box(0.22, 0.48, 0.18, 0x1a1a2a);
       rack.position.set(0.62, 0.78, -0.1);
       g.add(rack);
-      // LED dots on rack
       [0.12, 0.04, -0.04, -0.12].forEach((y, i) => {
         const led = sph(0.025, i % 2 === 0 ? 0x00ff44 : 0xff4400, { emissive: i % 2 === 0 ? 0x00ff44 : 0xff4400, emissiveIntensity: 1 });
         led.position.set(0.74, 0.78 + y, -0.02);
         g.add(led);
       });
 
-      // Antenna
       const pole = cyl(0.025, 0.025, 0.5, 4, 0x888899);
       pole.position.set(-0.65, 0.82, -0.1);
       g.add(pole);
@@ -355,21 +743,6 @@
       return g;
     }
 
-    // ── CLOUDS ──
-    function buildCloud(x, y, z) {
-      const g = new THREE.Group();
-      const mat = new THREE.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 });
-      [[0,0,0,1.1,0.5],[-0.9,0.15,0,0.75,0.42],[0.9,0.1,0,0.82,0.44],[0,0.2,-0.3,0.65,0.38]].forEach(([cx,cy,cz,rx,ry]) => {
-        const m = new THREE.Mesh(new THREE.SphereGeometry(rx, 7, 5), mat);
-        m.position.set(cx, cy, cz);
-        m.scale.y = ry / rx;
-        g.add(m);
-      });
-      g.position.set(x, y, z);
-      return g;
-    }
-
-    // ── PLACE ISLANDS ──
     const ISLAND_DEFS = [
       { id: 'about', pos: [-4, 0, 0.5],  build: buildAbout, cardEl: document.getElementById('card-about'), url: 'https://www.anhthien.site/blog', label: 'Blog' },
       { id: 'music', pos: [4,  0, 0.5],  build: buildMusic, cardEl: document.getElementById('card-music'), url: 'https://dj.anhthien.site',            label: 'Music'    },
@@ -383,9 +756,8 @@
       g.position.set(...def.pos);
       def.group = g;
       def.baseY = def.pos[1];
-      scene.add(g);
+      menuScene.add(g);
 
-      // Invisible hit target
       const hit = new THREE.Mesh(
         new THREE.CylinderGeometry(1.5, 1.5, 3, 8),
         new THREE.MeshBasicMaterial({ visible: false })
@@ -393,19 +765,17 @@
       hit.position.set(...def.pos);
       hit.userData.def = def;
       hit.userData.idx = i;
-      scene.add(hit);
+      menuScene.add(hit);
       hitMeshes.push(hit);
     });
 
-    // Clouds
-    const clouds = [
+    const menuClouds = [
       buildCloud(-7, 3.5, -4), buildCloud(6, 4, -3),
       buildCloud(-2, 5, -8),   buildCloud(8, 3, 1),
       buildCloud(-8, 3.5, 1.5),
     ];
-    clouds.forEach(c => scene.add(c));
+    menuClouds.forEach(c => menuScene.add(c));
 
-    // ── INTERACTION ──
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2(-9999, -9999);
     let hoveredDef = null;
@@ -423,31 +793,17 @@
     }
 
     window.addEventListener('click', () => {
-      if (hoveredDef) navigate(hoveredDef.url, hoveredDef.label);
+      if (phase === 'menu' && hoveredDef) navigate(hoveredDef.url, hoveredDef.label);
     });
     ISLAND_DEFS.forEach(def => def.cardEl.addEventListener('click', () => navigate(def.url, def.label)));
 
-    // ── PROJECT 3D → SCREEN ──
     const _v = new THREE.Vector3();
-    function toScreen(wp) {
-      _v.copy(wp).project(camera);
+    function toScreen(wp, cam) {
+      _v.copy(wp).project(cam);
       return { x: (_v.x * 0.5 + 0.5) * window.innerWidth, y: (-_v.y * 0.5 + 0.5) * window.innerHeight };
     }
 
-    // ── RESIZE ──
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      setCamForViewport();
-    });
-
-    // ── ANIMATE ──
-    function animate() {
-      requestAnimationFrame(animate);
-      const t = performance.now() * 0.001;
-
-      // Bob islands
+    function updateMenuFrame(t) {
       ISLAND_DEFS.forEach((def, i) => {
         const targetY = def.baseY + Math.sin(t * 0.55 + BOB_PHASES[i]) * 0.13
           + (hoveredDef === def ? 0.25 : 0);
@@ -455,14 +811,12 @@
         hitMeshes[i].position.y = def.group.position.y;
       });
 
-      // Animate About: flicker flame
       const aboutG = ISLAND_DEFS[0].group;
       if (aboutG.userData.flame) {
         const flicker = 0.88 + Math.sin(t * 12) * 0.12 + Math.sin(t * 17) * 0.06;
         aboutG.userData.flame.forEach(f => { f.scale.setScalar(flicker); });
       }
 
-      // Animate Music: spin disco ball, pulse beams
       const musicG = ISLAND_DEFS[1].group;
       if (musicG.userData.disco) musicG.userData.disco.rotation.y = t * 1.2;
       [0,1,2].forEach(i => {
@@ -470,36 +824,70 @@
         if (b) b.material.opacity = 0.3 + Math.sin(t * 3 + i * 1.2) * 0.25;
       });
 
-      // Animate Dev: screen pulse
       const devG = ISLAND_DEFS[2].group;
       if (devG.userData.screen) {
         devG.userData.screen.material.emissiveIntensity = 0.6 + Math.sin(t * 1.5) * 0.2;
       }
 
-      // Drift clouds
-      clouds.forEach((c, i) => { c.position.x += Math.sin(t * 0.05 + i) * 0.002; });
+      menuClouds.forEach((c, i) => { c.position.x += Math.sin(t * 0.05 + i) * 0.002; });
 
-      // Hover
-      raycaster.setFromCamera(mouse, camera);
-      const hits = raycaster.intersectObjects(hitMeshes);
-      const newHov = hits.length ? hits[0].object.userData.def : null;
-      if (newHov !== hoveredDef) {
-        if (hoveredDef) hoveredDef.cardEl.classList.remove('hovered');
-        hoveredDef = newHov;
-        if (hoveredDef) hoveredDef.cardEl.classList.add('hovered');
+      if (phase === 'menu') {
+        raycaster.setFromCamera(mouse, menuCamera);
+        const hits = raycaster.intersectObjects(hitMeshes);
+        const newHov = hits.length ? hits[0].object.userData.def : null;
+        if (newHov !== hoveredDef) {
+          if (hoveredDef) hoveredDef.cardEl.classList.remove('hovered');
+          hoveredDef = newHov;
+          if (hoveredDef) hoveredDef.cardEl.classList.add('hovered');
+        }
       }
 
-      // Position label cards
       ISLAND_DEFS.forEach(def => {
-        const s = toScreen(new THREE.Vector3(def.group.position.x, def.group.position.y - 1.4, def.group.position.z));
+        const s = toScreen(new THREE.Vector3(def.group.position.x, def.group.position.y - 1.4, def.group.position.z), menuCamera);
         def.cardEl.style.left = s.x + 'px';
         def.cardEl.style.top  = s.y + 'px';
       });
-
-      renderer.render(scene, camera);
     }
 
+    // ── Transition: intro → menu ──
+    function goToMenu() {
+      const fade = document.getElementById('sceneFade');
+      fade.classList.add('active');
+      setTimeout(() => {
+        phase = 'menu';
+        ISLAND_DEFS.forEach(d => d.cardEl.classList.add('show'));
+        setTimeout(() => fade.classList.remove('active'), 60);
+      }, 450);
+    }
+
+    // ── Resize ──
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      introCamera.aspect = window.innerWidth / window.innerHeight;
+      introCamera.updateProjectionMatrix();
+      menuCamera.aspect = window.innerWidth / window.innerHeight;
+      menuCamera.updateProjectionMatrix();
+      setCamForViewport();
+    });
+
+    // ── Animate ──
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = performance.now() * 0.001;
+
+      updateIntroFrame(t);
+      updateMenuFrame(t);
+
+      renderer.render(
+        phase === 'intro' ? introScene : menuScene,
+        phase === 'intro' ? introCamera : menuCamera
+      );
+    }
     animate();
+
+    setTimeout(startDialogue, 1400);
+
+  })();
   </script>
 </body>
 </html>

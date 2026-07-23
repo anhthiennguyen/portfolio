@@ -11,10 +11,6 @@
       "destination": "/dev/index.html"
     },
     {
-      "source": "/aboutme",
-      "destination": "/aboutme/index.html"
-    },
-    {
       "source": "/blog",
       "destination": "/blog/index.html"
     }
