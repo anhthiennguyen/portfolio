@@ -23,7 +23,8 @@
   <style>
     #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; }
     body { background: transparent !important; }
-    main { position: relative; z-index: 1; }
+    .page-nav, main { position: relative; z-index: 1; }
+    .page-nav { background: transparent !important; border-bottom-color: transparent !important; }
     .loading-screen { position: fixed; inset: 0; z-index: 9999; }
 
     .blog-empty {
@@ -100,6 +101,10 @@
   </script>
 
   <canvas id="bg-canvas"></canvas>
+
+  <nav class="page-nav">
+    <a href="https://www.anhthien.site">← anhthien.site</a>
+  </nav>
 
   <main class="page-single">
     <header class="card">
