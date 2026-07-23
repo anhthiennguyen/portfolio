@@ -166,7 +166,7 @@
       if (!slug || /[\/\\]/.test(slug)) return notFound();
 
       try {
-        const res = await fetch(`posts/${slug}.xml`);
+        const res = await fetch(`/blog/posts/${slug}.xml`);
         if (!res.ok) throw new Error('post fetch failed');
         const doc = parseXml(await res.text());
 

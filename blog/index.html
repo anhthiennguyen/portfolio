@@ -153,7 +153,7 @@
     async function loadPosts() {
       const listEl = document.getElementById('postList');
       try {
-        const manifestRes = await fetch('posts/manifest.xml');
+        const manifestRes = await fetch('/blog/posts/manifest.xml');
         if (!manifestRes.ok) throw new Error('manifest fetch failed');
         const manifestDoc = parseXml(await manifestRes.text());
         const files = [...manifestDoc.querySelectorAll('post')]
@@ -162,7 +162,7 @@
 
         const posts = await Promise.all(files.map(async (file) => {
           try {
-            const res = await fetch(`posts/${file}`);
+            const res = await fetch(`/blog/posts/${file}`);
             if (!res.ok) return null;
             const doc = parseXml(await res.text());
             return {
@@ -184,7 +184,7 @@
         }
 
         listEl.innerHTML = valid.map((p) => `
-          <a class="card post-card" href="post.html?slug=${encodeURIComponent(p.slug)}">
+          <a class="card post-card" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">
             <div class="post-card-date">${escapeHtml(formatDate(p.date))}</div>
             <h3 class="post-card-title">${escapeHtml(p.title)}</h3>
             <p class="post-card-summary">${escapeHtml(p.summary)}</p>
