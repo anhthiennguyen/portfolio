@@ -7,4 +7,9 @@
 -->
 <manifest>
   <post file="on-happiness.xml" />
+  <post file="on-friendship.xml" />
+  <post file="trust-honesty-accountability-forgiveness.xml" />
+  <post file="getting-out-of-my-comfort-zone.xml" />
+  <post file="on-communication.xml" />
+  <post file="on-the-meaning-of-life.xml" />
 </manifest>
