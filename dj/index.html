@@ -23,9 +23,8 @@
   <style>
     #bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: block; }
     body { background: transparent !important; }
-    .page-nav, header, main, footer { position: relative; z-index: 1; }
+    header, main, footer { position: relative; z-index: 1; }
     .loading-screen { position: fixed; inset: 0; z-index: 9999; }
-    .page-nav { background: var(--surface) !important; }
     footer { background: var(--surface); }
     header {
       background: var(--surface);
@@ -114,10 +113,6 @@
   </script>
 
   <canvas id="bg-canvas"></canvas>
-
-  <nav class="page-nav">
-    <a href="https://www.anhthien.site">← anhthien.site</a>
-  </nav>
 
   <main class="page-single col-music">
 
