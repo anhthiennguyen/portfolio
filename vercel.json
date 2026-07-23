@@ -9,10 +9,18 @@
       "source": "/",
       "has": [{ "type": "host", "value": "dev.anhthien.site" }],
       "destination": "/dev/index.html"
-    },
+    }
+  ],
+  "redirects": [
     {
       "source": "/blog",
-      "destination": "/blog/index.html"
+      "destination": "https://blog.anhthien.site",
+      "permanent": false
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "https://blog.anhthien.site/:path*",
+      "permanent": false
     }
   ]
 }

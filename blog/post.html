@@ -136,7 +136,7 @@
   </script>
 
   <nav class="page-nav">
-    <a href="https://www.anhthien.site/blog">← blog</a>
+    <a href="https://blog.anhthien.site">← blog</a>
   </nav>
 
   <main class="page-single">
@@ -179,7 +179,7 @@
       document.getElementById('postContent').innerHTML = `
         <div class="card blog-empty">
           <h3>Post not found</h3>
-          <p>This post doesn't exist or couldn't be loaded. <a href="https://www.anhthien.site/blog">Back to blog →</a></p>
+          <p>This post doesn't exist or couldn't be loaded. <a href="https://blog.anhthien.site">Back to blog →</a></p>
         </div>
       `;
     }
@@ -189,7 +189,7 @@
       if (!slug || /[\/\\]/.test(slug)) return notFound();
 
       try {
-        const res = await fetch(`/blog/posts/${slug}.xml`);
+        const res = await fetch(`/posts/${slug}.xml`);
         if (!res.ok) throw new Error('post fetch failed');
         const doc = parseXml(await res.text());
 
