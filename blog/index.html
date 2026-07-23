@@ -108,7 +108,7 @@
   </nav>
 
   <main class="page-single">
-    <header>
+    <header class="card">
       <p class="hero-eyebrow">Blog</p>
       <h1 style="font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 600; letter-spacing: -0.02em; margin-top: 0.4rem;">Values &amp; Thoughts</h1>
     </header>
@@ -231,7 +231,7 @@
 
     // Off-center rig so the island sits in the page margin, not behind the content column
     const rig = new THREE.Group();
-    rig.position.set(3.1, -0.3, -0.4);
+    rig.position.set(0, 0, 0);
     scene.add(rig);
     rig.add(fireLight);
 
