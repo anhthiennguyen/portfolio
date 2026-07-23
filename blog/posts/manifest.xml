@@ -7,4 +7,5 @@
 -->
 <manifest>
   <post file="hello-world.xml" />
+  <post file="on-happiness.xml" />
 </manifest>
