@@ -248,6 +248,29 @@
       margin-top: -0.2rem;
     }
     .project-modal-close:hover { color: #333; }
+
+    /* ── View background toggle ── */
+    main, footer { transition: opacity 0.3s ease; }
+    body.bg-only-mode main,
+    body.bg-only-mode footer {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    #bgToggle {
+      display: block;
+      width: fit-content;
+      margin: 0.9rem auto 1.4rem;
+      background: none;
+      border: none;
+      padding: 0.2rem 0.4rem;
+      color: rgba(120,120,120,0.75);
+      font-size: 0.66rem;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    #bgToggle:hover { color: rgba(70,70,70,1); }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLJ17QQWRF"></script>
@@ -597,6 +620,14 @@
   <footer>
     <a href="https://anhthien.site" style="text-decoration:none;color:inherit">anhthien.site</a> &nbsp;·&nbsp; <a href="https://dj.anhthien.site" style="color:var(--accent-music);text-decoration:none">dj.anhthien.site →</a> &nbsp;·&nbsp; <a href="https://blog.anhthien.site" style="color:var(--accent-cs);text-decoration:none">blog →</a>
   </footer>
+
+  <button id="bgToggle" type="button">view background</button>
+  <script>
+    document.getElementById('bgToggle').addEventListener('click', function () {
+      const on = document.body.classList.toggle('bg-only-mode');
+      this.textContent = on ? 'show content' : 'view background';
+    });
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
