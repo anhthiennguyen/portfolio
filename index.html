@@ -295,13 +295,9 @@
   <script>
     (function () {
       const btn = document.getElementById('bgToggle');
-      function checkBottom() {
-        const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
-        btn.classList.toggle('at-bottom', atBottom);
-      }
-      window.addEventListener('scroll', checkBottom, { passive: true });
-      window.addEventListener('resize', checkBottom);
-      checkBottom();
+      window.addEventListener('mousemove', function (e) {
+        btn.classList.toggle('at-bottom', e.clientY >= window.innerHeight - 60);
+      }, { passive: true });
       btn.addEventListener('click', function () {
         const on = document.body.classList.toggle('bg-only-mode');
         this.textContent = on ? 'show content' : 'view background';
