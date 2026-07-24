@@ -80,6 +80,39 @@
     }
     #launchToast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+    /* ── View background toggle ── */
+    #hero-name, #dialogue-wrap, #progress, .island-card, #launchToast {
+      transition: opacity 0.3s ease;
+    }
+    body.bg-only-mode #hero-name,
+    body.bg-only-mode #dialogue-wrap,
+    body.bg-only-mode #progress,
+    body.bg-only-mode .island-card,
+    body.bg-only-mode #launchToast {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    #bgToggle {
+      position: fixed;
+      bottom: 1.1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      background: none;
+      border: none;
+      padding: 0.2rem 0.4rem;
+      color: rgba(120,120,120,0.75);
+      font-size: 0.66rem;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, color 0.2s;
+    }
+    #bgToggle.at-bottom { opacity: 1; pointer-events: auto; }
+    #bgToggle:hover { color: rgba(70,70,70,1); }
+
     /* ── Intro dialogue box ── */
     #dialogue-wrap {
       position: fixed;
@@ -257,6 +290,24 @@
   <div class="island-card" id="card-dev"><div class="card-title">Dev</div><div class="card-hint">click to enter ↗</div></div>
 
   <div id="launchToast"></div>
+
+  <button id="bgToggle" type="button">view background</button>
+  <script>
+    (function () {
+      const btn = document.getElementById('bgToggle');
+      function checkBottom() {
+        const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+        btn.classList.toggle('at-bottom', atBottom);
+      }
+      window.addEventListener('scroll', checkBottom, { passive: true });
+      window.addEventListener('resize', checkBottom);
+      checkBottom();
+      btn.addEventListener('click', function () {
+        const on = document.body.classList.toggle('bg-only-mode');
+        this.textContent = on ? 'show content' : 'view background';
+      });
+    })();
+  </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
