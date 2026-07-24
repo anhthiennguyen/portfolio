@@ -110,7 +110,6 @@
       pointer-events: none;
       transition: opacity 0.3s ease, color 0.2s;
     }
-    #bgToggle.at-bottom { opacity: 1; pointer-events: auto; }
     #bgToggle:hover { color: rgba(70,70,70,1); }
 
     /* ── Intro dialogue box ── */
@@ -295,9 +294,6 @@
   <script>
     (function () {
       const btn = document.getElementById('bgToggle');
-      window.addEventListener('mousemove', function (e) {
-        btn.classList.toggle('at-bottom', e.clientY >= window.innerHeight - 60);
-      }, { passive: true });
       btn.addEventListener('click', function () {
         const on = document.body.classList.toggle('bg-only-mode');
         this.textContent = on ? 'show content' : 'view background';
